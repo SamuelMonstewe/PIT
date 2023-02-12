@@ -7,3 +7,4 @@
 # git commit -m ""
 # echo > README.md
 # git remote add origin link 
+# git log --oneline --decorate --graph --all
