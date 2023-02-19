@@ -12,4 +12,4 @@
 # `git pull` ( serve para trazer atualizações do seu repositório remoto para o local )
 # `git merge`
 
-### Para mais informações, acessa a [documentação do git](https://git-scm.com/doc)
+### Para mais informações, acesse a [documentação do git](https://git-scm.com/doc)
