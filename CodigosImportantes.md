@@ -1,4 +1,4 @@
-# PIT
+
 # `git init` serve para iniciar um novo repositório
 # `cd` serve para entrar dentro das pastas
 # `mkdir` serve para criar um novo repositório
