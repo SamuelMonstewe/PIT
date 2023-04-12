@@ -8,15 +8,13 @@ namespace cadastro
 {
     internal class Cliente
     {
-        string Nome { get; set; }
-        string Telefone { get; set; }
-        string Endereco { get; set; }
-        string Escolar { get; set; }
-        int Idade { get; set; }
-        string Turno { get; set; }
+        private string Nome { get; set; }
+        private string Telefone { get; set; }
+        private string Endereco { get; set; }
+        private string Escolar { get; set; }
+        private int Idade { get; set; }
+        private string Turno { get; set;}
 
-
-      
         public void cadastrar(string nome, string telefone, string endereco, int idade, string turno)
         {
             nome = Nome;
@@ -25,16 +23,7 @@ namespace cadastro
             idade = Idade;
             turno = Turno;
 
-            
-
         }
-        public void buscarEscolar()
-        {
-
-        }
-        public void editarPerfil()
-        {
-
-        }
+       
     }
 }
