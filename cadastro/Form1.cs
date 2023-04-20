@@ -21,5 +21,21 @@ namespace cadastro
         {
 
         }
+
+        Responsavel R = new Responsavel();
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            R.Nome = txtNome.Text;
+            R.Cpf = int.Parse(txtCpf.Text);
+            R.Idade = int.Parse(txtIdade.Text);
+            R.Telefone = txtTelefone.Text;
+
+            string Nome = R.Nome;
+            int Cpf = R.Cpf;
+            int Idade = R.Idade;
+            string Telefone = R.Telefone;
+
+            MessageBox.Show(R.cadastrar(Nome, Telefone, Cpf, Idade), "INFORMAÇÕES", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
