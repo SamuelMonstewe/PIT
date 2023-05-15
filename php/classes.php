@@ -9,6 +9,7 @@ class Motorista
     private string $Endereco;
     private string $Turno;
     private string $Escolas;
+    private string $Rota;
 
     public function set($Propriedade, $Valor)
     {
