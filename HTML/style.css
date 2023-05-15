@@ -4,7 +4,12 @@
 }
 
 body {
+    width: 100%;
+    height: 100vh;
     background-color: #F6A62E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form h1 {
@@ -18,7 +23,6 @@ form h1 {
 .Count-DadosM {
     display: flex;
     justify-content: center;
-    margin-top: 17%;
 }
 
 .Button-Create {
