@@ -1,0 +1,22 @@
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+header h1 {
+    font-weight: 900;
+}
+
+.Button-SingIn {
+    background-color: rgb(235, 189, 38);
+    font-weight: 900;
+}
+
+#Botao-Cadastro {
+    text-align: center;
+}
+
+.Count-DadosM {
+    display: flex;
+    justify-content: center;
+}
