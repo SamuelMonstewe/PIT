@@ -6,7 +6,6 @@ class Motorista
     private string $Sexo;
     private int $Idade;
     private string $Telefone;
-    private string $Endereco;
     private string $Turno;
     private string $Escolas;
     private string $Rota;
