@@ -1,14 +1,14 @@
 <?php
 class Motorista
 {
-    private string $Cpf;
-    private string $Nome;
-    private string $Sexo;
-    private int $Idade;
-    private string $Telefone;
-    private string $Turno;
-    private string $Escolas;
-    private string $Rota;
+    private  $Cpf;
+    private  $Nome;
+    private  $Sexo;
+    private  $Idade;
+    private  $Telefone;
+    private  $Turno;
+    private  $Escolas;
+    private  $Rota;
 
     public function set($Propriedade, $Valor)
     {
