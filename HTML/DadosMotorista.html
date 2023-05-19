@@ -22,63 +22,81 @@
     </header>
 
     <div class="Count-DadosM container ">
-        <form method="post" action="../php/index.php"  class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 " >
+        <form method="post" action="../php/index.php"
+            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 ">
             <!--Inserir nome do usuário-->
             <label><b>Nome Completo</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="nome"
-                placeholder="EX:Nome SobreNome...">
+            <input class="form-control shadow rounded mb-3" type="text" name="nome" placeholder="EX:Nome SobreNome..."
+                required>
 
             <!--Inserir o telefone do usuário-->
             <label><b>Telefone</b></label>
-            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" placeholder="EX:(00) 00000-0000">
+            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" onkeypress="MasacaraTelefone()"
+                id="telefone" placeholder="EX:(00) 00000-0000" required>
 
             <!--Inserir o CPF do usuário-->
             <label><b>CPF </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="cpf" placeholder="EX: 000.000.000-00">
+            <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
+                placeholder="EX: 000.000.000-00" required>
 
             <!--Inserir o CPF do usuário-->
-            <label><b>sexo </b></label>
-            <input style="text-transform: uppercase;" class="form-control shadow rounded mb-3" type="text" name="sexo" maxlength="1" placeholder="EX: M/F">
-
-            <!--Inserir o CPF do usuário-->
-            <label><b>idade </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="idade" placeholder="EX: 99">
-
+            <div class="d-flex justify-content-around align-itens-center">
+                <div class="d-flex flex-column">
+                    <label class="text-center"><b>Sexo </b></label>
+                    <div class="form-control bg-withe shadow">
+                        <label><b>Masculino </b></label>
+                        <input style="text-transform: uppercase;" class="shadow align-middle" type="radio" name="sexo" maxlength="1"
+                            placeholder="EX: M/F" required>
+                            <label><b>Femínino </b></label>
+                        <input style="text-transform: uppercase;" class="shadow align-middle" type="radio" name="sexo" maxlength="1"
+                            placeholder="EX: M/F" required>
+                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <!--Inserir o CPF do usuário-->
+                    <label class="text-center"><b>Idade </b></label>
+                    <input type="text" class="form-control shadow rounded text-center" name="idade" id="Idade" onkeypress="LimiterI()" placeholder="EX: 99" required>
+                </div>
+            </div>
             <!--Inserir as rotas do usuário-->
             <label><b>Rotas </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="rota"
-                placeholder="EX: Local de partida / Local de Chegada">
+                placeholder="EX: Local de partida / Local de Chegada" required>
 
             <!--Inserir o turno do usuário-->
             <label><b>Turno </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="turno" placeholder="EX: Manhã/Tarde/Noite">
+            <input class="form-control shadow rounded mb-3" type="text" name="turno" placeholder="EX: Manhã/Tarde/Noite"
+                required>
 
             <!--Inserir a escola a qual fornece serviço do usuário-->
             <label><b>Escola a Qual Fornece Serviço </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="escolas" placeholder="EX: Escola Estadual...">
+            <input class="form-control shadow rounded mb-3" type="text" name="escolas"
+                placeholder="EX: Escola Estadual..." required>
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="foto">
+            <input class="form-control shadow rounded mb-3" type="file" name="foto" required>
 
             <!--Inserir a carteira de motorista do usuário-->
             <label><b>Carteira </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="carteira" placeholder="EX:">
+            <input class="form-control shadow rounded mb-3" type="file" name="carteira" placeholder="EX:" required>
 
             <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
-            <label><b>CRLV </b> <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p> </label>
-            <input class="form-control shadow rounded mb-3" type="file" name="crlv" placeholder="EX:">
+            <label><b>CRLV </b>
+                <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p>
+            </label>
+            <input class="form-control shadow rounded mb-3" type="file" name="crlv" placeholder="EX:" required>
 
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input  type="submit" name="enviar" id="confirmar" value="Enviar">
-            <a  href="DadosVan.html">ir para cadastro de van</a>
+            <input type="submit" name="enviar" id="confirmar" value="Enviar">
+            <a href="DadosVan.html">ir para cadastro de van</a>
         </form>
     </div>
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>
