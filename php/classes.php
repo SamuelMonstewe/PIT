@@ -21,14 +21,14 @@ class Motorista
 
 }
 
-class Responsavel 
-{
-    private string $Nome;
-    private string $Cpf;
-    private string $Sexo;
-    private string $Telefone;
-    private string $Cep;
-    private string $Email;
+class Responsavel {
+
+    private  $Nome;
+    private  $Cpf;
+    private  $Sexo;
+    private  $Telefone;
+    private  $Cep;
+    private  $Email;
 
     public function set($Propriedade, $Valor)
     {

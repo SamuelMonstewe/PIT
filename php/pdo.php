@@ -1,3 +1,3 @@
 <?php 
-$ConexaoBanco = new PDO("mysql:host=localhost;dbname=PIT", "root", "");
+$ConexaoBanco = new PDO("mysql:host=localhost;dbname=pit", "root", "");
 ?>
