@@ -13,12 +13,9 @@ function MudarPag3() {
 function MasacaraTelefone() {
     //limitador de Caracteres
     var tel = document.getElementById("telefone").value
-    console.log(tel)
     tel = tel.slice(0, 13)
-    console.log(tel)
     document.getElementById("telefone").value = tel
     tel = document.getElementById("telefone").value.slice(0, 10)
-    console.log(tel)
 
     //Mascara
     var tel_formatado = document.getElementById("telefone").value
@@ -44,4 +41,35 @@ function MasacaraTelefone() {
             document.getElementById("telefone").value = tel_formatado.slice(0, 9) + "-" + tel_formatado[9]
         }
     }
+}
+
+function MascaraCPF()
+{
+    var cpfL = document.getElementById("Cpf").value
+    cpfL = cpfL.slice(0, 13)
+    document.getElementById("Cpf").value = cpfL
+    cpfL = document.getElementById("Cpf").value.slice(0, 13)
+
+    var cpf = document.getElementById("Cpf")
+    if (cpf.value.length == 3)
+    {
+        cpf.value += ".";
+    }
+    if (cpf.value.length == 7)
+    {
+        cpf.value += ".";
+    }
+    if (cpf.value.length == 11)
+    {
+        cpf.value += "-";
+    }
+    
+}
+
+function LimiterI()
+{
+    var idadeL = document.getElementById("Idade").value
+    idadeL = idadeL.slice(0,1)
+    document.getElementById("Idade").value = idadeL
+    idadeL = document.getElementById("Idade").value.slice(0,1);
 }
