@@ -23,21 +23,21 @@
 
     <div class="Count-DadosM container ">
         <form method="post" action="../php/index.php"
-            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 ">
+            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 " enctype="multipart/form-data">
             <!--Inserir nome do usuário-->
             <label><b>Nome Completo</b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="nome" placeholder="EX:Nome SobreNome..."
-                required>
+            required="campo obrigatorio">
 
             <!--Inserir o telefone do usuário-->
             <label><b>Telefone</b></label>
-            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" onkeypress="MasacaraTelefone()"
-                id="telefone" placeholder="EX:(00) 00000-0000" required>
+            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" oninput="MasacaraTelefone()"
+                id="telefone" placeholder="EX:(00) 00000-0000" required="" >
 
             <!--Inserir o CPF do usuário-->
             <label><b>CPF </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
-                placeholder="EX: 000.000.000-00" required>
+                placeholder="EX: 000.000.000-00" required="campo obrigatorio">
 
             <!--Inserir o CPF do usuário-->
             <div class="d-flex justify-content-around align-itens-center">
@@ -45,11 +45,11 @@
                     <label class="text-center"><b>Sexo </b></label>
                     <div class="form-control bg-withe shadow">
                         <label><b>Masculino </b></label>
-                        <input style="text-transform: uppercase;" class="shadow align-middle" type="radio" name="sexo" maxlength="1"
-                            placeholder="EX: M/F" required>
+                        <input  class="shadow align-middle" type="radio" name="sexo"
+                             required="campo obrigatorio" value="M">
                             <label><b>Femínino </b></label>
-                        <input style="text-transform: uppercase;" class="shadow align-middle" type="radio" name="sexo" maxlength="1"
-                            placeholder="EX: M/F" required>
+                        <input  class="shadow align-middle" type="radio" name="sexo" 
+                            placeholder="EX: M/F" required="campo obrigatorio"  value="F">
                     </div>
                 </div>
                 <div class="d-flex flex-column">
@@ -61,31 +61,31 @@
             <!--Inserir as rotas do usuário-->
             <label><b>Rotas </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="rota"
-                placeholder="EX: Local de partida / Local de Chegada" required>
+                placeholder="EX: Local de partida / Local de Chegada" required="campo obrigatorio">
 
             <!--Inserir o turno do usuário-->
             <label><b>Turno </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="turno" placeholder="EX: Manhã/Tarde/Noite"
-                required>
+            required="campo obrigatorio">
 
             <!--Inserir a escola a qual fornece serviço do usuário-->
             <label><b>Escola a Qual Fornece Serviço </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="escolas"
-                placeholder="EX: Escola Estadual..." required>
+                placeholder="EX: Escola Estadual..." required="campo obrigatorio">
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="foto" required>
+            <input class="form-control shadow rounded mb-3" type="file" name="foto" >
 
             <!--Inserir a carteira de motorista do usuário-->
             <label><b>Carteira </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="carteira" placeholder="EX:" required>
+            <input class="form-control shadow rounded mb-3" type="file" name="carteira" placeholder="EX:" >
 
             <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
             <label><b>CRLV </b>
                 <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p>
             </label>
-            <input class="form-control shadow rounded mb-3" type="file" name="crlv" placeholder="EX:" required>
+            <input class="form-control shadow rounded mb-3" type="file" name="crlv" placeholder="EX:" >
 
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
             <input type="submit" name="enviar" id="confirmar" value="Enviar">
