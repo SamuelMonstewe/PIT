@@ -24,6 +24,13 @@ class Motorista
 
 }
 
+class Usuario {
+    public $Id;
+    public $Usuario;
+    public $Email;
+    public $Senha;
+}
+
 class Escola {
     private $id;
     private $nome;

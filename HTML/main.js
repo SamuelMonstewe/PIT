@@ -30,11 +30,9 @@ function enviarDados() {
     data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
     data.append('rota', document.getElementById("Rotas").value)
     data.append('telefone', document.getElementById("Telefone").value)
-
     data.append('fotomotorista', document.getElementById("FOTOmotorista").files[0])
     data.append('fotocarteira', document.getElementById("FOTOCarteira").files[0])
     data.append('fotocrlv', document.getElementById("FOTOCRLV").files[0])
-
     data.append('enviar', 'enviar')
 
 
@@ -52,13 +50,10 @@ function BuscarEscolas() {
             var response = Array.from(JSON.parse(http.response));
             document.getElementById("3scolas").innerHTML = "";
 
-
             var newOption = document.createElement("option");
             newOption.text = "Selecione uma escola"
 
             document.getElementById("3scolas").appendChild(newOption);
-
-
 
             response.forEach((escola) => {
                 var newOption = document.createElement("option");
@@ -68,8 +63,6 @@ function BuscarEscolas() {
                 document.getElementById("3scolas").appendChild(newOption);
 
             });
-
-
         }
         else if (http.status != 200) {
             alert("ERRO!");
