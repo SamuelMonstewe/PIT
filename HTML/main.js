@@ -1,12 +1,5 @@
 var base_url = "http://localhost/";
 
-
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    //the event occurred
-    BuscarEscolas();
-})
-
 function mudarpagina() {
     window.location.href = "DadosVan.html"
 }
