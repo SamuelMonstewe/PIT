@@ -22,7 +22,7 @@
     </header>
 
     <div class="Count-DadosM container ">
-        <form method="post" 
+        <form method="post"
             class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation"
             enctype="multipart/form-data">
             <!--Inserir nome do usuário-->
@@ -72,27 +72,36 @@
 
             <!--Inserir o turno do usuário-->
             <label><b>Turno </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno" placeholder="EX: Manhã/Tarde/Noite"
-                required="campo obrigatorio">
+            <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno"
+                placeholder="EX: Manhã/Tarde/Noite" required="campo obrigatorio">
 
             <!--Inserir a escola a qual fornece serviço do usuário-->
             <label><b>Escola a Qual Fornece Serviço </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
-                placeholder="EX: Escola Estadual..." required="campo obrigatorio">
+            <div class="d-flex mb-3">
+                <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
+                    placeholder="EX: Escola Estadual..." required="campo obrigatorio">
+                <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()" value="Adicionar">
+            </div>
+            <select name="" id="3scolas">
+
+            </select>
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="foto">
+            <div id="fotoMotorista"></div>
+            <input class="form-control shadow rounded mb-3" onchange="CarregarFotoMotorista(this, 'fotoMotorista')" id="FOTOmotorista" type="file" name="foto">
 
             <!--Inserir a carteira de motorista do usuário-->
             <label><b>Carteira </b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="carteira" placeholder="EX:">
+            <div id="fotoCarteira"></div>
+            <input class="form-control shadow rounded mb-3" type="file" onchange="CarregarFotoMotorista(this, 'fotoCarteira')" id="FOTOCarteira" name="carteira" placeholder="EX:">
 
             <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
             <label><b>CRLV </b>
                 <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p>
             </label>
-            <input class="form-control shadow rounded mb-3" type="file" name="crlv" placeholder="EX:">
+            <div id="fotoCRLV"></div>
+            <input class="form-control shadow rounded mb-3" type="file" onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:">
 
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
             <input type="button" name="enviar" id="confirmar" onclick="enviarDados()" value="Enviar">
