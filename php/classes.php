@@ -9,6 +9,9 @@ class Motorista
     private  $Turno;
     private  $Escolas;
     private  $Rota;
+    private $fotoMotorista;
+    private $fotoCarteira;
+    private $fotoCRLV;
 
     public function set($Propriedade, $Valor)
     {
@@ -19,6 +22,26 @@ class Motorista
         return $this->$Propriedade;
     }
 
+}
+
+class Usuario {
+    public $Id;
+    public $Usuario;
+    public $Email;
+    public $Senha;
+}
+
+class Escola {
+    private $id;
+    private $nome;
+    public function set($Propriedade, $Valor)
+    {
+        $this->$Propriedade = $Valor;
+    }
+    public function get($Propriedade)
+    {
+        return $this->$Propriedade;
+    }
 }
 
 class Responsavel {

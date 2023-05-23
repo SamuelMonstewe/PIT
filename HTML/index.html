@@ -10,56 +10,120 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <title>Login</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='motorista-dados/style.css'>
+    <title>Dados do Motorista</title>
 </head>
 
 <body>
 
+    <header class="position-relative top-0 container-fluid bg-warning text-center mb-5 p-3">
+        <!--Título da página-->
+        <h1>Dados do Motorista</h1>
+    </header>
 
     <div class="Count-DadosM container ">
-
-        <form style="width: 65%;" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
-            <!--Título da página-->
-            <h1>Login</h1>
-
+        <form method="post"
+            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation"
+            enctype="multipart/form-data">
             <!--Inserir nome do usuário-->
-            <label><b>Usuário</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="nome" placeholder="EX: Fulano do Clano">
-
-            <!--Inserir email do usuário-->
-            <label><b>Email</b></label>
-            <input class="form-control shadow rounded mb-3" type="email" name="email"
-                placeholder="EX: fulano@gmail.com">
-
-            <!--Inserir senha do usuário-->
-            <label><b>Senha</b></label>
-            <input class="form-control shadow rounded mb-3" type="password" name="Senha" placeholder="EX: 12345">
-
-            <!--Botão para recuperar a senha do usuário-->
-            <a class="text-center" href="Recuperar.html">Esqueceu Sua Senha?</a>
-
-            <!--Botão para logar com a conta do usuário-->
-            <a style="width: 100%;" class="text-center mt-3">
-                <button style="width: 50%;" onclick="MudarPag3()" type="button"
-                    class="Button-SingIn btn btn-warning">Logar</button>
-            </a>
-
-            <!--Botão para criar a conta do usuário caso já não tenha uma conta-->
-            <div class="d-flex justify-content-center mt-3 align-items-center">
-                <p>Não Possui uma conta?</p>
-                <a class="text-decoration-none ms-3" href="Cadastro.html">
-                    <p class="Button-Create form-control"><b> Criar Conta </b></p>
-                </a>
+            <div>
+                <label><b>Nome Completo</b></label>
+                <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome"
+                    placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
+
+            <!--Inserir o telefone do usuário-->
+            <label><b>Telefone</b></label>
+            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" oninput="MasacaraTelefone()"
+                id="Telefone" placeholder="EX:(00) 00000-0000" required="">
+
+            <!--Inserir o CPF do usuário-->
+            <label><b>CPF </b></label>
+            <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
+                placeholder="EX: 000.000.000-00" required="campo obrigatorio">
+
+            <!--Inserir o CPF do usuário-->
+            <div class="d-flex justify-content-around align-itens-center">
+                <div class="d-flex flex-column">
+                    <label class="text-center"><b>Sexo </b></label>
+                    <div class="form-control bg-withe shadow">
+                        <label><b>Masculino </b></label>
+                        <input class="shadow align-middle" type="radio" name="sexo" required="campo obrigatorio"
+                            value="M">
+                        <label><b>Femínino </b></label>
+                        <input class="shadow align-middle" type="radio" name="sexo" placeholder="EX: M/F"
+                            required="campo obrigatorio" value="F">
+                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <!--Inserir o CPF do usuário-->
+                    <label class="text-center"><b>Idade </b></label>
+                    <input type="text" class="form-control shadow rounded text-center" name="idade" id="Idade"
+                        onkeypress="LimiterI()" placeholder="EX: 99" required>
+                </div>
+            </div>
+            <!--Inserir as rotas do usuário-->
+            <label><b>Rotas </b></label>
+            <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
+                placeholder="EX: Local de partida / Local de Chegada" required="campo obrigatorio">
+
+            <!--Inserir o turno do usuário-->
+            <label><b>Turno </b></label>
+            <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno"
+                placeholder="EX: Manhã/Tarde/Noite" required="campo obrigatorio">
+
+            <!--Inserir a escola a qual fornece serviço do usuário-->
+            <label><b>Escola a Qual Fornece Serviço </b></label>
+            <div class="d-flex mb-3">
+                <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
+                    placeholder="EX: Escola Estadual..." required="campo obrigatorio">
+                <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
+                    value="Adicionar">
+            </div>
+            <select name="" id="3scolas">
+
+            </select>
+
+            <!--Inserir a foto do motorista do usuário-->
+            <label><b>Foto do Motorista </b></label>
+            <div id="fotoMotorista"></div>
+            <input class="form-control shadow rounded mb-3" onchange="CarregarFotoMotorista(this, 'fotoMotorista')"
+                id="FOTOmotorista" type="file" name="foto">
+
+            <!--Inserir a carteira de motorista do usuário-->
+            <label><b>Carteira </b></label>
+            <div id="fotoCarteira"></div>
+            <input class="form-control shadow rounded mb-3" type="file"
+                onchange="CarregarFotoMotorista(this, 'fotoCarteira')" id="FOTOCarteira" name="carteira"
+                placeholder="EX:">
+
+            <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
+            <label><b>CRLV </b>
+                <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p>
+            </label>
+            <div id="fotoCRLV"></div>
+            <input class="form-control shadow rounded mb-3" type="file"
+                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:">
+
+            <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
+            <input type="button" name="enviar" id="confirmar" onclick="enviarDados()" value="Enviar">
         </form>
     </div>
-    </div>
-
+    <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            //the event occurred
+            BuscarEscolas();
+        })
+    </script>
+
+
 </body>
 
 </html>
