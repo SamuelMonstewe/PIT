@@ -9,7 +9,6 @@ $objMotorista = new Motorista();
 
 function GetFotos()
 {
-
     $DiretorioDeUpload = 'C:\wamp64\www\PIT\imagens\\';
     $FotoMotorista = $DiretorioDeUpload . basename($_FILES['foto']['name']);
     $CarteiraMotorista = $DiretorioDeUpload . basename($_FILES['carteira']['name']);
