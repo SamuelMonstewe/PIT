@@ -22,28 +22,39 @@
     </header>
 
     <div class="Count-DadosM container ">
-        <form method="post"
+        <form method="post" id="formDados"
             class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation"
             enctype="multipart/form-data">
             <!--Inserir nome do usuário-->
-            <div>
-                <label><b>Nome Completo</b></label>
-                <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome"
-                    placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+
+            <label><b>Nome Completo</b></label>
+            <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome"
+                placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque um nome de usuário valido!
+            </div>
+            <div class="valid-feedback">
             </div>
 
             <!--Inserir o telefone do usuário-->
             <label><b>Telefone</b></label>
             <input class="form-control shadow rounded mb-3" type="tel" name="telefone" oninput="MasacaraTelefone()"
                 id="Telefone" placeholder="EX:(00) 00000-0000" required="">
+            <div class="invalid-feedback">
+                Por favor coloque um telefone valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o CPF do usuário-->
             <label><b>CPF </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
                 placeholder="EX: 000.000.000-00" required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque um nome de usuário valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o CPF do usuário-->
             <div class="d-flex justify-content-around align-itens-center">
@@ -63,28 +74,42 @@
                     <label class="text-center"><b>Idade </b></label>
                     <input type="text" class="form-control shadow rounded text-center" name="idade" id="Idade"
                         onkeypress="LimiterI()" placeholder="EX: 99" required>
+                    <div class="invalid-feedback">
+                        Por favor coloque um nome de usuário valido!
+                    </div>
+                    <div class="valid-feedback">
+                    </div>
                 </div>
             </div>
             <!--Inserir as rotas do usuário-->
             <label><b>Rotas </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
                 placeholder="EX: Local de partida / Local de Chegada" required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque um nome de usuário valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o turno do usuário-->
             <label><b>Turno </b></label>
             <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno"
                 placeholder="EX: Manhã/Tarde/Noite" required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque um nome de usuário valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir a escola a qual fornece serviço do usuário-->
             <label><b>Escola a Qual Fornece Serviço </b></label>
             <div class="d-flex mb-3">
                 <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
-                    placeholder="EX: Escola Estadual..." required="campo obrigatorio">
+                    placeholder="EX: Escola Estadual...">
                 <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
                     value="Adicionar">
             </div>
             <select name="" id="3scolas">
-
             </select>
 
             <!--Inserir a foto do motorista do usuário-->
@@ -109,7 +134,7 @@
                 onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:">
 
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" name="enviar" id="confirmar" onclick="enviarDados()" value="Enviar">
+            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
         </form>
     </div>
     <script src="main.js"></script>

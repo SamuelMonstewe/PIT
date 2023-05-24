@@ -4,8 +4,6 @@ header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
 require_once "classes.php";
 $objMotorista = new Motorista();
-//$Insert;
-
 
 function GetFotos()
 {

@@ -7,7 +7,8 @@ require_once "classes.php";
 
 function BuscarEscolas(){
     global $ConexaoBanco;
-    $select = $ConexaoBanco->query("select * from pit.escolas");
+    $sql = "select * from pit.escolas";
+    $select = $ConexaoBanco->query($sql);
 
     $escolas = $select->fetchAll();
     
@@ -16,9 +17,6 @@ function BuscarEscolas(){
 
 
 BuscarEscolas()
-
-
-
 
 
 ?>
