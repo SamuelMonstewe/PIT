@@ -62,11 +62,11 @@
                     <label class="text-center"><b>Sexo </b></label>
                     <div class="form-control bg-withe shadow">
                         <label><b>Masculino </b></label>
-                        <input class="shadow align-middle" type="radio" name="sexo" required="campo obrigatorio"
+                        <input class="shadow align-middle" type="radio" name="sexo" "
                             value="M">
                         <label><b>Femínino </b></label>
                         <input class="shadow align-middle" type="radio" name="sexo" placeholder="EX: M/F"
-                            required="campo obrigatorio" value="F">
+                             value="F">
                     </div>
                 </div>
                 <div class="d-flex flex-column">
@@ -105,25 +105,25 @@
             <label><b>Escola a Qual Fornece Serviço </b></label>
             <div class="d-flex mb-3">
                 <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
-                    placeholder="EX: Escola Estadual...">
+                    placeholder="EX: Escola Estadual..." required="campo obrigatorio">
                 <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
-                    value="Adicionar">
+                    value="Adicionar" required="campo obrigatorio">
             </div>
-            <select name="" id="3scolas">
+            <select name="" id="3scolas" required="campo obrigatorio">
             </select>
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
             <div id="fotoMotorista"></div>
             <input class="form-control shadow rounded mb-3" onchange="CarregarFotoMotorista(this, 'fotoMotorista')"
-                id="FOTOmotorista" type="file" name="foto">
+                id="FOTOmotorista" type="file" name="foto" required="campo obrigatorio">
 
             <!--Inserir a carteira de motorista do usuário-->
             <label><b>Carteira </b></label>
             <div id="fotoCarteira"></div>
             <input class="form-control shadow rounded mb-3" type="file"
                 onchange="CarregarFotoMotorista(this, 'fotoCarteira')" id="FOTOCarteira" name="carteira"
-                placeholder="EX:">
+                placeholder="EX:" required="campo obrigatorio">
 
             <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
             <label><b>CRLV </b>
@@ -131,10 +131,15 @@
             </label>
             <div id="fotoCRLV"></div>
             <input class="form-control shadow rounded mb-3" type="file"
-                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:">
-
+                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:" required="campo obrigatorio">
+                
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
+            <input type="button"  class=" Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
+       
+
+
+            
+
         </form>
     </div>
     <script src="main.js"></script>
@@ -147,7 +152,7 @@
             BuscarEscolas();
         })
     </script>
-
+    <script src="modal.js"></script>
 
 </body>
 
