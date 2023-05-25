@@ -5,12 +5,6 @@ function mudarpagina() {
 }
 
 function enviarDados() {
-    if(!document.getElementById("formDados").checkValidity())
-    {
-        document.getElementById("formDados").classList.add('was-validated')
-        return
-    }
-
     var http = new XMLHttpRequest();
     var url = base_url + "PIT/php/index.php"
  
@@ -103,7 +97,7 @@ function AdicionarEscola() {
 function MasacaraTelefone() {
     //limitador de Caracteres
     var tel = document.getElementById("Telefone").value
-    tel = tel.slice(0, 14)
+    tel = tel.slice(0, 13)
     document.getElementById("Telefone").value = tel
     tel = document.getElementById("Telefone").value.slice(0, 10)
 
@@ -121,9 +115,9 @@ function MasacaraTelefone() {
         }
     }
 
-    if (tel_formatado[9] != "-") {
-        if (tel_formatado[9] != undefined) {
-            document.getElementById("Telefone").value = tel_formatado.slice(0, 9) + "-" + tel_formatado[9]
+    if (tel_formatado[8] != "-") {
+        if (tel_formatado[8] != undefined) {
+            document.getElementById("Telefone").value = tel_formatado.slice(0, 8) + "-" + tel_formatado[8]
         }
     }
 }

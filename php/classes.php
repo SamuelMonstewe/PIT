@@ -30,7 +30,6 @@ class Usuario {
     public $Email;
     public $Senha;
 }
-
 class Escola {
     private $id;
     private $nome;

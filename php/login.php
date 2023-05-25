@@ -28,5 +28,4 @@ if(isset($_POST['enviar']))
 {
     Logar();
 }
-
 ?>

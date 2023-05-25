@@ -13,7 +13,6 @@ function PreencherDados(){
     $usuario->Senha = $_POST['senha'];
 
 }
-
 function InserirDados() {
     global $usuario;
     global $ConexaoBanco;

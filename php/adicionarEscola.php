@@ -11,5 +11,4 @@ if(isset($_POST['addEscola']))
     $insert -> execute([$escola->get('nome')]);
 
 }
-
 ?>
