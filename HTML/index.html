@@ -103,14 +103,16 @@
 
             <!--Inserir a escola a qual fornece serviço do usuário-->
             <label><b>Escola a Qual Fornece Serviço </b></label>
-            <div class="d-flex mb-3">
+            <div class="d-flex mb-3 align-middle">
                 <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
                     placeholder="EX: Escola Estadual...">
-                <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
+                <input type="button" class="Button-Add rounded m-2" name="addEscola" onclick="AdicionarEscola()"
                     value="Adicionar">
+
+                <select name="" id="3scolas" class="form-control shadow">
+                </select>
             </div>
-            <select name="" id="3scolas">
-            </select>
+
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
@@ -134,7 +136,8 @@
                 onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:">
 
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
+            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar"
+                onclick="enviarDados()" value="Cadastrar Dados do Motorista">
         </form>
     </div>
     <script src="main.js"></script>
