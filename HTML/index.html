@@ -10,161 +10,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='motorista-dados/style.css'>
-    <title>Dados do Motorista</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <title>Login</title>
 </head>
 
 <body>
-
-    <header class="position-relative top-0 container-fluid bg-warning text-center mb-5 p-3">
-        <!--Título da página-->
-        <h1>Dados do Motorista</h1>
-    </header>
-
     <div class="Count-DadosM container ">
-        <form method="post" id="formDados"
-            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation"
-            enctype="multipart/form-data">
-            <!--Inserir nome do usuário-->
+        <form style="width: 65%;" id="formLogin" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
+            <!--Título da página-->
+            <h1>Login</h1>
 
-            <label><b>Nome Completo</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome"
-                placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
+            <!--Inserir nome do usuário-->
+            <label><b>Usuário</b></label>
+            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="nome" placeholder="EX: Fulano do Clano">
             <div class="invalid-feedback">
                 Por favor coloque um nome de usuário valido!
             </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Inserir o telefone do usuário-->
-            <label><b>Telefone</b></label>
-            <input class="form-control shadow rounded mb-3" type="tel" name="telefone" oninput="MasacaraTelefone()"
-                id="Telefone" placeholder="EX:(00) 00000-0000" required="">
+            
+            <!--Inserir senha do usuário-->
+            <label><b>Senha</b></label>
+            <input class="form-control shadow rounded mb-3" type="password" required id="Senha" name="Senha" placeholder="EX: 12345">
             <div class="invalid-feedback">
-                Por favor coloque um telefone valido!
+                Por favor coloque uma senha valida!
             </div>
-            <div class="valid-feedback">
-            </div>
+            <!--Botão para recuperar a senha do usuário-->
+            <a class="text-center" href="Recuperar.html">Esqueceu Sua Senha?</a>
 
-            <!--Inserir o CPF do usuário-->
-            <label><b>CPF </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
-                placeholder="EX: 000.000.000-00" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque um CPF valido!
-            </div>
-            <div class="valid-feedback">
-            </div>
+            <!--Botão para logar com a conta do usuário-->
+            <a style="width: 100%;" class="text-center mt-3">
+                <button style="width: 50%;" onclick="enviarDados()" type="button"
+                    class="Button-SingIn btn btn-warning">Logar</button>
+            </a>
 
-            <!--Inserir o Sexo do usuário-->
-            <div class="d-flex justify-content-around align-itens-center">
-                <div class="d-flex flex-column">
-                    <label class="text-center"><b>Sexo </b></label>
-                    <div class="form-control bg-withe shadow">
-                        <label><b>Masculino </b></label>
-                        <input class="shadow align-middle" type="radio" name="sexo" "
-                            value=" M">
-                        <label><b>Femínino </b></label>
-                        <input class="shadow align-middle" type="radio" name="sexo" value="F">
-                    </div>
-                </div>
-                <div class="d-flex flex-column">
-                    <!--Inserir a idade do usuário-->
-                    <label class="text-center"><b>Idade </b></label>
-                    <input type="number" class="form-control shadow rounded text-center" name="idade" id="Idade"
-                        onkeypress="LimiterI()" placeholder="EX: 99" required>
-                    <div class="invalid-feedback">
-                        Por favor coloque uma idade valida!
-                    </div>
-                    <div class="valid-feedback">
-                    </div>
-                </div>
+            <!--Botão para criar a conta do usuário caso já não tenha uma conta-->
+            <div class="d-flex justify-content-center mt-3 align-items-center">
+                <label><p>Não Possui uma conta?</p></label>
+                <a class="text-decoration-none ms-3" href="Cadastro.html">
+                    <button class="Button-Create form-control" type="button">Criar Conta</button>
+                </a>
             </div>
-            <!--Inserir as rotas do usuário-->
-            <label><b>Rotas </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
-                placeholder="EX: Local de partida / Local de Chegada" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque uma rota valida!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Inserir o turno do usuário-->
-            <label><b>Turno </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno"
-                placeholder="EX: Manhã/Tarde/Noite" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque um turno valido!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Inserir a escola a qual fornece serviço do usuário-->
-            <label><b>Escola a Qual Fornece Serviço </b></label>
-            <div class="d-flex mb-3 align-middle">
-                <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
-                    placeholder="EX: Escola Estadual...">
-                <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
-                    value="Adicionar">
-            </div>
-            <select name="" id="3scolas">
-            </select>
-
-            <!--Inserir a foto do motorista do usuário-->
-            <label><b>Foto do Motorista </b></label>
-            <div id="fotoMotorista"></div>
-            <input class="form-control shadow rounded mb-3" onchange="CarregarFotoMotorista(this, 'fotoMotorista')"
-                id="FOTOmotorista" type="file" name="foto" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque uma imagem valida!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Inserir a carteira de motorista do usuário-->
-            <label><b>Carteira </b></label>
-            <div id="fotoCarteira"></div>
-            <input class="form-control shadow rounded mb-3" type="file"
-                onchange="CarregarFotoMotorista(this, 'fotoCarteira')" id="FOTOCarteira" name="carteira"
-                placeholder="EX:" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque uma imagem valida!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
-            <label><b>CRLV </b>
-                <p class="fs-10">(Certificado de Registro e Licenciamento de Veículo do motorista)</p>
-            </label>
-            <div id="fotoCRLV"></div>
-            <input class="form-control shadow rounded mb-3" type="file"
-                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:"
-                required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque uma imagem valida!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
-            <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar"
-                onclick="enviarDados()" value="Cadastrar Dados do Motorista">
         </form>
     </div>
-    <script src="main.js"></script>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            //convertendo a string em código e mandando para o php
-            BuscarEscolas();
-        })
-    </script>
-
-
+    <script src="login.js"></script>
 </body>
 
 </html>

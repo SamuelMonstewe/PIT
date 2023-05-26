@@ -15,11 +15,5 @@ function BuscarEscolas(){
     echo(json_encode($escolas));
 }
 
-
 BuscarEscolas()
-
-
-
-
-
 ?>

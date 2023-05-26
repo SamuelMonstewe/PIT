@@ -14,47 +14,60 @@
     <title>Dados da Van</title>
 </head>
 
-
 <body>
-
     <header class="position-relative top-0 container-fluid bg-warning text-center mb-5 p-3">
         <!--Título da página-->
         <h1>Dados da Van</h1>
     </header>
 
     <div class="Count-DadosM container">
-        <form style="width: 65%;" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4"
-            action="../php/index.php">
+        <form style="width: 65%;" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
+            <!--Inserir o chassi do veículo do usuário-->
+            <label><b>Chassi</b></label>
+            <input class="form-control shadow rounded mb-3" id="Chassi" oninput="MascaraChassi()" type="text"
+                name="Marca" maxlength="50" placeholder="EX: 1ABCD12AB12345678">
+
             <!--Inserir a placa da van do usuário-->
             <label><b>Placa</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="Placa" placeholder="EX:000-0000">
+            <input class="form-control shadow rounded mb-3" id="PlacaVeiculo" oninput="MascaraPlaca()" type="text"
+                name="Placa" placeholder="EX:000-0000">
 
             <!--Inserir a marca da van do usuário-->
             <label><b>Marca</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="Marca" placeholder="EX: Veículo">
+            <input class="form-control shadow rounded mb-3" id="Marca" type="text" name="Marca" maxlength="50"
+                placeholder="EX: Mercedes">
 
             <!--Inserir o modelo da van do usuário-->
             <label><b>Modelo</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="Modelo" placeholder="EX: ">
+            <input class="form-control shadow rounded mb-3" id="Modelo" type="text" name="Modelo" maxlength="50"
+                placeholder="EX: Sprinter">
 
             <!--Inserir a capacidade de alunos na van do usuário-->
             <label><b>Capacidade de alunos</b></label>
-            <input class="form-control shadow rounded mb-3" type="number" name="CapacidadeA" placeholder="EX: 99">
+            <input class="form-control shadow rounded mb-3" id="CapacidadeAlunos" oninput="LimiterCA()" type="number"
+                name="CapacidadeA" placeholder="EX: 99">
 
             <!--Inserir o Laudo de Inspeção Veicular da van do usuário-->
             <label><b>Laudo de Inspeção Veicular</b></label>
-            <input class="form-control shadow rounded mb-3" type="file" name="LIV" placeholder="EX:">
+            <input class="form-control shadow rounded mb-3" id="LaudoInspecao" onchange="(CarregarFoto(this,'LaudoImag'))" type="file" name="LIV" placeholder="EX:">
+            <div id="LaudoImag"></div>
 
             <!--Inserir uma foto interna e externa da van do usuário-->
             <label><b>Foto interna e externa</b></label>
             <div class="d-flex ">
-                <input class="form-control shadow rounded m-3" type="file" name="Foto-Externa">
-                <input class="form-control shadow rounded m-3" type="file" name="Foto-Interna">
+                <div class="d-flex flex-column">
+                    <input class="form-control shadow rounded m-3" id="FotoInterna" onchange="(CarregarFoto(this,'fotoInternaimag'))" type="file" name="Foto-Externa">
+                    <div id="fotoInternaimag"></div>
+                </div>
+                <div class="d-flex flex-column">
+                    <input class="form-control shadow rounded m-3" id="FotoExterna" onchange="(CarregarFoto(this,'fotoExternaimag'))" type="file" name="Foto-Interna">
+                    <div id="fotoExternaimag"></div>
+                </div>
             </div>
 
             <!--Botão cadastrar as informações da van e finalizar o cadastro-->
             <a style="width: 100%;" id="Botao-Cadastro" class="mt-3">
-                <button style="width: 50%;" onclick="MudarPag1()" type="button"
+                <button style="width: 50%;" onclick="EnviarDadosVan()" type="button"
                     class="Button-SingIn btn btn-warning" name="cadastrar">Cadastrar</button>
             </a>
         </form>
@@ -63,7 +76,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="main.js"></script>
+    <script src="Dadosvan.js"></script>
+
 </body>
 
 </html>

@@ -11,7 +11,7 @@ function enviarDados() {
     }
 
     var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/index.php"
+    var url = base_url + "PIT/php/dadosmotorista.php"
  
     http.open("POST", url, true)
 

@@ -43,6 +43,26 @@ class Escola {
     }
 }
 
+class DadosVan {
+    private $Chassi;
+    private $Placa;
+    private $Marca;
+    private $Modelo;
+    private $Quantlugar;
+    private $MotoristaFk;
+    private $LaudoInspecaoVeicular;
+    private $FotoInterna;
+    private $FotoExterna;
+    public function set($Propriedade, $Valor)
+    {
+        $this->$Propriedade = $Valor;
+    }
+    public function get($Propriedade)
+    {
+        return $this->$Propriedade;
+    }
+}
+
 class Responsavel {
 
     private  $Nome;
