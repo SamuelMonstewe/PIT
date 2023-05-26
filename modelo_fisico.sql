@@ -39,13 +39,18 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `Usuario_UNIQUE` (`Usuario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-create table van(
-chassi char(17) not null primary key,
-placa char(7) not null,
-marca varchar(30) not null,
-modelo varchar(30) not null,
-qtd_lugares tinyint not null,
-motorista_cpf_fk int not null,
-foreign key (motorista_cpf_fk) references motorista(cpf)
-);
+CREATE TABLE `van` (
+  `chassi` char(17) NOT NULL,
+  `placa` char(7) NOT NULL,
+  `marca` varchar(30) NOT NULL,
+  `modelo` varchar(30) NOT NULL,
+  `qtd_lugares` tinyint NOT NULL,
+  `motorista_id_fk` int DEFAULT NULL,
+  `laudo_inspecao_veicular` longtext,
+  `foto_interna` longtext,
+  `foto_externa` longtext,
+  PRIMARY KEY (`chassi`),
+  KEY `motorista_id_fk_idx` (`motorista_id_fk`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 select * from van;
