@@ -5,21 +5,6 @@ require_once "pdo.php";
 require_once "classes.php";
 $objMotorista = new Motorista();
 
-function GetFotos()
-{
-    $DiretorioDeUpload = 'C:\wamp64\www\PIT\imagens\\';
-    $FotoMotorista = $DiretorioDeUpload . basename($_FILES['foto']['name']);
-    $CarteiraMotorista = $DiretorioDeUpload . basename($_FILES['carteira']['name']);
-    $Crlv = $DiretorioDeUpload . basename($_FILES['crlv']['name']);
-
-    if (
-        move_uploaded_file($_FILES['foto']['tmp_name'], $FotoMotorista) &&
-        move_uploaded_file($_FILES['carteira']['tmp_name'], $CarteiraMotorista) && move_uploaded_file($_FILES['crlv']['tmp_name'], $Crlv)
-    ) {
-        print_r($_FILES);
-    }
-}
-
 function pegarDadosDoFormulario()
 {
     global $objMotorista;

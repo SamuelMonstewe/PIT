@@ -49,6 +49,3 @@ motorista_cpf_fk int not null,
 foreign key (motorista_cpf_fk) references motorista(cpf)
 );
 select * from van;
-
-
-

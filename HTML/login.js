@@ -22,7 +22,7 @@ function enviarDados() {
         }
         else if (http.readyState == 4 && http.status == 401)
         {
-            alert(http.response);
+            return
         }
         else if (http.readyState == 4 && http.status != 200) {
             alert("ERRO!");

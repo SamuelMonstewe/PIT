@@ -38,6 +38,7 @@ function enviarDados() {
 
     http.send(data)
 }
+
 function BuscarEscolas() {
     var http = new XMLHttpRequest();
     var url = base_url + "PIT/php/escola.php"
@@ -99,7 +100,7 @@ function MasacaraTelefone() {
     var tel = document.getElementById("Telefone").value
     tel = tel.slice(0, 13)
     document.getElementById("Telefone").value = tel
-    tel = document.getElementById("Telefone").value.slice(0, 10)
+    tel = document.getElementById("Telefone").value.slice(0, 13)
 
     //Mascara
     var tel_formatado = document.getElementById("Telefone").value

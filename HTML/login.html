@@ -16,19 +16,23 @@
 
 <body>
     <div class="Count-DadosM container ">
-
         <form style="width: 65%;" id="formLogin" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
             <!--Título da página-->
             <h1>Login</h1>
 
             <!--Inserir nome do usuário-->
             <label><b>Usuário</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" id="Usuario" name="nome" placeholder="EX: Fulano do Clano">
-
+            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="nome" placeholder="EX: Fulano do Clano">
+            <div class="invalid-feedback">
+                Por favor coloque um nome de usuário valido!
+            </div>
+            
             <!--Inserir senha do usuário-->
             <label><b>Senha</b></label>
-            <input class="form-control shadow rounded mb-3" type="password" id="Senha" name="Senha" placeholder="EX: 12345">
-
+            <input class="form-control shadow rounded mb-3" type="password" required id="Senha" name="Senha" placeholder="EX: 12345">
+            <div class="invalid-feedback">
+                Por favor coloque uma senha valida!
+            </div>
             <!--Botão para recuperar a senha do usuário-->
             <a class="text-center" href="Recuperar.html">Esqueceu Sua Senha?</a>
 
@@ -40,7 +44,7 @@
 
             <!--Botão para criar a conta do usuário caso já não tenha uma conta-->
             <div class="d-flex justify-content-center mt-3 align-items-center">
-                <p>Não Possui uma conta?</p>
+                <label><p>Não Possui uma conta?</p></label>
                 <a class="text-decoration-none ms-3" href="Cadastro.html">
                     <button class="Button-Create form-control" type="button">Criar Conta</button>
                 </a>
