@@ -1,22 +1,27 @@
-var base_url = "http://localhost/";
+var base_url = "http://localhost/"
 
 function mudarpagina() {
     window.location.href = "DadosVan.html"
 }
 
 function enviarDados() {
-    var http = new XMLHttpRequest();
+    if (!document.getElementById("formDados").checkValidity()) {
+        document.getElementById("formDados").classList.add('was-validated')
+        return
+    }
+
+    var http = new XMLHttpRequest()
     var url = base_url + "PIT/php/index.php"
  
-    http.open("POST", url, true);
+    http.open("POST", url, true)
 
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            mudarpagina();
+            mudarpagina()
         }
         else if (http.status != 200) {
-            alert("ERRO!");
+            alert("ERRO!")
         }
     }
 
@@ -40,59 +45,59 @@ function enviarDados() {
 }
 
 function BuscarEscolas() {
-    var http = new XMLHttpRequest();
+    var http = new XMLHttpRequest()
     var url = base_url + "PIT/php/escola.php"
-    http.open("GET", url, true);
+    http.open("GET", url, true)
 
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
 
-            var response = Array.from(JSON.parse(http.response));
-            document.getElementById("3scolas").innerHTML = "";
+            var response = Array.from(JSON.parse(http.response))
+            document.getElementById("3scolas").innerHTML = ""
 
-            var newOption = document.createElement("option");
+            var newOption = document.createElement("option")
             newOption.text = "Selecione uma escola"
 
-            document.getElementById("3scolas").appendChild(newOption);
+            document.getElementById("3scolas").appendChild(newOption)
 
             response.forEach((escola) => {
-                var newOption = document.createElement("option");
-                newOption.text = escola['nome'];
-                newOption.value = escola['id'];
+                var newOption = document.createElement("option")
+                newOption.text = escola['nome']
+                newOption.value = escola['id']
 
-                document.getElementById("3scolas").appendChild(newOption);
+                document.getElementById("3scolas").appendChild(newOption)
 
-            });
+            })
         }
         else if (http.status != 200) {
-            alert("ERRO!");
+            alert("ERRO!")
         }
     }
-    http.send();
+    http.send()
 }
 
 function AdicionarEscola() {
     var NomeEscola = document.getElementById("Escolas").value
 
-    var http = new XMLHttpRequest();
+    var http = new XMLHttpRequest()
     var url = base_url + "PIT/php/adicionarEscola.php"
-    http.open("POST", url, true);
+    http.open("POST", url, true)
 
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            BuscarEscolas();
+            BuscarEscolas()
         }
         else if (http.status != 200) {
-            alert("ERRO!");
+            alert("ERRO!")
         }
     }
 
     var data = new FormData()
 
     data.append('addEscola', NomeEscola)
-    http.send(data);
+    http.send(data)
 }
 
 function MasacaraTelefone() {
@@ -106,7 +111,7 @@ function MasacaraTelefone() {
     var tel_formatado = document.getElementById("Telefone").value
     if (tel_formatado[0] != "(") {
         if (tel_formatado[0] != undefined) {
-            document.getElementById("Telefone").value = "(" + tel_formatado[0];
+            document.getElementById("Telefone").value = "(" + tel_formatado[0]
         }
     }
 
@@ -131,13 +136,13 @@ function MascaraCPF() {
 
     var cpf = document.getElementById("Cpf")
     if (cpf.value.length == 3) {
-        cpf.value += ".";
+        cpf.value += "."
     }
     if (cpf.value.length == 7) {
-        cpf.value += ".";
+        cpf.value += "."
     }
     if (cpf.value.length == 11) {
-        cpf.value += "-";
+        cpf.value += "-"
     }
 
 }
@@ -146,16 +151,16 @@ function LimiterI() {
     var idadeL = document.getElementById("Idade").value
     idadeL = idadeL.slice(0, 1)
     document.getElementById("Idade").value = idadeL
-    idadeL = document.getElementById("Idade").value.slice(0, 1);
+    idadeL = document.getElementById("Idade").value.slice(0, 1)
 }
 
 function CarregarFotoMotorista(input, idelemento) {
-    var fileReader = new FileReader();
+    var fileReader = new FileReader()
 
     fileReader.readAsDataURL(input.files[0])
 
     fileReader.onload = function (evt) {
-        var imgBase64 = evt.target.result;
+        var imgBase64 = evt.target.result
         document.getElementById(idelemento).innerHTML = '<img src="' + imgBase64 + '" width=100px>'
     }
 }

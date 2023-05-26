@@ -51,31 +51,30 @@
             <input class="form-control shadow rounded mb-3" type="text" name="cpf" id="Cpf" onkeypress="MascaraCPF()"
                 placeholder="EX: 000.000.000-00" required="campo obrigatorio">
             <div class="invalid-feedback">
-                Por favor coloque um nome de usuário valido!
+                Por favor coloque um CPF valido!
             </div>
             <div class="valid-feedback">
             </div>
 
-            <!--Inserir o CPF do usuário-->
+            <!--Inserir o Sexo do usuário-->
             <div class="d-flex justify-content-around align-itens-center">
                 <div class="d-flex flex-column">
                     <label class="text-center"><b>Sexo </b></label>
                     <div class="form-control bg-withe shadow">
                         <label><b>Masculino </b></label>
                         <input class="shadow align-middle" type="radio" name="sexo" "
-                            value="M">
+                            value=" M">
                         <label><b>Femínino </b></label>
-                        <input class="shadow align-middle" type="radio" name="sexo"
-                            value="F">
+                        <input class="shadow align-middle" type="radio" name="sexo" value="F">
                     </div>
                 </div>
                 <div class="d-flex flex-column">
-                    <!--Inserir o CPF do usuário-->
+                    <!--Inserir a idade do usuário-->
                     <label class="text-center"><b>Idade </b></label>
-                    <input type="text" class="form-control shadow rounded text-center" name="idade" id="Idade"
+                    <input type="number" class="form-control shadow rounded text-center" name="idade" id="Idade"
                         onkeypress="LimiterI()" placeholder="EX: 99" required>
                     <div class="invalid-feedback">
-                        Por favor coloque um nome de usuário valido!
+                        Por favor coloque uma idade valida!
                     </div>
                     <div class="valid-feedback">
                     </div>
@@ -86,7 +85,7 @@
             <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
                 placeholder="EX: Local de partida / Local de Chegada" required="campo obrigatorio">
             <div class="invalid-feedback">
-                Por favor coloque um nome de usuário valido!
+                Por favor coloque uma rota valida!
             </div>
             <div class="valid-feedback">
             </div>
@@ -96,7 +95,7 @@
             <input class="form-control shadow rounded mb-3" type="text" id="Turno" name="turno"
                 placeholder="EX: Manhã/Tarde/Noite" required="campo obrigatorio">
             <div class="invalid-feedback">
-                Por favor coloque um nome de usuário valido!
+                Por favor coloque um turno valido!
             </div>
             <div class="valid-feedback">
             </div>
@@ -117,6 +116,11 @@
             <div id="fotoMotorista"></div>
             <input class="form-control shadow rounded mb-3" onchange="CarregarFotoMotorista(this, 'fotoMotorista')"
                 id="FOTOmotorista" type="file" name="foto" required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque uma imagem valida!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir a carteira de motorista do usuário-->
             <label><b>Carteira </b></label>
@@ -124,6 +128,11 @@
             <input class="form-control shadow rounded mb-3" type="file"
                 onchange="CarregarFotoMotorista(this, 'fotoCarteira')" id="FOTOCarteira" name="carteira"
                 placeholder="EX:" required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque uma imagem valida!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o Certificado de Registro e Licenciamento de Veículo do motorista do usuário-->
             <label><b>CRLV </b>
@@ -131,10 +140,17 @@
             </label>
             <div id="fotoCRLV"></div>
             <input class="form-control shadow rounded mb-3" type="file"
-                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:" required="campo obrigatorio">
-                
+                onchange="CarregarFotoMotorista(this, 'fotoCRLV')" id="FOTOCRLV" name="crlv" placeholder="EX:"
+                required="campo obrigatorio">
+            <div class="invalid-feedback">
+                Por favor coloque uma imagem valida!
+            </div>
+            <div class="valid-feedback">
+            </div>
+
             <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
+            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar"
+                onclick="enviarDados()" value="Cadastrar Dados do Motorista">
         </form>
     </div>
     <script src="main.js"></script>
