@@ -41,7 +41,7 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `van` (
   `chassi` char(17) NOT NULL,
-  `placa` char(7) NOT NULL,
+  `placa` char(8) NOT NULL,
   `marca` varchar(30) NOT NULL,
   `modelo` varchar(30) NOT NULL,
   `qtd_lugares` tinyint NOT NULL,
