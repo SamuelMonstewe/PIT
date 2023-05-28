@@ -21,47 +21,89 @@
     </header>
 
     <div class="Count-DadosM container">
-        <form style="width: 65%;" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
+        <form style="width: 65%;" id="formDadosVan" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
             <!--Inserir o chassi do veículo do usuário-->
             <label><b>Chassi</b></label>
-            <input class="form-control shadow rounded mb-3" id="Chassi" oninput="MascaraChassi()" type="text"
+            <input class="form-control shadow rounded mb-3" id="Chassi" oninput="MascaraChassi()" required type="text"
                 name="Marca" maxlength="50" placeholder="EX: 1ABCD12AB12345678">
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir a placa da van do usuário-->
             <label><b>Placa</b></label>
-            <input class="form-control shadow rounded mb-3" id="PlacaVeiculo" oninput="MascaraPlaca()" type="text"
-                name="Placa" placeholder="EX:000-0000">
-
+            <input class="form-control shadow rounded mb-3" id="PlacaVeiculo" oninput="MascaraPlaca()" required
+                type="text" name="Placa" placeholder="EX:000-0000">
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
             <!--Inserir a marca da van do usuário-->
             <label><b>Marca</b></label>
-            <input class="form-control shadow rounded mb-3" id="Marca" type="text" name="Marca" maxlength="50"
+            <input class="form-control shadow rounded mb-3" id="Marca" type="text" name="Marca" required maxlength="50"
                 placeholder="EX: Mercedes">
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o modelo da van do usuário-->
             <label><b>Modelo</b></label>
-            <input class="form-control shadow rounded mb-3" id="Modelo" type="text" name="Modelo" maxlength="50"
-                placeholder="EX: Sprinter">
+            <input class="form-control shadow rounded mb-3" id="Modelo" type="text" name="Modelo" required
+                maxlength="50" placeholder="EX: Sprinter">
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir a capacidade de alunos na van do usuário-->
             <label><b>Capacidade de alunos</b></label>
-            <input class="form-control shadow rounded mb-3" id="CapacidadeAlunos" oninput="LimiterCA()" type="number"
-                name="CapacidadeA" placeholder="EX: 99">
+            <input class="form-control shadow rounded mb-3" id="CapacidadeAlunos" oninput="LimiterCA()" required
+                type="number" name="CapacidadeA" placeholder="EX: 99">
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir o Laudo de Inspeção Veicular da van do usuário-->
             <label><b>Laudo de Inspeção Veicular</b></label>
-            <input class="form-control shadow rounded mb-3" id="LaudoInspecao" onchange="(CarregarFoto(this,'LaudoImag'))" type="file" name="LIV" placeholder="EX:">
+            <input class="form-control shadow rounded mb-3" id="LaudoInspecao"
+                onchange="(CarregarFoto(this,'LaudoImag'))" required type="file" name="LIV" placeholder="EX:">
             <div id="LaudoImag"></div>
+            <div class="invalid-feedback">
+                Por favor coloque um CPF valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
 
             <!--Inserir uma foto interna e externa da van do usuário-->
             <label><b>Foto interna e externa</b></label>
             <div class="d-flex ">
                 <div class="d-flex flex-column">
-                    <input class="form-control shadow rounded m-3" id="FotoInterna" onchange="(CarregarFoto(this,'fotoInternaimag'))" type="file" name="Foto-Externa">
+                    <input class="form-control shadow rounded m-3" id="FotoInterna"
+                        onchange="(CarregarFoto(this,'fotoInternaimag'))" required type="file" name="Foto-Externa">
                     <div id="fotoInternaimag"></div>
+                    <div class="invalid-feedback">
+                        Por favor coloque um CPF valido!
+                    </div>
+                    <div class="valid-feedback">
+                    </div>
                 </div>
                 <div class="d-flex flex-column">
-                    <input class="form-control shadow rounded m-3" id="FotoExterna" onchange="(CarregarFoto(this,'fotoExternaimag'))" type="file" name="Foto-Interna">
+                    <input class="form-control shadow rounded m-3" id="FotoExterna"
+                        onchange="(CarregarFoto(this,'fotoExternaimag'))" required type="file" name="Foto-Interna">
                     <div id="fotoExternaimag"></div>
+                    <div class="invalid-feedback">
+                        Por favor coloque um CPF valido!
+                    </div>
+                    <div class="valid-feedback">
+                    </div>
                 </div>
             </div>
 

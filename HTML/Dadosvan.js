@@ -2,6 +2,11 @@ var base_url = "http://localhost/"
 
 function EnviarDadosVan()
 {
+    if (!document.getElementById("formDadosVan").checkValidity()) {
+        document.getElementById("formDadosVan").classList.add('was-validated')
+        return
+    }
+
     var http = new XMLHttpRequest()
     var url = base_url + "PIT/php/dadosvan.php"
  
@@ -10,7 +15,7 @@ function EnviarDadosVan()
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            alert("Cadastrado Com Sucesso!")
+            console.log("deu")
         }
         else if (http.status != 200) {
             alert("ERRO!")
