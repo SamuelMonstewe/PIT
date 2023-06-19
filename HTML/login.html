@@ -9,27 +9,30 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='CSS1/style.css'>
     <title>Login</title>
 </head>
 
 <body>
     <div class="Count-DadosM container ">
-        <form style="width: 65%;" id="formLogin" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
+        <form style="width: 65%;" id="formLogin"
+            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
             <!--Título da página-->
             <h1>Login</h1>
 
             <!--Inserir nome do usuário-->
             <label><b>Usuário</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="nome" placeholder="EX: Fulano do Clano">
+            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="nome"
+                placeholder="EX: Fulano do Clano">
             <div class="invalid-feedback">
                 Por favor coloque um nome de usuário valido!
             </div>
-            
+
             <!--Inserir senha do usuário-->
             <label><b>Senha</b></label>
-            <input class="form-control shadow rounded mb-3" type="password" required id="Senha" name="Senha" placeholder="EX: 12345">
+            <input class="form-control shadow rounded mb-3" type="password" required id="Senha" name="Senha"
+                placeholder="EX: 12345">
             <div class="invalid-feedback">
                 Por favor coloque uma senha valida!
             </div>
@@ -44,7 +47,9 @@
 
             <!--Botão para criar a conta do usuário caso já não tenha uma conta-->
             <div class="d-flex justify-content-center mt-3 align-items-center">
-                <label><p>Não Possui uma conta?</p></label>
+                <label>
+                    <p>Não Possui uma conta?</p>
+                </label>
                 <a class="text-decoration-none ms-3" href="Cadastro.html">
                     <button class="Button-Create form-control" type="button">Criar Conta</button>
                 </a>

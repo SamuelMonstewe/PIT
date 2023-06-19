@@ -1,7 +1,7 @@
 var base_url = "http://localhost/"
 
 function mudarpagina() {
-    window.location.href = "index.html"
+    window.location.href = "login.html"
 }
 
 function EnviarDados() {
