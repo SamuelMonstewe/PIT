@@ -25,10 +25,20 @@ class Motorista
 }
 
 class Usuario {
-    public $Id;
-    public $Usuario;
-    public $Email;
-    public $Senha;
+    
+    private $Usuario;
+    private $Email;
+    private $Senha;
+    
+    public function set($Propriedade, $Valor)
+    {
+        $this->$Propriedade = $Valor;
+    }
+    public function get($Propriedade)
+    {
+        return $this->$Propriedade;
+    }
+
 }
 class Escola {
     private $id;
