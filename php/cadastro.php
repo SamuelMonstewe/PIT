@@ -4,6 +4,11 @@ header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
 require_once "classes.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+require '../lib/vendor/autoload.php';
 $usuario = new Usuario();
 
 function PreencherDados()
@@ -12,9 +17,6 @@ function PreencherDados()
     $usuario->Usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
     $usuario->Email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $usuario->Senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-
-
-
 }
 function InserirDados()
 {
@@ -22,7 +24,6 @@ function InserirDados()
     global $ConexaoBanco;
 
     try {
-
 
         $query = $ConexaoBanco->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
         $query->bindParam(':email', $usuario->Email);
@@ -33,14 +34,50 @@ function InserirDados()
             echo json_encode(array("erro" => "O email já está cadastrado."));
         } 
         else {
-            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha)");
+
+            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Senha ,:Chave ,:Email)");
             $Insert->bindParam(':Usuario', $usuario->Usuario);
             $Insert->bindParam(':Email', $usuario->Email);
             $Insert->bindParam(':Senha', $usuario->Senha);
-
+            $chave = password_hash($usuario->Email . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+            $Insert->bindParam(':Chave', $chave);
             $Insert->execute();
             $linhasAfetadas = $Insert->rowCount();
+
             if ($linhasAfetadas > 0) {
+                $mail = new PHPMailer(true);
+            
+                try {
+                
+                    $mail->CharSet = 'UTF-8';
+                    $mail->isSMTP(); 
+                    $mail->Host = 'sandbox.smtp.mailtrap.io'; 
+                    $mail->SMTPAuth = true; 
+                    $mail->Username = '9ffbcf72932b17'; 
+                    $mail->Password = 'fb3722320ad301'; 
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; 
+                    
+                    $mail->Port = 2525;
+
+                   
+                    $mail->setFrom('samuel@teste.com', 'Samuel');
+                    $mail->addAddress($usuario->Email, $usuario->Usuario); 
+
+                   
+                    $mail->isHTML(true); 
+                    $mail->Subject = 'CONFIRMAR O EMAIL';
+                    $mail->Body = "Por favor confirme o email <br> 
+                    <a href='http://localhost/PIT/confirmar-email.php?chave='>Clique aqui </a>";
+                    $mail->AltBody = "Por favor confirme o email \n
+                    'http://localhost/PIT/confirmar-email.php?chave='";
+
+                    $mail->send();
+
+
+                } 
+                catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                }
                 echo json_encode(array("mensagem" => "Inserção bem-sucedida!"));
 
             } else {
