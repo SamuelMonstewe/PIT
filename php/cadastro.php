@@ -8,9 +8,9 @@ $usuario = new Usuario();
 
 function PreencherDados(){
     global $usuario;    
-    $usuario->Usuario = $_POST['usuario'];
-    $usuario->Email = $_POST['email'];
-    $usuario->Senha = $_POST['senha'];
+    $usuario->set("Usuario",$_POST['Usuario']);
+    $usuario->set("Email",$_POST['Email']);
+    $usuario->set("Senha",$_POST['Senha']);
 
 }
 function InserirDados() {
@@ -18,7 +18,7 @@ function InserirDados() {
     global $ConexaoBanco;
 
     $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,? ,? ,?)");
-    $Insert->execute([$usuario->Usuario,$usuario->Email,$usuario->Senha]);
+    $Insert->execute([$usuario->get("Usuario"),$usuario->get("Email"),$usuario->get("Senha")]);
 
 }
 
