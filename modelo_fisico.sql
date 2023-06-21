@@ -36,15 +36,15 @@ CREATE TABLE `usuarios` (
   `Usuario` varchar(80) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
   `senha` varchar(30) DEFAULT NULL,
-  chave varchar(220) not null,
-  sits_usuarios_id int not null default 3,
+  chave varchar(220),
+  sits_usuarios_id int default 3,
   foreign key (sits_usuarios_id) references situacao_usuarios(id),
   PRIMARY KEY (`id`),
   UNIQUE KEY `Usuario_UNIQUE` (`Usuario`)
 ) ;
 
 select * from pit.usuarios;
-
+drop table usuarios;
 CREATE TABLE `van` (
   `chassi` char(17) NOT NULL,
   `placa` char(8) NOT NULL,
