@@ -15,7 +15,7 @@ $usuario = new Usuario();
 function PreencherDados()
 {
     global $usuario;
-    $usuario->Usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_STRING);
+    $usuario->Usuario = filter_input(INPUT_POST, 'usuario' );
     $usuario->Email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $usuario->Senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
 }
