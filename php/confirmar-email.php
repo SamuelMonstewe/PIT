@@ -18,10 +18,10 @@ if(!empty($chave)){
         extract($linhaRetornada);
       
         $updateUsuario = "UPDATE usuarios SET sits_usuarios_id = 1, chave=:chave WHERE id = " . strval($id);
-        $update = $ConexaoBanco->prepare($updateUsuario);
+        $UPDATE = $ConexaoBanco->prepare($updateUsuario);
         $chave = NULL;
-        $update->bindParam(':chave', $chave);
-        if($update->execute()){
+        $UPDATE->bindParam(':chave', $chave);
+        if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado </div>";
             header("Location: ../php/cadastro.php");
         }
