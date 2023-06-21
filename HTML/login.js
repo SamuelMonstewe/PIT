@@ -17,7 +17,7 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            // var login = JSON.parse(http.response)
+         
             var verificacao = confirm("login realizado com sucesso! Deseja ir para dados de motorista?")
             if(verificacao == true)
             {
@@ -28,7 +28,7 @@ function enviarDados() {
             }
         }
         else if (http.readyState == 4 && http.status == 401)
-        {   alert("senha inválida")
+        {   alert("Senha inválida ou não confirmou o email no cadastro")
             return
         }
         else if (http.readyState == 4 && http.status != 200) {
