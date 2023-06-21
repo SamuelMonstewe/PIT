@@ -1,6 +1,6 @@
 var base_url = "http://localhost/"
 
-function mudarpagina() {
+function mudarPagina() {
     window.location.href = "DadosMotorista.html"
 }
 
