@@ -28,6 +28,7 @@ class Usuario {
     public $Usuario;
     public $Email;
     public $Senha;
+    public $Chave;
 }
 
 class Escola {
