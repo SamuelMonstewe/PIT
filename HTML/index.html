@@ -2,74 +2,81 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='CSS-Principal/style.css'>
-    <title>InfoVan</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel='stylesheet' type='text/css' media='screen' href='CSS-Principal/style.css'>
+  <title>InfoVan</title>
 </head>
 
 <body>
 
-    <header class="container-fluid">
-        <div class="Junction-H">
-            <img class="Image-H1" src="imagens/Logo.png" alt="Logo do site">
-            <h1>
-                InfoVan
-            </h1>
-        </div>
-        <form>
-            <img id="Lupa-Input" src="imagens/lupa.png" alt="Lupa de barra de pesquisa">
-            <input id="Input-H" type="text" class="form-control">
-        </form>
-        <div class="Junction-H">
-            <img class="Image-H2" src="imagens/filtro.png" alt="Fazer login">
-            <a class="Link-Login" href="login.html">
-                <div>
-                    <img class="Image-H3" src="imagens/user.png" alt="Hmab lateral ">
-                </div>
-                <h3>
-                    Login
-                </h3>
-            </a>
-        </div>
+  <header class="container-fluid">
+    <div class="Junction-H">
+      <img class="Image-H1" src="imagens/Logo.png" alt="Logo do site">
+      <h1>
+        InfoVan
+      </h1>
+    </div>
+    <form>
+      <img id="Lupa-Input" src="imagens/lupa.png" alt="Lupa de barra de pesquisa">
+      <input id="Input-H" type="text" class="form-control">
+    </form>
+    <div class="Junction-H">
+      <img class="Image-H2" src="imagens/filtro.png" alt="Fazer login">
+      <a class="Link-Login" href="login.html">
         <div>
-            <img class="Image-H4" src="imagens/hamb.png" alt="">
+          <img class="Image-H3" src="imagens/user.png" alt="Hmab lateral ">
         </div>
-    </header>
+        <h3>
+          Login
+        </h3>
+      </a>
+    </div>
+    <div>
+      <img class="Image-H4" src="imagens/hamb.png" alt="">
+    </div>
+  </header>
 
-    <main>
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-10" src="imagens/filtro.png" alt="Primeiro Slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-10" src="imagens/lupa.png" alt="Segundo Slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-10" src="imagens/Logo.png" alt="Terceiro Slide">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Anterior</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Próximo</span>
-            </a>
+  <main>
+    <div id="carrosel" >
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                  class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                  aria-label="Slide 2"></button>
           </div>
-    </main>
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img src="imagens/carrosel.png" width="50%">
+              </div>
+              <div class="carousel-item">
+                  <img src="imagens/" width="100%">
+              </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+  </div>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
