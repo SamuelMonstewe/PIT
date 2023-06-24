@@ -4,10 +4,10 @@ header("Access-Control-Allow-Origin: *");
 header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
 require_once "classes.php";
+require_once "verificarUsuarioExistente.php";
+require_once "emailDeConfirmacao.php";
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+
 
 require '../lib/vendor/autoload.php';
 $usuario = new Usuario();
@@ -18,56 +18,6 @@ function PreencherDados()
     $usuario->Usuario = filter_input(INPUT_POST, 'usuario');
     $usuario->Email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $usuario->Senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
-}
-function VerificarSeUsuarioExiste()
-{
-
-    global $ConexaoBanco;
-    global $usuario;
-    $query = $ConexaoBanco->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
-    $query->bindParam(':email', $usuario->Email);
-    $query->execute();
-    $result = $query->fetchColumn();
-
-    if ($result > 0)
-        return true;
-    else
-        return false;
-}
-function EnviarEmailDeConfirmacao()
-{
-    global $usuario;
-    global $ConexaoBanco;
-
-    $mail = new PHPMailer(true);
-
-    try {
-
-        $mail->CharSet = 'UTF-8';
-        $mail->isSMTP();
-        $mail->Host = 'sandbox.smtp.mailtrap.io';
-        $mail->SMTPAuth = true;
-        $mail->Username = '9ffbcf72932b17';
-        $mail->Password = 'fb3722320ad301';
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 2525;
-
-        $mail->setFrom('samuel@teste.com', 'Samuel');
-        $mail->addAddress($usuario->Email, $usuario->Usuario);
-
-        $mail->isHTML(true);
-        $mail->Subject = 'CONFIRMAR O EMAIL';
-        $mail->Body = "Por favor confirme o email <br> 
-                    <a href='http://localhost/PIT/php/confirmar-email.php?chave=$usuario->chave'>Clique aqui </a>";
-        $mail->AltBody = "Por favor confirme o email \n
-                    'http://localhost/PIT/php/confirmar-email.php?chave=$usuario->chave'";
-
-        $mail->send();
-    } 
-    catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-
 }
 function InserirDadosNoBanco()
 {
@@ -84,8 +34,8 @@ function InserirDadosNoBanco()
             $Insert->bindParam(':Usuario', $usuario->Usuario);
             $Insert->bindParam(':Email', $usuario->Email);
             $Insert->bindParam(':Senha', $usuario->Senha);
-            $usuario->chave = password_hash($usuario->Email . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
-            $Insert->bindParam(':Chave', $usuario->chave);
+            $usuario->Chave = password_hash($usuario->Email . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+            $Insert->bindParam(':Chave', $usuario->Chave);
             $Insert->execute();
             $linhasAfetadas = $Insert->rowCount();
 
@@ -104,7 +54,6 @@ function InserirDadosNoBanco()
     finally {
         $ConexaoBanco = null;
     }
-
 }
 if (isset($_SESSION['mensagem'])) {
     echo $_SESSION['mensagem'];
