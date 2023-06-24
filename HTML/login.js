@@ -1,6 +1,6 @@
 var base_url = "http://localhost/"
 
-function mudarpagina() {
+function mudarPagina() {
     window.location.href = "DadosMotorista.html"
 }
 
@@ -17,12 +17,27 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
+<<<<<<< HEAD
             alert("login realizado com sucesso!")
             mudarpagina()
         }
         else if (http.readyState == 4 && http.status == 401)
         {
             alert("Usuario ou senha incorretos!")
+=======
+         
+            var verificacao = confirm("login realizado com sucesso! Deseja ir para dados de motorista?")
+            if(verificacao == true)
+            {
+                mudarPagina()
+            }
+            else{
+                return
+            }
+        }
+        else if (http.readyState == 4 && http.status == 401)
+        {   alert("Senha inválida ou não confirmou o email no cadastro")
+>>>>>>> db9d808deb67f86bebe28b0f07b56fa8eff06b4f
             return
         }
         else if (http.readyState == 4 && http.status != 200) {

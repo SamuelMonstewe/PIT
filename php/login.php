@@ -14,12 +14,12 @@ function Logar()
 
     try {
        
-        $select = $ConexaoBanco->prepare("select * from usuarios where Usuario = :Usuario and senha = :Senha");
+        $select = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE Usuario = :Usuario AND senha = :Senha AND sits_usuarios_id = 1");
         $select->bindParam(':Usuario', $Usuario);
         $select->bindParam(':Senha', $Senha);
         $select->execute();
         $checar = $select->fetch(PDO::FETCH_ASSOC);
-
+       
         if ($checar) {
             echo json_encode($checar);
         } 

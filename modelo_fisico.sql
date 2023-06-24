@@ -15,30 +15,36 @@ CREATE TABLE `motorista` (
   `fotoCarteira` longtext,
   `fotoCRLV` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
+select * from motorista;
 CREATE TABLE `escola_motorista` (
   `id` int NOT NULL AUTO_INCREMENT,
   `escolas_id` int DEFAULT NULL,
   `id_motorista` varchar(14) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 CREATE TABLE `escolas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Usuario` varchar(80) DEFAULT NULL,
   `email` varchar(40) DEFAULT NULL,
   `senha` varchar(30) DEFAULT NULL,
+  chave varchar(220),
+  sits_usuarios_id int default 3,
+  foreign key (sits_usuarios_id) references situacao_usuarios(id),
   PRIMARY KEY (`id`),
   UNIQUE KEY `Usuario_UNIQUE` (`Usuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ;
 
+select * from pit.usuarios;
+drop table usuarios;
 CREATE TABLE `van` (
   `chassi` char(17) NOT NULL,
   `placa` char(8) NOT NULL,
@@ -51,6 +57,6 @@ CREATE TABLE `van` (
   `foto_externa` longtext,
   PRIMARY KEY (`chassi`),
   KEY `motorista_id_fk_idx` (`motorista_id_fk`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ;
+select * from situacao_usuarios;
 select * from van;
