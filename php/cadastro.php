@@ -12,7 +12,7 @@ require_once "emailDeConfirmacao.php";
 require '../lib/vendor/autoload.php';
 $usuario = new Usuario();
 
-function PreencherDados()
+function ReceberDadosDoUsuario()
 {
     global $usuario;
     $usuario->Usuario = filter_input(INPUT_POST, 'usuario');
@@ -60,7 +60,7 @@ if (isset($_SESSION['mensagem'])) {
     unset($_SESSION['mensagem']);
 }
 if (isset($_POST['enviar'])) {
-    PreencherDados();
+    ReceberDadosDoUsuario();
     InserirDadosNoBanco();
 }
 
