@@ -1,13 +1,13 @@
 var base_url = "http://localhost/"
 
 function mudarpagina() {
-    window.location.href = "Alterar-Senha.html"
+    window.location.href = "login.html"
 }
 
 function enviarDados ()
 {
     var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/Recuperar-Senha.php"
+    var url = base_url + "PIT/php/Nova-Senha.php"
  
     http.open("POST", url, true)
 
@@ -23,8 +23,8 @@ function enviarDados ()
 
     var data = new FormData()
 
-    data.append('usuario', document.getElementById("Usuario").value)
-    data.append('email', document.getElementById("Email").value)
+    data.append('novaSenha', document.getElementById("Nova-Senha").value)
+    data.append('confirmarSenha', document.getElementById("Confirmar-Senha").value)
 
     http.send(data)
 }
