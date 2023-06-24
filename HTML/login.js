@@ -17,11 +17,12 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            var login = JSON.parse(http.response)
+            alert("login realizado com sucesso!")
             mudarpagina()
         }
         else if (http.readyState == 4 && http.status == 401)
         {
+            alert("Usuario ou senha incorretos!")
             return
         }
         else if (http.readyState == 4 && http.status != 200) {

@@ -1,0 +1,58 @@
+* {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    background-color: #F6A62E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header form {
+    width: 35%;
+}
+
+#Input-H {
+    width: 100%;
+    
+}
+
+#Lupa-Input {
+    width: 40px;
+    position: absolute;
+}
+
+#carouselExampleFade{
+   
+}
+
+header a {
+    display: flex;
+    text-decoration: none;
+    color: #000000;
+    align-items: center;
+}
+
+.Image-H1 {
+    width: 30%;
+}
+
+.Image-H2 {
+    width: 17%;
+    margin-right: 24%;
+}
+
+.Image-H3 {
+    width: 100%;
+}
+.Image-H4 {
+    width: 70%;
+}
+
+.Junction-H {
+    display: flex;
+    align-items: center;
+}
