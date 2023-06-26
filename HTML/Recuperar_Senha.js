@@ -1,20 +1,22 @@
 var base_url = "http://localhost/"
-
 function mudarpagina() {
     window.location.href = "Alterar-Senha.html"
 }
 
-function enviarDados ()
+function enviarDados()
 {
     var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/Recuperar-Senha.php"
- 
+    var url = base_url + "PIT/php/Recuperar-Senha.php" 
+    
     http.open("POST", url, true)
 
     http.onreadystatechange = function () {
-        //verifica retorno do back-end 
+        
         if (http.readyState == 4 && http.status == 200) {
-            mudarpagina()
+        
+            var response = JSON.parse(http.responseText)
+            var mensagem = response;
+            alert(mensagem)
         }
         else if (http.status != 200) {
             alert("ERRO!")
@@ -23,8 +25,9 @@ function enviarDados ()
 
     var data = new FormData()
 
-    data.append('usuario', document.getElementById("Usuario").value)
-    data.append('email', document.getElementById("Email").value)
-
+    data.append('usuario', document.getElementById("usuario").value) 
+    data.append('email', document.getElementById("email").value) 
+    data.append('enviar', 'enviar')
+    
     http.send(data)
 }
