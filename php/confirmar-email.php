@@ -14,13 +14,14 @@ if(!empty($chave)){
     $resultadoDaConsulta->execute();
 
     if(($resultadoDaConsulta) and ($resultadoDaConsulta->rowCount() != 0)){
+
         $linhaRetornada = $resultadoDaConsulta->fetch(PDO::FETCH_ASSOC);
         extract($linhaRetornada);
-      
         $updateUsuario = "UPDATE usuarios SET sits_usuarios_id = 1, chave=:chave WHERE id = " . strval($id);
         $UPDATE = $ConexaoBanco->prepare($updateUsuario);
         $chave = NULL;
         $UPDATE->bindParam(':chave', $chave);
+
         if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado </div>";
             header("Location: ../php/cadastro.php");
