@@ -12,8 +12,8 @@ use PHPMailer\PHPMailer\Exception;
 function VerificarSeUsuarioExiste(){
     global $ConexaoBanco;
 
-    $usuario = "Samuel";
-    $email = "samuelelias563@gmail.com";
+    $usuario = $_POST['usuario'];
+    $email = $_POST['email'];
    
     try {
        
@@ -83,7 +83,9 @@ function VerificarSeUsuarioExiste(){
         echo json_encode(array("erro" => $e->getMessage()));
     }
 }
+if(isset($_POST['enviar'])){
+    VerificarSeUsuarioExiste();
+}
 
-VerificarSeUsuarioExiste();
 ?>
 
