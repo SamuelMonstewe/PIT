@@ -30,20 +30,23 @@ Confirmar nova senha do usuário
 
         <form style="width: 65%;" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
             <!--Título da página-->
+            
             <h1>Nova Senha</h1>
-
+            <label><b>Email</b></label>
+            <input class="form-control shadow rounded mb-3" id="email" type="email" name="email"
+                placeholder="EX: fulano@gmail.com">
             <!--Inserir nome do usuário-->
             <label><b>Nova Senha</b></label>
-            <input class="form-control shadow rounded mb-3" id="Nova-Senha" type="password" name="Senha" placeholder="EX: 12345">
+            <input class="form-control shadow rounded mb-3" id="Nova-Senha" type="password" name="senhanova" placeholder="EX: 12345">
 
             <!--Inserir email do usuário-->
             <label><b>Confirme a Nova Senha</b></label>
-            <input class="form-control shadow rounded mb-3" id="Confirmar-Senha" type="password" name="Senha" placeholder="EX: 12345">
+            <input class="form-control shadow rounded mb-3" id="Confirmar-Senha" type="password" name="confirmacaosenha" placeholder="EX: 12345">
 
             <!--Botão para mudar a senha da conta do usuário-->
             <a style="width: 100%;" class="text-center mt-3">
                 <button style="width: 50%;" onclick="enviarDados()" type="button"
-                    class="Button-SingIn btn btn-warning">Mudar Senha</button>
+                    class="Button-SingIn btn btn-warning" name="enviar">Mudar Senha</button>
             </a>
         </form>
     </div>
