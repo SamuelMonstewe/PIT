@@ -28,10 +28,6 @@ main {
     grid-template-columns: 27% 46% 27%;
 }
 
-main div {
-    border: 1px solid black;
-}
-
 .Grid_Col1 {
     padding: 40px;
     display: flex;
