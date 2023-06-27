@@ -40,8 +40,8 @@ header a {
 }
 
 .Image-H2 {
-    width: 17%;
-    margin-right: 24%;
+    width: 30%;
+    margin-right: 30%;
 }
 
 .Image-H3 {
@@ -52,6 +52,11 @@ header a {
 }
 
 .Junction-H {
+    display: flex;
+    align-items: center;
+}
+
+.Perfil {
     display: flex;
     align-items: center;
 }
