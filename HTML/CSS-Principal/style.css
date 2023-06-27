@@ -17,17 +17,15 @@ header form {
 
 #Input-H {
     width: 100%;
-    
+}
+
+.Linha {
+    border: 2px solid black;
 }
 
 #Lupa-Input {
     width: 40px;
     position: absolute;
-}
-
-.carousel-item {
-    display: flex;
-    justify-content: center;
 }
 
 header a {
@@ -56,4 +54,9 @@ header a {
 .Junction-H {
     display: flex;
     align-items: center;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2em;
 }
