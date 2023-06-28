@@ -152,4 +152,37 @@ main h2 {
 footer {
     background: rgb(246,166,46);
     background: linear-gradient(87deg, rgba(246,166,46,1) 32%, rgba(246,166,46,1) 55%);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+}
+
+.Footer-BorderR {
+    border-right: 3px solid #ffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.Footer-BorderR h2 {
+    padding-bottom: 30px;
+}
+
+.Three-Footer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.Cotemig-Footer {
+    display: flex;
+}
+
+.Patrocinadores-Footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Imag-Footer {
+    display: flex;
+    justify-content: space-around;
 }
