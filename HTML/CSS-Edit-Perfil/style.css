@@ -1,0 +1,68 @@
+* {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #F6A62E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+#Back-Button {
+    position: absolute;
+    left: 30px;
+    color: black;
+    text-decoration: none;
+    background-color: #f8a425;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+#Edit-Button {
+    position: absolute;
+    right: 30px;
+    color: black;
+    text-decoration: none;
+    background-color: #f8a425;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+main {
+    display: grid;
+    grid-template-columns: 27% 46% 27%;
+}
+
+.Grid_Col1 {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Grid_Col2 {
+    text-align: left;
+    padding: 40px;
+}
+
+.List-Info {
+    display: flex;
+}
+
+.List-Info p {
+    margin: 5px;
+}
+
+.Info-P {
+    text-align: center;
+}
+
+.Grid_Col3 {
+    text-align: left;
+    padding: 40px;
+}

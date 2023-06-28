@@ -17,17 +17,15 @@ header form {
 
 #Input-H {
     width: 100%;
-    
+}
+
+.Linha {
+    border: 2px solid black;
 }
 
 #Lupa-Input {
     width: 40px;
     position: absolute;
-}
-
-.carousel-item {
-    display: flex;
-    justify-content: center;
 }
 
 header a {
@@ -42,8 +40,8 @@ header a {
 }
 
 .Image-H2 {
-    width: 17%;
-    margin-right: 24%;
+    width: 30%;
+    margin-right: 30%;
 }
 
 .Image-H3 {
@@ -56,4 +54,135 @@ header a {
 .Junction-H {
     display: flex;
     align-items: center;
+}
+
+.Perfil {
+    display: flex;
+    align-items: center;
+}
+
+main h2 {
+    text-align: center;
+    font-size: 2em;
+    margin: 50px;
+}
+
+.Block1 {
+    display: flex;
+    text-align: center;
+    font-size: 3em;
+    align-items: center;
+    width: 60%;
+    border-radius: 0 27px 27px 0;
+    background: rgb(255,221,0);
+    background: linear-gradient(155deg, rgba(255,221,0,1) 32%, rgba(244,165,34,1) 55%);
+}
+
+.Block1 div {
+    padding: 30px;
+}
+
+.Block2-Rigth {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.Block2 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 2.5em;
+    width: 60%;
+    border-radius: 27px 0 0 27px;
+    background: rgb(244,165,34);
+    background: linear-gradient(155deg, rgba(244,165,34,1) 32%, rgba(255,221,0,1) 55%);
+}
+.Block2 div {
+    padding: 30px;
+}
+
+.Text-Left {
+    text-align: left;
+}
+
+.Aling-Grid {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.Grid-Motoristas {
+    display: grid;
+    width: 80%;
+    grid-template-columns: 50% 50%;
+}
+
+.Box-Motorista {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    background-color: lightgray;
+    padding: 30px;
+    border-radius: 17px;
+}
+
+.Descricao-Motorista {
+    background-color: #ffff;
+    border: 1px solid black;
+    text-align: center;
+    padding: 30px;
+}
+
+.Bus-Stop {
+    position: absolute;
+}
+
+.Sobre-Nos {
+    width: 100%;
+}
+
+.Sobre-Nos p {
+    width: 60%;
+    margin-left: 10%;
+    font-size: 3em;
+    text-align: center;
+}
+
+footer {
+    background: rgb(246,166,46);
+    background: linear-gradient(87deg, rgba(246,166,46,1) 32%, rgba(246,166,46,1) 55%);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+}
+
+.Footer-BorderR {
+    border-right: 3px solid #ffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.Footer-BorderR h2 {
+    padding-bottom: 30px;
+}
+
+.Three-Footer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.Cotemig-Footer {
+    display: flex;
+}
+
+.Patrocinadores-Footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Imag-Footer {
+    display: flex;
+    justify-content: space-around;
 }
