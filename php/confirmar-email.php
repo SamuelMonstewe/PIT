@@ -23,7 +23,8 @@ if(!empty($chave)){
         $UPDATE->bindParam(':chave', $chave);
 
         if($UPDATE->execute()){
-            $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado </div>";
+            $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado 
+                                     <a href='../HTML/login.html'>Clique aqui para fazer login</a></div>";
             header("Location: ../php/cadastro.php");
         }
         else{
