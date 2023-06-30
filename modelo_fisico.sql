@@ -44,7 +44,7 @@ CREATE TABLE `usuarios` (
 ) ;
 
 select * from pit.usuarios;
-drop table usuarios;
+
 CREATE TABLE `van` (
   `chassi` char(17) NOT NULL,
   `placa` char(8) NOT NULL,
@@ -58,5 +58,13 @@ CREATE TABLE `van` (
   PRIMARY KEY (`chassi`),
   KEY `motorista_id_fk_idx` (`motorista_id_fk`)
 ) ;
+create table situacao_usuarios(
+id int auto_increment primary key,
+nome_situacao varchar(45) not null
+);
+insert into situacao_usuarios value(null, 'Ativo');
+insert into situacao_usuarios value(null, 'Inativo');
+insert into situacao_usuarios value(null, 'Aguardando confirmação');
+
 select * from situacao_usuarios;
 select * from van;
