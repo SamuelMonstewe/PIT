@@ -14,9 +14,15 @@ function enviarDados()
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            var response = JSON.parse(http.responseText)
-            var mensagem = response;
-            alert(mensagem)
+            
+            try {
+                var response = JSON.parse(http.responseText)
+                var mensagem = response
+                alert(response)
+            }
+            catch(error) {
+                console.log('Tá dando erro na conversão do json', error, http.responseText);
+            }
         }
         else if (http.status != 200) {
             alert("ERRO!")
