@@ -5,8 +5,7 @@ function mudarpagina() {
 }
 
 function EnviarDados() {
-    if(!document.getElementById("formCadastro").checkValidity())
-    {
+    if (!document.getElementById("formCadastro").checkValidity()) {
         document.getElementById("formCadastro").classList.add('was-validated')
         return
     }
@@ -19,7 +18,15 @@ function EnviarDados() {
         http.onreadystatechange = function () {
             //verifica retorno do back-end 
             if (http.readyState == 4 && http.status == 200) {
-                mudarpagina()
+                try {
+                    var response = JSON.parse(http.responseText)
+                    var mensagem = response
+                    alert(response)
+                }
+                catch(error) {
+                    console.log('Tá dando erro na conversão do json', error, http.responseText);
+                }
+
             }
             else if (http.status != 200) {
                 alert("ERRO!")
@@ -34,8 +41,7 @@ function EnviarDados() {
 
         http.send(data)
     }
-    else
-    {
+    else {
         alert("Insira senhas iguais!")
     }
 }
