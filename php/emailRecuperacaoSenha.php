@@ -6,9 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function EnviarEmailParaRecuperacaoDeSenha($usuario, $email){
+function EnviarEmailParaRecuperacaoDeSenha($usuario, $email, $chave){
     $mail = new PHPMailer(true);
-    $chave = GerarChave();
+    
     try {
         $mail->CharSet = 'UTF-8';
         $mail->isSMTP();
