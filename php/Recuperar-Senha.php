@@ -10,13 +10,12 @@ require_once "verificarUsuarioExistente.php";
 
 function VerificarSeEmailExiste(){
     global $ConexaoBanco;
-
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $chave = GerarChave();
     try {
        
-        if (VerificarSeUsuarioExiste($usuario, $email)) {
+        if (!VerificarSeUsuarioExiste($usuario, $email)) {
             $mensagem = "Você ainda não possui cadastro no site!";
             echo json_encode($mensagem);
         } 
@@ -37,9 +36,11 @@ function VerificarSeEmailExiste(){
                 $UPDATE->bindParam(':Id', $id);
 
                 if($UPDATE->execute()){
-                    EnviarEmailParaRecuperacaoDeSenha($usuario, $email);
+                    EnviarEmailParaRecuperacaoDeSenha($usuario, $email, $chave);
+                   
                 }
             }  
+           
         }
         
     }
