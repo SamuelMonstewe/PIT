@@ -2,6 +2,7 @@
 require_once "pdo.php";
 require_once "classes.php";
 require_once "verificarUsuarioExistente.php";
+require '../lib/vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -19,8 +20,8 @@ function EnviarEmailDeConfirmacao()
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = '9ffbcf72932b17';
-        $mail->Password = 'fb3722320ad301';
+        $mail->Username = '5a09da3cd14b6e';
+        $mail->Password = 'd30f266032e87d';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
 
