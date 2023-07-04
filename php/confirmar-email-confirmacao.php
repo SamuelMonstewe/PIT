@@ -1,4 +1,4 @@
-aAa<?php
+<?php
 include_once "pdo.php";
 session_start();
 
@@ -6,7 +6,7 @@ $chave = filter_input(INPUT_GET, "chave", FILTER_SANITIZE_STRING);
 
 if(!empty($chave)){
     global $ConexaoBanco;
-    $SELECT = "SELECT id FROM usuarios WHERE chave = :chave LIMIT 1";
+    $SELECT = "SELECT * FROM usuarios WHERE chave = :chave LIMIT 1";
     $resultadoDaConsulta = $ConexaoBanco->prepare($SELECT);
     $resultadoDaConsulta->bindParam(':chave', $chave);
     $resultadoDaConsulta->execute();
@@ -36,6 +36,6 @@ if(!empty($chave)){
     }
 }
 else{
-    $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: Endereço inválido.</div> ";
+    $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: A chave está vazia</div> ";
     header("Location: ../php/cadastro.php");
 }
