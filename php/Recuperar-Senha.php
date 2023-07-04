@@ -7,19 +7,25 @@ require_once "classes.php";
 require_once "gerarChave.php";
 require_once "verificarUsuarioExistente.php";
 
+require '../lib/vendor/autoload.php';
 
-function VerificarSeEmailExiste(){
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+function VerificarSeEmailExiste()
+{
     global $ConexaoBanco;
+    
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $chave = GerarChave();
     try {
-       
+
         if (!VerificarSeUsuarioExiste($usuario, $email)) {
             $mensagem = "Você ainda não possui cadastro no site!";
             echo json_encode($mensagem);
-        } 
-        else {
+        } else {
             $mensagem = "Enviamos um email de confirmação para redefinição de senha";
             echo json_encode($mensagem);
 
@@ -29,26 +35,45 @@ function VerificarSeEmailExiste(){
             $SELECT->execute();
             $linhaRetornada = $SELECT->fetch(PDO::FETCH_ASSOC);
 
-            if($linhaRetornada){
+            if ($linhaRetornada) {
                 $id = $linhaRetornada['id'];
                 $UPDATE = $ConexaoBanco->prepare("UPDATE usuarios SET chave = :Chave WHERE id = :Id");
                 $UPDATE->bindParam(':Chave', $chave);
                 $UPDATE->bindParam(':Id', $id);
 
-                if($UPDATE->execute()){
-                    EnviarEmailParaRecuperacaoDeSenha($usuario, $email, $chave);
-                   
+                if ($UPDATE->execute()) {
+                    $mail = new PHPMailer(true);
+                    $mail->CharSet = 'UTF-8';
+                    $mail->isSMTP();
+                    $mail->Host = 'sandbox.smtp.mailtrap.io';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = '5a09da3cd14b6e';
+                    $mail->Password = 'd30f266032e87d';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 2525;
+
+                    $mail->setFrom('samuel@teste.com', 'Samuel');
+                    $mail->addAddress($email, $usuario);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'CONFIRMAR O EMAIL';
+                    $mail->Body = "Por favor confirme o email <br> 
+                    <a href='http://localhost/PIT/php/confirmar-email-confirmacao.php?chave=$chave'>Clique aqui </a>";
+                    $mail->AltBody = "Por favor confirme o email \n
+                    'http://localhost/PIT/php/confirmar-email-confirmacao.php?chave=$chave'";
+
+                    $mail->send();
+
                 }
-            }  
-           
+            }
+
         }
-        
-    }
-    catch(Exception $e){
+
+    } catch (Exception $e) {
         echo json_encode(array("erro" => $e->getMessage()));
     }
 }
-if(isset($_POST['enviar'])){
+if (isset($_POST['enviar'])) {
     VerificarSeEmailExiste();
 }
 
