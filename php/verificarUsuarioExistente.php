@@ -2,16 +2,16 @@
 require_once "pdo.php";
 require_once "classes.php";
 
-function VerificarSeUsuarioExiste()
+function VerificarSeUsuarioExiste($usuario, $email)
 {
     global $ConexaoBanco;
-    global $usuario;
-    $query = $ConexaoBanco->prepare("SELECT COUNT(*) FROM usuarios WHERE email = :email");
-    $query->bindParam(':email', $usuario->Email);
-    $query->execute();
-    $result = $query->fetchColumn();
+    $SELECT = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE usuario = :usuario AND email = :email");
+    $SELECT->bindParam(':usuario', $usuario);
+    $SELECT->bindParam(':email', $email);
+    $SELECT->execute();
+    $LinhasAfetadas = $SELECT->rowCount();
 
-    if ($result > 0)
+    if ($LinhasAfetadas > 0)
         return true;
     else
         return false;

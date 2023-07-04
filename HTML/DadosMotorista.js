@@ -103,9 +103,9 @@ function AdicionarEscola() {
 function MasacaraTelefone() {
     //limitador de Caracteres
     var tel = document.getElementById("Telefone").value
-    tel = tel.slice(0, 13)
+    tel = tel.slice(0, 14)
     document.getElementById("Telefone").value = tel
-    tel = document.getElementById("Telefone").value.slice(0, 13)
+    tel = document.getElementById("Telefone").value.slice(0, 14)
 
     //Mascara
     var tel_formatado = document.getElementById("Telefone").value
@@ -121,9 +121,9 @@ function MasacaraTelefone() {
         }
     }
 
-    if (tel_formatado[8] != "-") {
-        if (tel_formatado[8] != undefined) {
-            document.getElementById("Telefone").value = tel_formatado.slice(0, 8) + "-" + tel_formatado[8]
+    if (tel_formatado[9] != "-") {
+        if (tel_formatado[9] != undefined) {
+            document.getElementById("Telefone").value = tel_formatado.slice(0, 9) + "-" + tel_formatado[9]
         }
     }
 }
