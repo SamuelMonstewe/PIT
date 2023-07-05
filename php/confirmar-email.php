@@ -25,19 +25,19 @@ if(!empty($chave)){
         if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado 
                                      <a href='../HTML/login.html'>Clique aqui para fazer login</a></div>";
-            header("Location: ../php/cadastro.php");
+            header("Location: ../php/cadastroMotorista.php");
         }
         else{
             $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: Email nao confirmado.</div> ";
-            header("Location: ../php/cadastro.php");      
+            header("Location: ../php/cadastroMotorista.php");      
         }
     }
     else{
         $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: Endereço inválido.</div> ";
-        header("Location: ../php/cadastro.php");
+        header("Location: ../php/cadastroMotorista.php");
     }
 }
 else{
     $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: Endereço inválido.</div> ";
-    header("Location: ../php/cadastro.php");
+    header("Location: ../php/cadastroMotorista.php");
 }
