@@ -3,6 +3,20 @@
     margin: 0;
 }
 
+::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: rgb(255, 173, 10);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 173, 10);
+    border-radius: 15px;
+}
+
 .Hamb-Bar {
     position: absolute;
     right: 30px;
