@@ -1,0 +1,46 @@
+* {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Filt-Page {
+    padding: 5%;
+    border-radius: 27px;
+}
+
+main h1 {
+    font-weight: 900;
+}
+
+.Button-Share {
+    color: black;
+    text-decoration: none;
+    background-color: #f8a425;
+    padding: 15px;
+    margin: 40px;
+    border-radius: 8px;
+    border: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+#Back-Button {
+    color: black;
+    text-decoration: none;
+    background-color: #f8a425;
+    padding: 15px;
+    margin: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2)
+}
+
+main div {
+    background-color: #F6A62E;
+}
