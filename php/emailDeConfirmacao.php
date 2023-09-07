@@ -1,6 +1,5 @@
 <?php
 require_once "pdo.php";
-require_once "classes.php";
 require_once "verificarUsuarioExistente.php";
 require '../lib/vendor/autoload.php';
 
@@ -8,9 +7,15 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function EnviarEmailDeConfirmacao()
+/**
+ * A função basicamente recebe um objeto do tipo usuário por parâmetro e, usando esse objeto, pegamos dados do usuário para enviar email 
+ * de confirmação para ele
+ * @param Usuario $usuario
+ * @return void
+ */
+function EnviarEmailDeConfirmacao($usuario)
 {
-    global $usuario;
+    
     global $ConexaoBanco;
 
     $mail = new PHPMailer(true);
@@ -26,14 +31,14 @@ function EnviarEmailDeConfirmacao()
         $mail->Port = 2525;
 
         $mail->setFrom('samuel@teste.com', 'Samuel');
-        $mail->addAddress($usuario->Email, $usuario->Usuario);
-
+        $mail->addAddress($usuario->getEmail(), $usuario->getNomeUsuario());
+        $chave = $usuario->getChave();
         $mail->isHTML(true);
         $mail->Subject = 'CONFIRMAR O EMAIL';
         $mail->Body = "Por favor confirme o email <br> 
-                    <a href='http://localhost/PIT/php/confirmar-email.php?chave=$usuario->Chave'>Clique aqui </a>";
+                    <a href='http://localhost/PIT/php/confirmar-email.php?chave=$chave'>Clique aqui </a>";
         $mail->AltBody = "Por favor confirme o email \n
-                    'http://localhost/PIT/php/confirmar-email.php?chave=$usuario->Chave'";
+                    'http://localhost/PIT/php/confirmar-email.php?chave=$chave'";
 
         $mail->send();
     } 
