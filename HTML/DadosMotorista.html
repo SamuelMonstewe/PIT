@@ -79,30 +79,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--Inserir as rotas do usuário-->
-            <!-- <div class="DivRotasLado ">
-                <div class="Div-Rotas">
-                    <label><b> Inicío da Rota </b></label>
-                    <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
-                        placeholder="EX: Local de partida " required="campo obrigatorio">
-                    <div class="invalid-feedback">
-                        Por favor coloque uma rota valida!
-                    </div>
-                    <div class="valid-feedback">
-                    </div>
-                </div>
-                <div class="Div-Rotas">
-                    <label><b> Fim da Rota </b></label>
-                    <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
-                        placeholder="EX: Local de Chegada" required="campo obrigatorio">
-                    <div class="invalid-feedback">
-                        Por favor coloque uma rota valida!
-                    </div>
-                    <div class="valid-feedback">
-                    </div>
-                </div>
-            </div> -->
             
             <label><b> Região de atuação </b></label>
             <input class="form-control shadow rounded mb-3" type="text" name="rota" id="Rotas"
@@ -142,16 +118,9 @@
             <div class="valid-feedback">
             </div>
 
-            <!--Inserir a escola a qual fornece serviço do usuário-->
-            <label><b>Escola a Qual Fornece Serviço </b></label>
-            <div class="d-flex mb-3 align-middle">
-                <input class="form-control shadow rounded mb-3" type="text" id="Escolas" name="escolas"
-                    placeholder="EX: Escola Estadual...">
-                <input type="button" class="rounded bg-ligth ms-3" name="addEscola" onclick="AdicionarEscola()"
-                    value="Adicionar">
-            </div>
-            <select name="" id="3scolas">
-            </select>
+            <select class="form-select form-select-lg mt-5 mb-5" id="3scolas" aria-label="Large select example">
+                <option selected>Escolha a Escola a Qual Fornece Serviço</option>
+              </select>
 
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
