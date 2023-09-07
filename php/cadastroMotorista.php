@@ -12,12 +12,13 @@ require '../lib/vendor/autoload.php';
 
 function InserirDadosMotorista()
 {
-    global $usuario;
+  
     global $ConexaoBanco;
     $usuario = new Usuario();
-    $usuario->setNomeUsuario(filter_input(INPUT_POST, 'usuario'));
-    $usuario->setEmail(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)); 
-    $usuario->setSenha(filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING));
+    $usuario->setNomeUsuario($_POST['usuario']);
+    $usuario->setEmail($_POST['email']); 
+    $usuario->setSenha($_POST['senha']);
+    $usuario->setChave(GerarChave());
 
     try {
 
@@ -27,19 +28,25 @@ function InserirDadosMotorista()
             exit;
         } 
         else {
-            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3)");
-            $Insert->bindParam(':Usuario', $usuario->getNomeUsuario());
-            $Insert->bindParam(':Email', $usuario->getEmail());
-            $Insert->bindParam(':Senha', $usuario->getSenha());
-            $usuario->setChave(password_hash($usuario->Email . date("Y-m-d H:i:s"), PASSWORD_DEFAULT));
-            $Insert->bindParam(':Chave', $usuario->getChave());
+          
+            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3, 1)");
+            $nomeUsuario = $usuario->getNomeUsuario();
+            $emailUsuario = $usuario->getEmail();
+            $senhaUsuario = $usuario->getSenha();
+            $chaveUsuario = $usuario->getChave();
+            
+            $Insert->bindParam(':Usuario', $nomeUsuario);
+            $Insert->bindParam(':Email', $emailUsuario);
+            $Insert->bindParam(':Senha', $senhaUsuario);
+            $Insert->bindParam(':Chave', $chaveUsuario);
             $Insert->execute();
             $linhasAfetadas = $Insert->rowCount();
-
+            
             if ($linhasAfetadas > 0) {
                 $mensagem = "Enviamos um email para confirmação!";
                 echo json_encode($mensagem);
-                EnviarEmailDeConfirmacao();
+                
+                EnviarEmailDeConfirmacao($usuario);
                 exit;
             } 
             else {
@@ -54,7 +61,7 @@ function InserirDadosMotorista()
         exit;
     } 
     catch (Exception $e) {
-        $mensagem = "Erro ao inserir os dados.";
+        $mensagem = $e->getMessage();
         echo json_encode($mensagem);
         exit;
     }
