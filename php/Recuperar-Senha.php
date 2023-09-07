@@ -3,7 +3,7 @@ session_start();
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
-require_once "classes.php";
+require_once "classes/Usuario.php";
 require_once "gerarChave.php";
 require_once "verificarUsuarioExistente.php";
 
@@ -16,21 +16,26 @@ use PHPMailer\PHPMailer\Exception;
 function VerificarSeEmailExiste()
 {
     global $ConexaoBanco;
-    
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $chave = GerarChave();
+    $usuario = new Usuario();
+    $usuario->setNomeUsuario($_POST['usuario']);
+    $usuario->setEmail($_POST['email']);
+    $usuario->setChave(GerarChave());
     try {
 
-        if (!VerificarSeUsuarioExiste($usuario, $email)) {
+        if (!VerificarSeUsuarioExiste($usuario->getNomeUsuario(), $usuario->getEmail())) {
             $mensagem = "Você ainda não possui cadastro no site!";
             echo json_encode($mensagem);
-        } else {
+        } 
+        else {
             $mensagem = "Enviamos um email de confirmação para redefinição de senha";
             echo json_encode($mensagem);
 
             $SELECT = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE usuario = :Usuario AND email = :email");
-            $SELECT->bindParam(':Usuario', $usuario);
+
+            $nomeUsuario = $usuario->getNomeUsuario();
+            $email = $usuario->getEmail();
+
+            $SELECT->bindParam(':Usuario', $nomeUsuario);
             $SELECT->bindParam(':email', $email);
             $SELECT->execute();
             $linhaRetornada = $SELECT->fetch(PDO::FETCH_ASSOC);
@@ -38,6 +43,7 @@ function VerificarSeEmailExiste()
             if ($linhaRetornada) {
                 $id = $linhaRetornada['id'];
                 $UPDATE = $ConexaoBanco->prepare("UPDATE usuarios SET chave = :Chave WHERE id = :Id");
+                $chave = $usuario->getChave();
                 $UPDATE->bindParam(':Chave', $chave);
                 $UPDATE->bindParam(':Id', $id);
 
@@ -53,10 +59,11 @@ function VerificarSeEmailExiste()
                     $mail->Port = 2525;
 
                     $mail->setFrom('samuel@teste.com', 'Samuel');
-                    $mail->addAddress($email, $usuario);
+                    $mail->addAddress($usuario->getEmail(), $usuario->getNomeUsuario());
 
                     $mail->isHTML(true);
                     $mail->Subject = 'CONFIRMAR O EMAIL';
+                    $chave = $usuario->getChave();
                     $mail->Body = "Por favor confirme o email <br> 
                     <a href='http://localhost/PIT/php/confirmar-email-confirmacao.php?chave=$chave'>Clique aqui </a>";
                     $mail->AltBody = "Por favor confirme o email \n
