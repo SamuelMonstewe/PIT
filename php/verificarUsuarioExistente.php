@@ -1,6 +1,6 @@
 <?php 
 require_once "pdo.php";
-require_once "classes.php";
+
 
 function VerificarSeUsuarioExiste($usuario, $email)
 {
