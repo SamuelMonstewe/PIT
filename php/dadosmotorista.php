@@ -25,16 +25,29 @@ function inserirDadosNoBanco()
     global $motorista;
     global $ConexaoBanco;
     $Insert = $ConexaoBanco->prepare("INSERT INTO motorista VALUES(null, :cpf, :nome, :idade, :telefone, :turno, :rota, :sexo, :fotoMotorista, :fotoCarteira, :fotoCRLV)");
-    $Insert->bindParam(':cpf', $motorista->getCpf());
-    $Insert->bindParam(':nome', $motorista->getNome());
-    $Insert->bindParam(':idade', $motorista->getIdade());
-    $Insert->bindParam(':telefone', $motorista->getTelefone());
-    $Insert->bindParam(':turno', $motorista->getTurno());
-    $Insert->bindParam(':rota', $motorista->getRota());
-    $Insert->bindParam(':sexo', $motorista->getSexo());
-    $Insert->bindParam(':fotoMotorista', $motorista->getFotoMotorista());
-    $Insert->bindParam(':fotoCarteira', $motorista->getFotoCarteira());
-    $Insert->bindParam(':fotoCRLV', $motorista->getFotoCRLV());
+
+    $cpf = $motorista->getCpf();
+    $nome = $motorista->getNome();
+    $idade = $motorista->getIdade();
+    $telefone = $motorista->getTelefone();
+    $turno =  $motorista->getTurno();
+    $rota = $motorista->getRota();
+    $sexo = $motorista->getSexo();
+    $fotoMotorista = $motorista->getFotoMotorista();
+    $fotoCarteira =  $motorista->getFotoCarteira();
+    $fotoCRLV = $motorista->getFotoCRLV();
+
+
+    $Insert->bindParam(':cpf', $cpf);
+    $Insert->bindParam(':nome',  $nome);
+    $Insert->bindParam(':idade', $idade);
+    $Insert->bindParam(':telefone', $telefone);
+    $Insert->bindParam(':turno', $turno);
+    $Insert->bindParam(':rota',  $rota);
+    $Insert->bindParam(':sexo', $sexo);
+    $Insert->bindParam(':fotoMotorista',  $fotoMotorista);
+    $Insert->bindParam(':fotoCarteira',  $fotoCarteira);
+    $Insert->bindParam(':fotoCRLV', $fotoCRLV);
     $Insert->execute();
     // $idMotorista = $ConexaoBanco->lastInsertId();
     // $Insert2 = $ConexaoBanco->prepare("INSERT INTO escola_motorista VALUES (null,?,?)");
