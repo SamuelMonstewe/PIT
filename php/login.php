@@ -2,24 +2,27 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 require_once "pdo.php";
-require_once "classes.php";
-
+require_once "classes/Usuario.php";
 
 function Logar()
 {
-
+    $usuario = new Usuario();
     global $ConexaoBanco;
-    $Usuario = $_POST['usuario'];
-    $Senha = $_POST['senha'];
+    $usuario->setNomeUsuario($_POST['usuario']);
+    $usuario->setSenha($_POST['senha']);
 
     try {
        
         $select = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE Usuario = :Usuario AND senha = :Senha AND sits_usuarios_id = 1");
-        $select->bindParam(':Usuario', $Usuario);
-        $select->bindParam(':Senha', $Senha);
+
+        $nomeUsuario = $usuario->getNomeUsuario();
+        $senha = $usuario->getSenha();
+        $select->bindParam(':Usuario',$nomeUsuario);
+        $select->bindParam(':Senha',$senha);
         $select->execute();
         $checar = $select->fetch(PDO::FETCH_ASSOC);
        
+
         if ($checar) {
             echo json_encode($checar);
         } 
