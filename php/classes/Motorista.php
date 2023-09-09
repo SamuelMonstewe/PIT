@@ -7,9 +7,11 @@ class Motorista
     private  $Sexo;
     private  $Idade;
     private  $Telefone;
-    private  $Turno;
+    private  $TurnoManha;
+    private  $TurnoTarde;
+    private  $TurnoNoite;
     private  $Escolas;
-    private  $Rota;
+    private  $RegiaoDeAtuacao;
     private $fotoMotorista;
     private $fotoCarteira;
     private $fotoCRLV;
@@ -69,15 +71,7 @@ class Motorista
 	}
 	
 	
-	public function getTurno() {
-		return $this->Turno;
-	}
 	
-	
-	public function setTurno($Turno) {
-		$this->Turno = $Turno;
-		return $this;
-	}
 	
 	
 	public function getEscolas() {
@@ -90,15 +84,7 @@ class Motorista
 		return $this;
 	}
 
-	public function getRota() {
-		return $this->Rota;
-	}
 	
-	
-	public function setRota($Rota) {
-		$this->Rota = $Rota;
-		return $this;
-	}
 	
 	
 	public function getFotoMotorista() {
@@ -129,6 +115,70 @@ class Motorista
 	
 	public function setFotoCRLV($fotoCRLV) {
 		$this->fotoCRLV = $fotoCRLV;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTurnoManha() {
+		return $this->TurnoManha;
+	}
+	
+	/**
+	 * @param mixed $TurnoManha 
+	 * @return self
+	 */
+	public function setTurnoManha($TurnoManha): self {
+		$this->TurnoManha = $TurnoManha;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getTurnoTarde() {
+		return $this->TurnoTarde;
+	}
+	
+	/**
+	 * @param mixed $TurnoTarde 
+	 * @return self
+	 */
+	public function setTurnoTarde($TurnoTarde): self {
+		$this->TurnoTarde = $TurnoTarde;
+		return $this;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public function getTurnoNoite() {
+		return $this->TurnoNoite;
+	}
+	
+	/**
+	 * @param mixed $TurnoNoite 
+	 * @return self
+	 */
+	public function setTurnoNoite($TurnoNoite): self {
+		$this->TurnoNoite = $TurnoNoite;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getRegiaoDeAtuacao() {
+		return $this->RegiaoDeAtuacao;
+	}
+	
+	/**
+	 * @param mixed $RegiaoDeAtuacao 
+	 * @return self
+	 */
+	public function setRegiaoDeAtuacao($RegiaoDeAtuacao): self {
+		$this->RegiaoDeAtuacao = $RegiaoDeAtuacao;
 		return $this;
 	}
 }
