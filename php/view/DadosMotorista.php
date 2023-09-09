@@ -107,7 +107,7 @@
             <div class="valid-feedback">
             </div>
 
-            <select class="form-select form-select-lg mt-5 mb-5" id="3scolas" aria-label="Large select example">
+            <select class="form-select form-select-lg mt-5 mb-5" id="Escolas" aria-label="Large select example">
                 <option selected>Escolha a Escola a Qual Fornece Serviço</option>
                 <?php
                 require_once "../pdo.php";
@@ -128,7 +128,7 @@
                 }
                 ?>
             </select>
-
+            <button type="button" class="btn btn-warning" style="width:100px;" value="AdicionarEscola" name="adicionarEscola" id="adicionarEscola">Adicionar escola</button>
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
             <div id="fotoMotorista"></div>
