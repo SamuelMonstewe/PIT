@@ -3,16 +3,7 @@ var base_url = "http://localhost/"
 function mudarpagina() {
     window.location.href = "DadosVan.html"
 }
-function adicionarEscola(){
-    var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/dadosmotorista.php"
 
-    http.open("POST", url, true)
-    var data = new FormData()
-    data.append('novaEscola', document.getElementById['Escolas'].value)
-    data.append('adicionarEscola', 'AdicionarEscola')
-    
-}
 function enviarDados() {
     if (!document.getElementById("formDados").checkValidity()) {
         document.getElementById("formDados").classList.add('was-validated')
@@ -67,7 +58,6 @@ function enviarDados() {
     data.append('cpf', document.getElementById("Cpf").value)
     data.append('nome', document.getElementById("Nome").value)
     data.append('idade', document.getElementById("Idade").value)
-    data.append('idescola', document.getElementById('3scolas').value)
     data.append('escola', document.getElementById('Escolas').value)
     data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
     data.append('regiaoAtuacao', document.getElementById("RegiaoAtuacao").value)
@@ -81,7 +71,6 @@ function enviarDados() {
     console.log(document.getElementById("Cpf").value)
     console.log(document.getElementById("Nome").value)
     console.log(document.getElementById("Idade").value)
-    console.log(document.getElementById("3scolas").value)
     console.log(document.getElementById("RegiaoAtuacao").value)
     console.log(document.getElementById("Telefone").value)
     console.log(document.getElementById("FOTOmotorista").value)
