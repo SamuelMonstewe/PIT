@@ -3,7 +3,16 @@ var base_url = "http://localhost/"
 function mudarpagina() {
     window.location.href = "DadosVan.html"
 }
+function adicionarEscola(){
+    var http = new XMLHttpRequest()
+    var url = base_url + "PIT/php/dadosmotorista.php"
 
+    http.open("POST", url, true)
+    var data = new FormData()
+    data.append('novaEscola', document.getElementById['Escolas'].value)
+    data.append('adicionarEscola', 'AdicionarEscola')
+    
+}
 function enviarDados() {
     if (!document.getElementById("formDados").checkValidity()) {
         document.getElementById("formDados").classList.add('was-validated')
@@ -59,12 +68,14 @@ function enviarDados() {
     data.append('nome', document.getElementById("Nome").value)
     data.append('idade', document.getElementById("Idade").value)
     data.append('idescola', document.getElementById('3scolas').value)
+    data.append('escola', document.getElementById('Escolas').value)
     data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
     data.append('regiaoAtuacao', document.getElementById("RegiaoAtuacao").value)
     data.append('telefone', document.getElementById("Telefone").value)
     data.append('fotomotorista', document.getElementById("FOTOmotorista").files[0])
     data.append('fotocarteira', document.getElementById("FOTOCarteira").files[0])
     data.append('fotocrlv', document.getElementById("FOTOCRLV").files[0])
+
     data.append('enviar', 'enviar')
 
     console.log(document.getElementById("Cpf").value)
@@ -81,66 +92,7 @@ function enviarDados() {
     http.send(data)
 }
 
-function BuscarEscolas() {
-    var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/escola.php"
-    http.open("GET", url, true)
 
-    http.onreadystatechange = function () {
-        //verifica retorno do back-end 
-        if (http.readyState == 4 && http.status == 200) {
-
-           
-                var response = Array.from(JSON.parse(http.response))
-                document.getElementById("3scolas").innerHTML = ""
-                var newOption = document.createElement("option")
-                newOption.text = "Selecione uma escola"
-    
-                document.getElementById("3scolas").appendChild(newOption)
-    
-                response.forEach((escola) => {
-                    var newOption = document.createElement("option")
-                    newOption.text = escola['nome']
-                    newOption.value = escola['id']
-    
-                    document.getElementById("3scolas").appendChild(newOption)
-    
-                })
-            
-           
-        
-        }
-        else if (http.status != 200) {
-            alert("ERRO!")
-        }
-            
-           
-    }
-    http.send()
-}
-
-function AdicionarEscola() {
-    var NomeEscola = document.getElementById("Escolas").value
-
-    var http = new XMLHttpRequest()
-    var url = base_url + "PIT/php/adicionarEscola.php"
-    http.open("POST", url, true)
-
-    http.onreadystatechange = function () {
-        //verifica retorno do back-end 
-        if (http.readyState == 4 && http.status == 200) {
-            BuscarEscolas()
-        }
-        else if (http.status != 200) {
-            alert("ERRO!")
-        }
-    }
-
-    var data = new FormData()
-
-    data.append('addEscola', NomeEscola)
-    http.send(data)
-}
 
 function MasacaraTelefone() {
     //limitador de Caracteres
