@@ -1,0 +1,23 @@
+{
+    "liveServer.settings.port": 5501,
+    "files.autoSave": "onFocusChange",
+    "diffEditor.wordWrap": "on",
+    "workbench.iconTheme": "material-icon-theme",
+    "window.zoomLevel": 1,
+    "php.suggest.basic": false,
+    "intelephense.diagnostics.undefinedTypes":false,
+    "intelephense.diagnostics.undefinedFunctions":false,
+    "intelephense.diagnostics.undefinedConstants":false,
+    "intelephense.diagnostics.undefinedClassConstants":false,
+    "intelephense.diagnostics.undefinedMethods":false,
+    "intelephense.diagnostics.undefinedProperties":false,
+    "auto-rename-tag.activationOnLanguage": ["html", "xml", "php", "javascript"],
+    "php.debug.port": [
+
+    ],
+    "workbench.colorTheme": "One Dark Pro Darker",
+    "editor.cursorBlinking": "smooth",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    }
+}
