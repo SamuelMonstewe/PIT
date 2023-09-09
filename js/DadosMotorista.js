@@ -18,7 +18,7 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            mudarpagina()
+            // mudarpagina()
         }
         else if (http.status != 200) {
             alert("ERRO!")
@@ -26,20 +26,57 @@ function enviarDados() {
     }
 
     var data = new FormData()
+    const checkboxManha = document.getElementById("Manha");
+    const turnoManha = checkboxManha.checked;
+    const checkboxTarde = document.getElementById("Tarde");
+    const turnoTarde = checkboxTarde.checked;
+    const checkboxNoite = document.getElementById("Noite");
+    const turnoNoite = checkboxNoite.checked;
+
+    if(turnoManha){
+        data.append('manha','sim');
+        console.log(document.getElementById("Manha").value);
+    }
+    else{
+        data.append('manha', 'nao')
+    }
+    if(turnoTarde){
+        data.append('tarde', 'sim')
+        console.log(document.getElementById("Tarde").value);
+    }
+    else{
+        data.append('tarde', 'nao')
+    }
+    if(turnoNoite){
+        data.append('noite', 'sim')
+        console.log(document.getElementById("Noite").value);
+    }
+    else{
+        data.append('noite', 'nao')
+    }
+    
     data.append('cpf', document.getElementById("Cpf").value)
     data.append('nome', document.getElementById("Nome").value)
     data.append('idade', document.getElementById("Idade").value)
-    data.append('turno', document.getElementById("Turno").value)
-    data.append('escolas', document.getElementById("Escolas").value)
     data.append('idescola', document.getElementById('3scolas').value)
     data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
-    data.append('rota', document.getElementById("Rotas").value)
+    data.append('regiaoAtuacao', document.getElementById("RegiaoAtuacao").value)
     data.append('telefone', document.getElementById("Telefone").value)
     data.append('fotomotorista', document.getElementById("FOTOmotorista").files[0])
     data.append('fotocarteira', document.getElementById("FOTOCarteira").files[0])
     data.append('fotocrlv', document.getElementById("FOTOCRLV").files[0])
     data.append('enviar', 'enviar')
 
+    console.log(document.getElementById("Cpf").value)
+    console.log(document.getElementById("Nome").value)
+    console.log(document.getElementById("Idade").value)
+    console.log(document.getElementById("3scolas").value)
+    console.log(document.getElementById("RegiaoAtuacao").value)
+    console.log(document.getElementById("Telefone").value)
+    console.log(document.getElementById("FOTOmotorista").value)
+    console.log(document.getElementById("FOTOCarteira").value)
+    console.log(document.getElementById("FOTOCRLV").value)
+    console.log(document.querySelector('input[name="sexo"]:checked').value)
 
     http.send(data)
 }
@@ -53,26 +90,31 @@ function BuscarEscolas() {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
 
-            var response = Array.from(JSON.parse(http.response))
-            document.getElementById("3scolas").innerHTML = ""
-
-            var newOption = document.createElement("option")
-            newOption.text = "Selecione uma escola"
-
-            document.getElementById("3scolas").appendChild(newOption)
-
-            response.forEach((escola) => {
+           
+                var response = Array.from(JSON.parse(http.response))
+                document.getElementById("3scolas").innerHTML = ""
                 var newOption = document.createElement("option")
-                newOption.text = escola['nome']
-                newOption.value = escola['id']
-
+                newOption.text = "Selecione uma escola"
+    
                 document.getElementById("3scolas").appendChild(newOption)
-
-            })
+    
+                response.forEach((escola) => {
+                    var newOption = document.createElement("option")
+                    newOption.text = escola['nome']
+                    newOption.value = escola['id']
+    
+                    document.getElementById("3scolas").appendChild(newOption)
+    
+                })
+            
+           
+        
         }
         else if (http.status != 200) {
             alert("ERRO!")
         }
+            
+           
     }
     http.send()
 }
