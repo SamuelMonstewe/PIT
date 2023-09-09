@@ -3,7 +3,6 @@ header("Access-Control-Allow-Origin: *");
 header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
 require_once "classes/Motorista.php";
-require_once "classes/Escola.php";
 $motorista = new Motorista();
 
 function pegarDadosDoFormulario()
@@ -16,7 +15,6 @@ function pegarDadosDoFormulario()
     $motorista->setTurnoManha($_POST['manha']);
     $motorista->setTurnoTarde($_POST['tarde']);
     $motorista->setTurnoNoite($_POST['noite']);
-    $motorista->setEscolas($_POST['idescola']);
     $motorista->setRegiaoDeAtuacao($_POST['regiaoAtuacao']);
     $motorista->setSexo($_POST['sexo']);
     $motorista->setFotoMotorista(base64_encode(file_get_contents($_FILES['fotomotorista']['tmp_name'])));
@@ -27,8 +25,8 @@ function inserirDadosNoBanco()
 {
     global $motorista;
     global $ConexaoBanco;
-    $InsertMotorista = $ConexaoBanco->prepare("INSERT INTO motorista VALUES(null, :cpf, :nome, :idade, :telefone, :regiao_atuacao, :sexo, :fotoMotorista, :fotoCarteira, :fotoCRLV, 
-                                                                    :turnoManha, :turnoTarde, :turnoNoite)");
+    $Insert = $ConexaoBanco->prepare("INSERT INTO motorista VALUES(null, :cpf, :nome, :idade, :telefone, :regiao_atuacao, :sexo, :fotoMotorista, :fotoCarteira, :fotoCRLV,
+                                                                  :turnoManha, :turnoNoite, :turnoTarde)");
 
     $cpf = $motorista->getCpf();
     $nome = $motorista->getNome();
@@ -37,41 +35,40 @@ function inserirDadosNoBanco()
     $turnoManha = $motorista->getTurnoManha();
     $turnoTarde = $motorista->getTurnoTarde();
     $turnoNoite = $motorista->getTurnoNoite();
-    $regiaoAtuacao = strtolower($motorista->getRegiaoDeAtuacao());
+    $regiaoAtuacao = $motorista->getRegiaoDeAtuacao();
     $sexo = $motorista->getSexo();
     $fotoMotorista = $motorista->getFotoMotorista();
     $fotoCarteira =  $motorista->getFotoCarteira();
     $fotoCRLV = $motorista->getFotoCRLV();
 
 
-    $InsertMotorista->bindParam(':cpf', $cpf);
-    $InsertMotorista->bindParam(':nome',  $nome);
-    $InsertMotorista->bindParam(':idade', $idade);
-    $InsertMotorista->bindParam(':telefone', $telefone);
-    $InsertMotorista->bindParam(':regiao_atuacao',  $regiaoAtuacao);
-    $InsertMotorista->bindParam(':sexo', $sexo);
-    $InsertMotorista->bindParam(':fotoMotorista',  $fotoMotorista);
-    $InsertMotorista->bindParam(':fotoCarteira',  $fotoCarteira);
-    $InsertMotorista->bindParam(':fotoCRLV', $fotoCRLV);
-    $InsertMotorista->bindParam(':turnoManha', $turnoManha);
-    $InsertMotorista->bindParam(':turnoTarde', $turnoTarde);
-    $InsertMotorista->bindParam(':turnoNoite', $turnoNoite);
-    $InsertMotorista->execute();
+    $Insert->bindParam(':cpf', $cpf);
+    $Insert->bindParam(':nome',  $nome);
+    $Insert->bindParam(':idade', $idade);
+    $Insert->bindParam(':telefone', $telefone);
+    $Insert->bindParam(':regiao_atuacao', $regiaoAtuacao);
+    $Insert->bindParam(':sexo', $sexo);
+    $Insert->bindParam(':fotoMotorista',  $fotoMotorista);
+    $Insert->bindParam(':fotoCarteira',  $fotoCarteira);
+    $Insert->bindParam(':fotoCRLV', $fotoCRLV);
+    $Insert->bindParam(':turnoManha', $turnoManha);
+    $Insert->bindParam(':turnoNoite', $turnoNoite);
+    $Insert->bindParam(':turnoTarde', $turnoTarde);
+    $Insert->execute();
     // $idMotorista = $ConexaoBanco->lastInsertId();
     // $Insert2 = $ConexaoBanco->prepare("INSERT INTO escola_motorista VALUES (null,?,?)");
    
-    
-    
+
 }
 
 if (isset($_POST['enviar'])) {
+
     pegarDadosDoFormulario();
     inserirDadosNoBanco();
 }
 else{
+    http_response_code(400);
     echo("dados incompletos");
-  
-    
 }
 
 ?>
