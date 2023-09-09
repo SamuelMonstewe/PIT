@@ -37,10 +37,15 @@ header {
 main {
     display: grid;
     grid-template-columns: 27% 46% 27%;
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.5em;
 }
 
 .Grid_Col1 {
-    padding: 40px;
+    padding: 25%;
     display: flex;
     flex-direction: column;
 }
@@ -62,7 +67,34 @@ main {
     text-align: center;
 }
 
-.Grid_Col3 {
-    text-align: left;
-    padding: 40px;
+
+
+@media (max-width:1000px)
+{
+    main {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.75em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+    .Grid_Col1 {
+        text-align: center;
+    }
+}
+
+@media (max-width:550px)
+{
+    main {
+        font-size: 1.2em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    header {
+        font-size: .7em;
+    }
 }
