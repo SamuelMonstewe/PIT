@@ -21,12 +21,22 @@ function Logar()
         $select->bindParam(':Senha',$senha);
         $select->execute();
         $checar = $select->fetch(PDO::FETCH_ASSOC);
-       
-
+        $sits_usuarios_id = $checar['sits_usuarios_id'];
+        $id_motorista = $checar['id'];
+        
+        if($sits_usuarios_id == 1){
+            session_start();
+            $_SESSION['situacao_login'] = true;
+            $_SESSION['id'] = $id_motorista;
+        }
+        else{
+            session_start();
+            $_SESSION['situacao_login'] = false;
+        }
         if ($checar) {
             echo json_encode($checar);
         } 
-        else {
+        else {  
             http_response_code(401);
             throw new Exception("Senha inválida!");
         }
