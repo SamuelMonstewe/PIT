@@ -73,13 +73,25 @@
                 </div>
             </div>
 
-            <label><b> Região de atuação </b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="regiaoAtuacao" id="RegiaoAtuacao" placeholder="EX: Belo Horizonte" required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque uma rota valida!
-            </div>
-            <div class="valid-feedback">
-            </div>
+            <select class="form-select form-select-lg mt-5 mb-5" name="regiaoAtuacao" id="RegiaoAtuacao" aria-label="Large select example">
+                <option selected>Regiao de atuacao</option>
+                <?php
+                require_once "../pdo.php";
+                header("Access-Control-Allow-Origin: *");
+                header('Content-Type: application/json; charset=utf-8');
+                header('Content-Type: text/html; charset=utf-8');
+                $ConexaoBanco->exec("SET NAMES utf8");
+                global $ConexaoBanco;
+
+                $SELECT = $ConexaoBanco->prepare("SELECT * FROM regioes ORDER BY nome_regiao");
+                $SELECT->execute();
+
+                while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
+                    $nomeRegiao = $row['nome_regiao'];
+                    echo "<option>$nomeRegiao</option>";
+                }
+                ?>
+            </select>
 
             <!--Inserir o turno do usuário-->
             <div class="container Turnos shadow rounded-4 border border-dark">
@@ -117,18 +129,17 @@
                 $ConexaoBanco->exec("SET NAMES utf8");
                 global $ConexaoBanco;
 
-                // Query para selecionar os nomes das escolas
                 $SELECT = $ConexaoBanco->prepare("SELECT nome FROM escolas ORDER BY nome");
                 $SELECT->execute();
 
-                // Loop para criar as opções
+              
                 while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
                     $nomeEscola = $row['nome'];
                     echo "<option>$nomeEscola</option>";
                 }
                 ?>
             </select>
-            <button type="button" class="btn btn-warning" style="width:100px;" value="AdicionarEscola" name="adicionarEscola" id="adicionarEscola">Adicionar escola</button>
+            
             <!--Inserir a foto do motorista do usuário-->
             <label><b>Foto do Motorista </b></label>
             <div id="fotoMotorista"></div>
