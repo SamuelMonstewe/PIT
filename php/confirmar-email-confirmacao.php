@@ -22,20 +22,20 @@ if(!empty($chave)){
 
         if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado<br>
-            <a href='../HTML/Alterar-Senha.html'>Clique aqui para redefinir a senha!</a></div>";
-            header("Location: ../php/cadastroMotorista.php");
+            <a href='http://localhost/PIT/HTML/Alterar-Senha.html'>Clique aqui para redefinir a senha!</a></div>";
+            header("Location: ../php/view/resposta.php");
         }
         else{
             $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Email não confirmado </div>";
-            header("Location: ../php/cadastroMotorista.php");
+            header("Location: ../php/view/resposta.php");
         }
     }
     else{
         $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: Endereço inválido.</div> ";
-        header("Location: ../php/cadastroMotorista.php");
+        header("Location: ../php/view/resposta.php");
     }
 }
 else{
     $_SESSION['mensagem'] = "<div class='alert alert-danger' role='alert'> Erro: A chave está vazia</div> ";
-    header("Location: ../php/cadastroMotorista.php");
+    header("Location: ../php/view/resposta.php");
 }
