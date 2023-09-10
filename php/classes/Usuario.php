@@ -6,6 +6,7 @@ class Usuario {
     private $Email;
     private $Senha;
     private $Chave;
+	private $Cpf;
 
 
 	public function setNomeUsuario($NomeUsuario) {
@@ -48,5 +49,21 @@ class Usuario {
 	
 	public function getChave() {
 		return $this->Chave;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getCpf() {
+		return $this->Cpf;
+	}
+	
+	/**
+	 * @param mixed $Cpf 
+	 * @return self
+	 */
+	public function setCpf($Cpf): self {
+		$this->Cpf = $Cpf;
+		return $this;
 	}
 }
