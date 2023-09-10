@@ -18,6 +18,7 @@ function InserirDadosMotorista()
     $usuario->setNomeUsuario($_POST['usuario']);
     $usuario->setEmail($_POST['email']); 
     $usuario->setSenha($_POST['senha']);
+    $usuario->setCpf($_POST['cpf']);
     $usuario->setChave(GerarChave());
 
     try {
@@ -28,17 +29,18 @@ function InserirDadosMotorista()
             exit;
         } 
         else {
-          
-            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3, 1)");
+            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3, 1, :cpf)");
             $nomeUsuario = $usuario->getNomeUsuario();
             $emailUsuario = $usuario->getEmail();
             $senhaUsuario = $usuario->getSenha();
             $chaveUsuario = $usuario->getChave();
-            
+            $cpfUsuario = $usuario->getCpf();
+
             $Insert->bindParam(':Usuario', $nomeUsuario);
             $Insert->bindParam(':Email', $emailUsuario);
             $Insert->bindParam(':Senha', $senhaUsuario);
             $Insert->bindParam(':Chave', $chaveUsuario);
+            $Insert->bindParam(':cpf', $cpfUsuario);
             $Insert->execute();
             $linhasAfetadas = $Insert->rowCount();
             

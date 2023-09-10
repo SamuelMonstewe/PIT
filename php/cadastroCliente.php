@@ -19,6 +19,7 @@ function InserirDadosCliente()
     $usuario->setNomeUsuario($_POST['usuario']);
     $usuario->setEmail($_POST['email']);
     $usuario->setSenha($_POST['senha']);
+    $usuario->setCpf($_POST['cpf']);
     $usuario->setChave(GerarChave());
     try {
 
@@ -28,29 +29,36 @@ function InserirDadosCliente()
             exit;
         } 
         else {
-            $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3, 2)");
+            try{
+                $Insert = $ConexaoBanco->prepare("INSERT INTO usuarios VALUES (null,:Usuario ,:Email ,:Senha ,:Chave, 3, 2, :cpf)");
 
-            $nomeUsuario = $usuario->getNomeUsuario();
-            $emailUsuario = $usuario->getEmail();
-            $senhaUsuario = $usuario->getSenha();
-            $chaveUsuario = $usuario->getChave();
-            
-            $Insert->bindParam(':Usuario', $nomeUsuario);
-            $Insert->bindParam(':Email', $emailUsuario);
-            $Insert->bindParam(':Senha', $senhaUsuario);
-            $Insert->bindParam(':Chave', $chaveUsuario);
-            $Insert->execute();
-            $linhasAfetadas = $Insert->rowCount();
-
-            if ($linhasAfetadas > 0) {
-                $mensagem = "Enviamos um email para confirmação!";
-                echo json_encode($mensagem);
-                EnviarEmailDeConfirmacao($usuario);
-                exit;
-            } 
-            else {
-                throw new Exception("Erro ao inserir os dados.");
+                $nomeUsuario = $usuario->getNomeUsuario();
+                $emailUsuario = $usuario->getEmail();
+                $senhaUsuario = $usuario->getSenha();
+                $chaveUsuario = $usuario->getChave();
+                $cpfUsuario = $usuario->getCpf();
+                $Insert->bindParam(':Usuario', $nomeUsuario);
+                $Insert->bindParam(':Email', $emailUsuario);
+                $Insert->bindParam(':Senha', $senhaUsuario);
+                $Insert->bindParam(':Chave', $chaveUsuario);
+                $Insert->bindParam(':cpf', $cpfUsuario);
+                $Insert->execute();
+                $linhasAfetadas = $Insert->rowCount();
+    
+                if ($linhasAfetadas > 0) {
+                    $mensagem = "Enviamos um email para confirmação!";
+                    echo json_encode($mensagem);
+                    EnviarEmailDeConfirmacao($usuario);
+                    exit;
+                } 
+                
             }
+            catch(PDOException $e){
+                $mensagem = $e->getMessage();
+                echo json_encode($mensagem);
+                exit;
+            }
+           
         }
 
     } 
