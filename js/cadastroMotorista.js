@@ -1,7 +1,7 @@
 var base_url = "http://localhost/"
 
 function mudarpagina() {
-    window.location.href = "login.html"
+    window.location.href = "PIT/php/view/DadosMotorista.php"
 }
 
 function EnviarDadosMotorista() {
@@ -37,12 +37,16 @@ function EnviarDadosMotorista() {
         data.append('usuario', document.getElementById("Usuario").value)
         data.append('email', document.getElementById("Email").value)
         data.append('senha', document.getElementById("Senha").value)
+        data.append('cpf', document.getElementById("Cpf").value);
         data.append('enviar', 'enviar')
 
+        console.log(document.getElementById("Cpf").value)
         http.send(data)
     }
     else {
         alert("Insira senhas iguais!")
     }
 }
+
+
 
