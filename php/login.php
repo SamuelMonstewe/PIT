@@ -23,11 +23,13 @@ function Logar()
         $checar = $select->fetch(PDO::FETCH_ASSOC);
         $sits_usuarios_id = $checar['sits_usuarios_id'];
         $id_motorista = $checar['id'];
+        $cpf_motorista = $checar['cpf'];
         
         if($sits_usuarios_id == 1){
             session_start();
             $_SESSION['situacao_login'] = true;
             $_SESSION['id'] = $id_motorista;
+            $_SESSION['cpf'] = $cpf_motorista;
         }
         else{
             session_start();
