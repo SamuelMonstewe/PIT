@@ -31,7 +31,7 @@ if($_SESSION['situacao_login']){
                
             }
             else{
-                 print_r($_SESSION);
+                $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
             }
         }
         else{
@@ -42,6 +42,9 @@ if($_SESSION['situacao_login']){
     else{
         echo  "<h1> ID do motorista não definido na sessão </h1>";
     }
+}
+else{
+    header("Location: ../../HTML/cadastro.html");
 }
     
 ?>
@@ -194,9 +197,13 @@ if($_SESSION['situacao_login']){
                 </p>
             </div>
         </div>
-        
+      
     </main>
-
+    <?php 
+        if(!empty($mensagem)){
+            echo $mensagem;
+        }
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
