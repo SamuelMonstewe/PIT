@@ -48,7 +48,7 @@ function InserirDadosCliente()
                 if ($linhasAfetadas > 0) {
                     $mensagem = "Enviamos um email para confirmação!";
                     echo json_encode($mensagem);
-                    EnviarEmailDeConfirmacao($usuario);
+                    EnviarEmailDeConfirmacaoUsuario($usuario);
                     exit;
                 } 
                 
