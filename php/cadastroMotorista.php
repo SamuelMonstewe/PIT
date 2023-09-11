@@ -48,7 +48,7 @@ function InserirDadosMotorista()
                 $mensagem = "Enviamos um email para confirmação!";
                 echo json_encode($mensagem);
                 
-                EnviarEmailDeConfirmacao($usuario);
+                EnviarEmailDeConfirmacaoMotorista($usuario);
                 exit;
             } 
             else {
