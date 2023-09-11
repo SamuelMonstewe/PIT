@@ -31,6 +31,8 @@ function EnviarDadosCliente(){
         data.append('usuario', document.getElementById("Usuario").value)
         data.append('email', document.getElementById("Email").value)
         data.append('senha', document.getElementById("Senha").value)
+        data.append('cpf', document.getElementById("Cpf").value)
+        console.log(document.getElementById("Cpf").value)
         data.append('enviar', 'enviar')
         http.send(data)
     }
