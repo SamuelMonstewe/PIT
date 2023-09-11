@@ -13,4 +13,4 @@
 # `git merge` você faz a junção de uma branch com a outra
 
 ### Para mais informações, acesse a [documentação do git](https://git-scm.com/doc)
-## site excelente para entender como git funcina: [site](ttps://learngitbranching.js.org/?locale=pt_BR)
+## site excelente para entender como git funcina: [site](https://learngitbranching.js.org/?locale=ptBR)
