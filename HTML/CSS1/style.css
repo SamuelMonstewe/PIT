@@ -33,3 +33,17 @@ form h1 {
     font-weight: 900;
     text-decoration: solid;
 }
+
+.DivSexo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.InputM {
+    margin-right: 10%;
+}
+
+.SeparS {
+    width: 40%;
+}

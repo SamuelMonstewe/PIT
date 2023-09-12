@@ -44,9 +44,26 @@
             <div class="invalid-feedback">
                 Por favor coloque uma senha valida!
             </div>
+
+            <div class="d-flex flex-column">
+                <div class="form-control bg-withe shadow DivSexo">
+                    <div>
+                        <label class="text-center"><b>Sexo </b></label>
+                    </div>
+                    <div class="SeparS">
+                        <label><b>Masculino </b></label>
+                        <input class="shadow align-middle InputM" type="radio" name="sexo" value="M">
+                        <label><b>Femínino </b></label>
+                        <input class="shadow align-middle" type="radio" name="sexo" value="F">
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
             <!--Botão para cadastrar a conta do usuário-->
             <a style="width: 100%;" class="text-center mt-3">
-                <button style="width: 50%;" onclick="EnviarDadosAluno()" type="button" class="Button-SingIn btn btn-warning">Cadastrar
+                <button style="width: 50%;" onclick="EnviarDadosAluno()" type="button"
+                    class="Button-SingIn btn btn-warning">Cadastrar
                     Aluno</button>
             </a>
         </form>
