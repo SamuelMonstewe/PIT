@@ -15,7 +15,7 @@
     "php.debug.port": [
 
     ],
-    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.colorTheme": "One Dark Pro",
     "editor.cursorBlinking": "smooth",
     "[php]": {
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
