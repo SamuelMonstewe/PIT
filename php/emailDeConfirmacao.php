@@ -13,7 +13,7 @@ use PHPMailer\PHPMailer\Exception;
  * @param Usuario $usuario
  * @return void
  */
-function EnviarEmailDeConfirmacao($usuario)
+function EnviarEmailDeConfirmacaoMotorista($usuario)
 {
     
     global $ConexaoBanco;
@@ -36,9 +36,45 @@ function EnviarEmailDeConfirmacao($usuario)
         $mail->isHTML(true);
         $mail->Subject = 'CONFIRMAR O EMAIL';
         $mail->Body = "Por favor confirme o email <br> 
-                    <a href='http://localhost/PIT/php/confirmar-email.php?chave=$chave'>Clique aqui </a>";
+                    <a href='http://localhost/PIT/php/confirmar-email-motorista.php?chave=$chave'>Clique aqui </a>";
         $mail->AltBody = "Por favor confirme o email \n
-                    'http://localhost/PIT/php/confirmar-email.php?chave=$chave'";
+                    'http://localhost/PIT/php/confirmar-email-motorista.php?chave=$chave'";
+
+        $mail->send();
+    } 
+    catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+}
+
+
+function EnviarEmailDeConfirmacaoUsuario($usuario)
+{
+    
+    global $ConexaoBanco;
+
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->CharSet = 'UTF-8';
+        $mail->isSMTP();
+        $mail->Host = 'sandbox.smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Username = '5a09da3cd14b6e';
+        $mail->Password = 'd30f266032e87d';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 2525;
+
+        $mail->setFrom('samuel@teste.com', 'Samuel');
+        $mail->addAddress($usuario->getEmail(), $usuario->getNomeUsuario());
+        $chave = $usuario->getChave();
+        $mail->isHTML(true);
+        $mail->Subject = 'CONFIRMAR O EMAIL';
+        $mail->Body = "Por favor confirme o email <br> 
+                    <a href='http://localhost/PIT/php/confirmar-email-cliente.php?chave=$chave'>Clique aqui </a>";
+        $mail->AltBody = "Por favor confirme o email \n
+                    'http://localhost/PIT/php/confirmar-email-cliente.php?chave=$chave'";
 
         $mail->send();
     } 
