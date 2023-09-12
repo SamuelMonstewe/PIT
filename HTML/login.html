@@ -15,14 +15,21 @@
 </head>
 
 <body>
+    <a href="index.html">
+        <button id="BackButton" class="btn-warning">
+            Voltar
+        </button>
+    </a>
     <div class="Count-DadosM container ">
-        <form  style="width: 800px;" id="formLogin" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
+        <form style="width: 800px;" id="formLogin"
+            class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
             <!--Título da página-->
             <h1>Login</h1>
 
             <!--Inserir nome do usuário-->
             <label><b>Usuário</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="Nome" placeholder="EX: Fulano do Clano">
+            <input class="form-control shadow rounded mb-3" type="text" required id="Usuario" name="Nome"
+                placeholder="EX: Fulano do Clano">
             <div class="invalid-feedback">
                 Por favor coloque um nome de usuário valido!
             </div>
@@ -39,7 +46,7 @@
 
             <!--Botão para logar com a conta do usuário-->
             <a style="width: 100%;" class="text-center mt-3">
-                <button style="width: 50%;" id="botao"onclick="enviarDados()" type="button"
+                <button style="width: 50%;" id="botao" onclick="enviarDados()" type="button"
                     class="Button-SingIn btn btn-warning">Logar</button>
             </a>
 

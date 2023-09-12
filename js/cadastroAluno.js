@@ -30,6 +30,7 @@ function EnviarDadosAluno(){
         data.append('nome', document.getElementById("Nome").value)
         data.append('idade', document.getElementById("Idade").value)
         data.append('escola', document.getElementById("Escola").value)
+        data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
         data.append('enviar', 'enviar')
         http.send(data)
     }
