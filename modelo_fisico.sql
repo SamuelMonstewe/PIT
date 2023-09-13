@@ -63,3 +63,26 @@ CREATE TABLE `escolas` (
   `nome` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `bairros` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=503 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `regioes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome_regiao` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=503 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `regioes` (`id`, `nome_regiao`) VALUES 
+(1, 'Região Barreiro'), 
+(2, 'Região Centro Sul'), 
+(3, 'Região Leste'), 
+(4, 'Região Nordeste'), 
+(5, 'Região Noroeste'), 
+(6, 'Região Norte'), 
+(7, 'Região Oeste'), 
+(8, 'Região Pampulha'), 
+(9, 'Região Venda Nova'); 
