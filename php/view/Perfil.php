@@ -19,7 +19,7 @@ if($_SESSION['situacao_login']){
            
             if($dadosRetornados){
       
-                $motorista->setNome($dadosRetornados['nome']);
+          
                 $motorista->setCpf($dadosRetornados['cpf']);
                 $motorista->setIdade($dadosRetornados['idade']);
                 $motorista->setTelefone($dadosRetornados['telefone']);
@@ -93,7 +93,7 @@ else{
             </div>
             <div class="List-Info">
                 <p>
-                    Nome: <?php  echo $motorista->getNome();?>
+                    Nome:
                 </p>
                 <p>
                     
