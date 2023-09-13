@@ -31,6 +31,8 @@ CREATE TABLE `motorista` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+ALTER TABLE motorista DROP COLUMN nome;
+
 CREATE TABLE `van` (
    id int not null primary key auto_increment,
   `chassi` char(17) NOT NULL,
