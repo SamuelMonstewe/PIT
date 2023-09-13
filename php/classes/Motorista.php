@@ -3,7 +3,7 @@
 class Motorista
 {
     private  $Cpf;
-    // private  $Nome;
+    private  $Nome;
     private  $Sexo;
     private  $Idade;
     private  $Telefone;
@@ -27,15 +27,7 @@ class Motorista
 	}
 	
 	
-	// public function getNome() {
-	// 	return $this->Nome;
-	// }
 	
-	
-	// public function setNome($Nome) {
-	// 	$this->Nome = $Nome;
-	// 	return $this;
-	// }
 	
 	
 	public function getSexo() {
@@ -179,6 +171,22 @@ class Motorista
 	 */
 	public function setRegiaoDeAtuacao($RegiaoDeAtuacao): self {
 		$this->RegiaoDeAtuacao = $RegiaoDeAtuacao;
+		return $this;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getNome() {
+		return $this->Nome;
+	}
+	
+	/**
+	 * @param mixed $Nome 
+	 * @return self
+	 */
+	public function setNome($Nome): self {
+		$this->Nome = $Nome;
 		return $this;
 	}
 }
