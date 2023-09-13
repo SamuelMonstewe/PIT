@@ -18,7 +18,6 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `motorista` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` char(14) NOT NULL,
-  `nome` varchar(80) NOT NULL,
   `idade` tinyint(4) NOT NULL,
   `telefone` char(14) NOT NULL,
   `regiao_atuacao` varchar(45) NOT NULL,
@@ -63,3 +62,17 @@ CREATE TABLE `escolas` (
   `nome` varchar(80) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=177 DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `bairros` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=503 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+insert into situacao_usuarios values (null, "Ativo");
+insert into situacao_usuarios values (null, "Inativo");
+insert into situacao_usuarios values (null, "Aguardando confirmação");
+
+insert into tipo_usuarios values (null, "Motorista");
+insert into tipo_usuarios values (null, "Cliente");
+

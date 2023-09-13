@@ -56,7 +56,7 @@ function enviarDados() {
     }
     
     data.append('cpf', document.getElementById("Cpf").value)
-    data.append('nome', document.getElementById("Nome").value)
+    // data.append('nome', document.getElementById("Nome").value)
     data.append('idade', document.getElementById("Idade").value)
     data.append('escola', document.getElementById('Escolas').value)
     data.append('sexo', document.querySelector('input[name="sexo"]:checked').value)
@@ -69,7 +69,7 @@ function enviarDados() {
     data.append('enviar', 'enviar')
 
     console.log(document.getElementById("Cpf").value)
-    console.log(document.getElementById("Nome").value)
+    // console.log(document.getElementById("Nome").value)
     console.log(document.getElementById("Idade").value)
     console.log(document.getElementById("RegiaoAtuacao").value)
     console.log(document.getElementById("Telefone").value)
