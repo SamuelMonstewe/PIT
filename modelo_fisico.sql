@@ -86,3 +86,11 @@ INSERT INTO `regioes` (`id`, `nome_regiao`) VALUES
 (7, 'Região Oeste'), 
 (8, 'Região Pampulha'), 
 (9, 'Região Venda Nova'); 
+
+CREATE TABLE ALUNO(
+id INT NOT NULL AUTO_INCREMENT,
+nome VARCHAR(120) NOT NULL,
+idade INT NOT NULL,
+escola VARCHAR(150) NOT NULL,
+sexo CHAR(1) NOT NULL
+);
