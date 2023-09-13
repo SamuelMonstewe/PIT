@@ -23,15 +23,6 @@
     <div class="Count-DadosM container ">
         <form method="post" id="formDados" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation" enctype="multipart/form-data">
             <!--Inserir nome do usuário-->
-
-            <label><b>Nome Completo</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome" placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque um nome de usuário valido!
-            </div>
-            <div class="valid-feedback">
-            </div>
-
             <!--Inserir o telefone do usuário-->
             <label><b>Telefone</b></label>
             <input class="form-control shadow rounded mb-3" type="tel" name="telefone" oninput="MasacaraTelefone()" id="Telefone" placeholder="EX:(00) 00000-0000" required="">
