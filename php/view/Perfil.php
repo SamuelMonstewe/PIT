@@ -9,25 +9,27 @@ if($_SESSION['situacao_login']){
         global $ConexaoBanco;
         $id_motorista = $_SESSION['id'];
         $cpf_motorista = $_SESSION['cpf'];
-        $SELECT = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE id = :id AND cpf = :cpf");
-        $SELECT->bindParam(':id', $id_motorista);
-        $SELECT->bindParam(':cpf', $cpf_motorista);
+        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE id = :id AND cpf = :cpf");
+        $SELECT_MOTORISTA->bindParam(':id', $id_motorista);
+        $SELECT_MOTORISTA->bindParam(':cpf', $cpf_motorista);
 
+        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
+        $SELECT_USUARIO->bindParam(':cpf', $cpf_motorista);
         
-        if($SELECT->execute()){
-            $dadosRetornados = $SELECT->fetch(PDO::FETCH_ASSOC);
-           
-            if($dadosRetornados){
-      
-                $motorista->setNome($dadosRetornados['nome']);
-                $motorista->setCpf($dadosRetornados['cpf']);
-                $motorista->setIdade($dadosRetornados['idade']);
-                $motorista->setTelefone($dadosRetornados['telefone']);
-                $motorista->setRegiaoDeAtuacao($dadosRetornados['regiao_atuacao']);
-                $motorista->setSexo($dadosRetornados['sexo']);
-                $motorista->setTurnoManha($dadosRetornados['turnoManha']);
-                $motorista->setTurnoNoite($dadosRetornados['turnoNoite']);
-                $motorista->setTurnoTarde($dadosRetornados['turnoTarde']);
+        if($SELECT_MOTORISTA->execute() && $SELECT_USUARIO->execute()){
+            $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
+            $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
+            if($dadosRetornadosMotorista && $dadosRetornadosUsuario){
+               
+                $motorista->setNome($dadosRetornadosUsuario['Usuario']);
+                $motorista->setCpf($dadosRetornadosMotorista['cpf']);
+                $motorista->setIdade($dadosRetornadosMotorista['idade']);
+                $motorista->setTelefone($dadosRetornadosMotorista['telefone']);
+                $motorista->setRegiaoDeAtuacao($dadosRetornadosMotorista['regiao_atuacao']);
+                $motorista->setSexo($dadosRetornadosMotorista['sexo']);
+                $motorista->setTurnoManha($dadosRetornadosMotorista['turnoManha']);
+                $motorista->setTurnoNoite($dadosRetornadosMotorista['turnoNoite']);
+                $motorista->setTurnoTarde($dadosRetornadosMotorista['turnoTarde']);
                
             }
             else{
@@ -93,7 +95,7 @@ else{
             </div>
             <div class="List-Info">
                 <p>
-                    Nome: <?php  echo $motorista->getNome();?>
+                    Nome: <?php echo $motorista->getNome() ?>
                 </p>
                 <p>
                     
