@@ -18,7 +18,7 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            // mudarpagina()
+            mudarpagina()
         }
         else if (http.status != 200) {
             alert("ERRO!")

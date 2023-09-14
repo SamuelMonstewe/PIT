@@ -1,9 +1,11 @@
+var base_url = "http://localhost/"
+
 function EnviarDadosAluno(){
     if (!document.getElementById("formCadastroAluno").checkValidity()) {
         document.getElementById("formCadastroAluno").classList.add('was-validated')
         return
     }
-    if (document.getElementById("Nome").value != null && document.getElementById("Idade").value != null && document.getElementById("Escola").value != null) {
+    if (document.getElementById("Nome").value != null && document.getElementById("Escola").value != null) {
         var http = new XMLHttpRequest()
         var url = base_url + "PIT/php/cadastroAluno.php"
 
