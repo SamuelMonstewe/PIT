@@ -77,7 +77,7 @@ else{
         <h1>
             Meu Perfil
         </h1>
-        <a id="Edit-Button" href="Perfil-Edit.html">
+        <a id="Edit-Button" href="../../HTML/Perfil-Edit.html">
             Editar Perfil
         </a>
     </header>
