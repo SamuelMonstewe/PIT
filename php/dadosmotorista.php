@@ -9,6 +9,7 @@ function pegarDadosDoFormulario()
 {
     global $motorista;
     $motorista->setCpf($_POST['cpf']);
+    // $motorista->setNome($_POST['nome']);
     $motorista->setIdade($_POST['idade']);
     $motorista->setTelefone($_POST['telefone']);
     $motorista->setTurnoManha($_POST['manha']);
@@ -28,6 +29,7 @@ function inserirDadosNoBanco()
                                                                   :turnoManha, :turnoNoite, :turnoTarde)");
 
     $cpf = $motorista->getCpf();
+    // $nome = $motorista->getNome();
     $idade = $motorista->getIdade();
     $telefone = $motorista->getTelefone();
     $turnoManha = $motorista->getTurnoManha();
@@ -41,6 +43,7 @@ function inserirDadosNoBanco()
 
 
     $Insert->bindParam(':cpf', $cpf);
+    // $Insert->bindParam(':nome',  $nome);
     $Insert->bindParam(':idade', $idade);
     $Insert->bindParam(':telefone', $telefone);
     $Insert->bindParam(':regiao_atuacao', $regiaoAtuacao);
