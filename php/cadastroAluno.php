@@ -33,7 +33,7 @@ function inserirDadosNoBanco()
     $insert->execute();
 }
 
-if isset($_POST['enviar']) {
+if (isset($_POST['enviar'])) {
     
     pegarDadosDoFormulario();
     inserirDadosNoBanco();
