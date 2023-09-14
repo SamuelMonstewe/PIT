@@ -18,7 +18,6 @@ CREATE TABLE `usuarios` (
 CREATE TABLE `motorista` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` char(14) NOT NULL,
-  `nome` varchar(80) NOT NULL,
   `idade` tinyint(4) NOT NULL,
   `telefone` char(14) NOT NULL,
   `regiao_atuacao` varchar(45) NOT NULL,
@@ -90,7 +89,7 @@ INSERT INTO `regioes` (`id`, `nome_regiao`) VALUES
 (9, 'Região Venda Nova'); 
 
 CREATE TABLE ALUNO(
-id INT NOT NULL AUTO_INCREMENT,
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(120) NOT NULL,
 idade INT NOT NULL,
 escola VARCHAR(150) NOT NULL,
