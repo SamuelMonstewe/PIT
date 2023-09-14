@@ -1,9 +1,15 @@
+var base_url = "http://localhost/"
+
+function mudarpagina() {
+    window.location.href = "../../HTML/index.html"
+}
+
 function EnviarDadosAluno(){
     if (!document.getElementById("formCadastroAluno").checkValidity()) {
         document.getElementById("formCadastroAluno").classList.add('was-validated')
         return
     }
-    if (document.getElementById("Nome").value != null && document.getElementById("Idade").value != null && document.getElementById("Escola").value != null) {
+    if (document.getElementById("Nome").value != null && document.getElementById("Escola").value != null) {
         var http = new XMLHttpRequest()
         var url = base_url + "PIT/php/cadastroAluno.php"
 
@@ -16,6 +22,7 @@ function EnviarDadosAluno(){
                     var response = JSON.parse(http.responseText)
                     var mensagem = response
                     alert(mensagem)
+                    mudarpagina()
                 }
                 catch(error) {
                     console.log('Tá dando erro na conversão do json', error, http.responseText);

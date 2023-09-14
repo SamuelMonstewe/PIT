@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='CSS1/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../HTML/CSS1/style.css'>
     <title>Cadastro Aluno</title>
 </head>
 
@@ -39,11 +39,26 @@
 
             <!--Inserir senha do usuário-->
             <label><b>Escola</b></label>
-            <input class="form-control shadow rounded mb-3" id="Escola" type="text" name="Escola" required
-                placeholder="EX: Cotemig">
-            <div class="invalid-feedback">
-                Por favor coloque uma senha valida!
-            </div>
+            <select class="form-select form-select-lg mt-5 mb-5" id="Escola" aria-label="Large select example">
+                <option selected>Escolha a Escola a Qual Fornece Serviço</option>
+                <?php
+                require_once "../pdo.php";
+                header("Access-Control-Allow-Origin: *");
+                header('Content-Type: application/json; charset=utf-8');
+                header('Content-Type: text/html; charset=utf-8');
+                $ConexaoBanco->exec("SET NAMES utf8");
+                global $ConexaoBanco;
+
+                $SELECT = $ConexaoBanco->prepare("SELECT nome FROM escolas ORDER BY nome");
+                $SELECT->execute();
+
+              
+                while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
+                    $nomeEscola = $row['nome'];
+                    echo "<option>$nomeEscola</option>";
+                }
+                ?>
+            </select>
 
             <!--Inserir sexo do usuário-->
             <div class="d-flex flex-column">
@@ -74,7 +89,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    <script src="../js/cadastroAluno.js"></script>
+    <script src="../../js/cadastroAluno.js"></script>
 </body>
 
 </html>

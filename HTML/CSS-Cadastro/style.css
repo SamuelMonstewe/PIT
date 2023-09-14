@@ -48,7 +48,7 @@ form h1 {
     width: 40%;
 }
 
-#BackButton {
+.BackButton {
     position: absolute;
     top: 5%;
     left: 5%;

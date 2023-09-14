@@ -1,5 +1,9 @@
 var base_url = "http://localhost/"
 
+function mudarpagina() {
+    window.location.href = "login.html"
+}
+
 function EnviarDadosVan()
 {
     if (!document.getElementById("formDadosVan").checkValidity()) {
@@ -16,7 +20,7 @@ function EnviarDadosVan()
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
             console.log("deu")
-            
+            mudarpagina()
         }
         else if (http.status != 200) {
             alert("ERRO!")
