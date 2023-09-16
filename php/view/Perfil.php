@@ -2,7 +2,9 @@
 session_start();
 require_once "../pdo.php";
 require_once "../classes/Motorista.php";
+require_once "../classes/Usuario.php";
 $motorista = new Motorista();
+$usuario = new Usuario();
 
 if($_SESSION['situacao_login']){
     if(isset($_SESSION['id'])){
@@ -22,6 +24,7 @@ if($_SESSION['situacao_login']){
             if($dadosRetornadosMotorista && $dadosRetornadosUsuario){
                
                 $motorista->setNome($dadosRetornadosUsuario['Usuario']);
+                $usuario->setEmail($dadosRetornadosUsuario['email']);
                 $motorista->setCpf($dadosRetornadosMotorista['cpf']);
                 $motorista->setIdade($dadosRetornadosMotorista['idade']);
                 $motorista->setTelefone($dadosRetornadosMotorista['telefone']);
@@ -50,168 +53,6 @@ else{
 }
     
 ?>
-
-
-<!-- <!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='../../HTML/CSS-Perfil/style.css'>
-    <title>Perfil De Usuário</title>
-</head>
-
-<body>
-
-    <header class="container-fluid">
-        <a id="Back-Button" class="btn btn-outline-warning" href="../../HTML/index.html">
-            <i class="fas fa-arrow-left"></i> Voltar
-        </a>
-
-        <h1>
-            Meu Perfil
-        </h1>
-        <a id="Edit-Button" href="../../HTML/Perfil-Edit.html">
-            Editar Perfil
-        </a>
-    </header>
-
-    <main>
-        <div class="Grid_Col1">
-            <img width="100%" src="../../HTML/imagens/Foto-User.png">
-        </div>
-        <div class="Grid_Col2">
-            <div width="100%" class="Info-P">
-                <h3>
-                    Informações Pessoais
-                </h3>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Nome:
-                </p>
-                <p>
-                    <?php echo $motorista->getNome() ?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Idade:
-                </p>
-                <p>
-                    <?php  echo $motorista->getIdade();?>
-                </p>
-            </div>
-           
-            <div class="List-Info">
-                <p>
-                    CPF:
-                </p>
-                <p>
-                    <?php echo $motorista->getCpf()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Telefone:
-                </p>
-                <p>
-                    <?php echo $motorista->getTelefone() ?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Se trabalha no turno da manhã:
-                </p>
-                <p>
-                    <?php echo $motorista->getTurnoManha()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Se trabalha no turno da tarde:
-                </p>
-                <p>
-                    <?php echo $motorista->getTurnoTarde()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Se trabalha no turno da tarde:
-                </p>
-                <p>
-                    <?php echo $motorista->getTurnoNoite()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Regiao de atuacao:
-                </p>
-                <p>
-                    <?php echo $motorista->getRegiaoDeAtuacao()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Sexo: 
-                </p>
-                <p>
-                <?php echo $motorista->getSexo()?>
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Placa:
-                </p>
-                <p>
-                    
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Marca:
-                </p>
-                <p>
-                    
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Modelo:
-                </p>
-                <p>
-                    
-                </p>
-            </div>
-            <div class="List-Info">
-                <p>
-                    Quantidade de Lugares:
-                </p>
-                <p>
-                    
-                </p>
-            </div>
-        </div>
-      
-    </main>
-    <?php 
-        if(!empty($mensagem)){
-            echo $mensagem;
-        }
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-</body>
-
-</html> -->
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -340,7 +181,7 @@ else{
                     </div>
                     <h3 class="profile-name"><?php echo $motorista->getNome() ?></h3>
                     <div class="profile-info">
-                        <p><strong>Email:</strong> capeta@gmail.com</p>
+                        <p><strong>Email:</strong> <?php echo $usuario->getEmail() ?></p>
                         <p><strong>CPF:</strong> <?php echo $motorista->getCpf()?></p>
                         <p><strong>Idade:</strong> <?php  echo $motorista->getIdade();?></p>
                         <p><strong>Telefone:</strong> <?php echo $motorista->getTelefone() ?></p>
