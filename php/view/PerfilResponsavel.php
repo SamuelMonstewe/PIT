@@ -1,59 +1,3 @@
-<?php
-session_start();
-require_once "../pdo.php";
-require_once "../classes/Motorista.php";
-require_once "../classes/Usuario.php";
-$motorista = new Motorista();
-$usuario = new Usuario();
-
-if($_SESSION['situacao_login']){
-    if(isset($_SESSION['id'])){
-        global $ConexaoBanco;
-        $id_motorista = $_SESSION['id'];
-        $cpf_motorista = $_SESSION['cpf'];
-        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE id = :id AND cpf = :cpf");
-        $SELECT_MOTORISTA->bindParam(':id', $id_motorista);
-        $SELECT_MOTORISTA->bindParam(':cpf', $cpf_motorista);
-
-        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
-        $SELECT_USUARIO->bindParam(':cpf', $cpf_motorista);
-        
-        if($SELECT_MOTORISTA->execute() && $SELECT_USUARIO->execute()){
-            $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
-            $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
-            if($dadosRetornadosMotorista && $dadosRetornadosUsuario){
-               
-                $motorista->setNome($dadosRetornadosUsuario['Usuario']);
-                $usuario->setEmail($dadosRetornadosUsuario['email']);
-                $motorista->setCpf($dadosRetornadosMotorista['cpf']);
-                $motorista->setIdade($dadosRetornadosMotorista['idade']);
-                $motorista->setTelefone($dadosRetornadosMotorista['telefone']);
-                $motorista->setRegiaoDeAtuacao($dadosRetornadosMotorista['regiao_atuacao']);
-                $motorista->setSexo($dadosRetornadosMotorista['sexo']);
-                $motorista->setTurnoManha($dadosRetornadosMotorista['turnoManha']);
-                $motorista->setTurnoNoite($dadosRetornadosMotorista['turnoNoite']);
-                $motorista->setTurnoTarde($dadosRetornadosMotorista['turnoTarde']);
-               
-            }
-            else{
-                $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
-            }
-        }
-        else{
-            echo "<h1> Erro na execução da consulta </h1>";
-        }
-
-    }
-    else{
-        echo  "<h1> ID do motorista não definido na sessão </h1>";
-    }
-}
-else{
-    header("Location: ../../HTML/cadastro.html");
-}
-    
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -74,7 +18,7 @@ else{
         body {
             background-color: #F6A62E;
         }
-
+        
         ::-webkit-scrollbar-track {
             background-color: #ffffff;
         }
@@ -110,6 +54,12 @@ else{
             margin: 0 auto 20px;
         }
 
+        .profile-Title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+        
         .profile-name {
             font-size: 36px;
             font-weight: bold;
@@ -190,23 +140,42 @@ else{
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="profile-container">
+                    <h1 class="profile-Title">
+                        <strong>Responsavel:</strong>
+                    </h1>
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
                     </div>
-                    <h3 class="profile-name"><?php echo $motorista->getNome() ?></h3>
+                    <h3 class="profile-name">
+                        Nome do Responsavel
+                    </h3>
                     <div class="profile-info">
-                        <p><strong>Email:</strong> <?php echo $usuario->getEmail() ?></p>
-                        <p><strong>CPF:</strong> <?php echo $motorista->getCpf()?></p>
-                        <p><strong>Idade:</strong> <?php  echo $motorista->getIdade();?></p>
-                        <p><strong>Telefone:</strong> <?php echo $motorista->getTelefone() ?></p>
-                        <p><strong>Sexo:</strong> <?php echo $motorista->getSexo()?></p>
-                        <p><strong>Regiao de atuação:</strong> <?php echo $motorista->getRegiaoDeAtuacao()?></p>
-                        <h4><strong>Turnos ao qual trabalha:</strong></h4>
-                        <ul>
-                            <li><strong>Manhã:</strong> <?php echo $motorista->getTurnoManha()?></li>
-                            <li><strong>Tarde:</strong> <?php echo $motorista->getTurnoTarde()?></li>
-                            <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
-                        </ul>
+                        <p><strong>Email:</strong> </p>
+                        <p><strong>CPF:</strong> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="profile-container">
+                    <h1 class="profile-Title">
+                        <strong>Aluno:</strong>
+                    </h1>
+                    
+                    <div class="profile-picture teste">
+                        <img src="" width="100%" alt="">
+                    </div>
+                    <h3 class="profile-name">
+                        Nome do Aluno
+                    </h3>
+                    <div class="profile-info">
+                        <p><strong>Email:</strong> </p>
+                        <p><strong>Idade:</strong> </p>
+                        <p><strong>Escola:</strong> </p>
+                        <p><strong>Sexo:</strong> </p>                        
                     </div>
                 </div>
             </div>
