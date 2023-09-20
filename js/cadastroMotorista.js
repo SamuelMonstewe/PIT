@@ -22,11 +22,11 @@ function EnviarDadosMotorista() {
                     var response = JSON.parse(http.responseText)
                     var mensagem = response
                     alert(mensagem)
+                    mudarpagina()
                 }
                 catch(error) {
                     console.log('Tá dando erro na conversão do json', error, http.responseText);
                 }
-
             }
             else if (http.status != 200) {
                 alert("ERRO!")
