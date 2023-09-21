@@ -1,5 +1,9 @@
 var base_url = "http://localhost/"
 
+function mudarpagina() {
+    window.location.href = "PIT/HTML/index.html"
+}
+
 function EnviarDadosAluno(){
     if (!document.getElementById("formCadastroAluno").checkValidity()) {
         document.getElementById("formCadastroAluno").classList.add('was-validated')
