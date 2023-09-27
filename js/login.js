@@ -3,7 +3,7 @@ var base_url = "http://localhost/"
 function mudarPagina() {
     window.location.href = "index.html"
 }
-
+ 
 function enviarDados() {
     if (!document.getElementById("formLogin").checkValidity()) {
         document.getElementById("formLogin").classList.add('was-validated')
@@ -38,7 +38,7 @@ function enviarDados() {
 
     var data = new FormData()
 
-    data.append('usuario', document.getElementById("Usuario").value)
+    data.append('email', document.getElementById("Email").value)
     data.append('senha', document.getElementById("Senha").value)
     data.append('enviar', 'enviar')
     http.send(data)
