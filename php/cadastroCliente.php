@@ -16,7 +16,7 @@ function InserirDadosCliente()
     global $usuario;
     global $ConexaoBanco;
    
-    $usuario->setNomeUsuario($_POST['usuario']);
+    $usuario->setNomeUsuario(strtoupper($_POST['usuario']));
     $usuario->setEmail($_POST['email']);
     $usuario->setSenha($_POST['senha']);
     $usuario->setCpf($_POST['cpf']);
