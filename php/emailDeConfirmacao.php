@@ -25,8 +25,8 @@ function EnviarEmailDeConfirmacaoMotorista($usuario)
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = '5a09da3cd14b6e';
-        $mail->Password = 'd30f266032e87d';
+        $mail->Username = '9ffbcf72932b17';
+        $mail->Password = 'fb3722320ad301';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
 
@@ -61,8 +61,8 @@ function EnviarEmailDeConfirmacaoUsuario($usuario)
         $mail->isSMTP();
         $mail->Host = 'sandbox.smtp.mailtrap.io';
         $mail->SMTPAuth = true;
-        $mail->Username = '5a09da3cd14b6e';
-        $mail->Password = 'd30f266032e87d';
+        $mail->Username = '9ffbcf72932b17';
+        $mail->Password = 'fb3722320ad301';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 2525;
 
