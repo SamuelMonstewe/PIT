@@ -1,8 +1,6 @@
 var base_url = "http://localhost/"
 
-function mudarpagina() {
-    window.location.href = "PIT/php/view/CadastroAluno.php"
-}
+
 
 function EnviarDadosCliente(){
     if (!document.getElementById("formCadastro").checkValidity()) {
@@ -22,7 +20,7 @@ function EnviarDadosCliente(){
                     var response = JSON.parse(http.responseText)
                     var mensagem = response
                     alert(mensagem)
-                    mudarpagina()
+              
                 }
                 catch(error) {
                     console.log('Tá dando erro na conversão do json', error, http.responseText);
