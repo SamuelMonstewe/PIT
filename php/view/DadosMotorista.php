@@ -22,15 +22,7 @@
 
     <div class="Count-DadosM container ">
         <form method="post" id="formDados" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4 needs-validation" enctype="multipart/form-data">
-            <!--Inserir nome do usuário-->
-
-            <!-- <label><b>Nome Completo</b></label>
-            <input class="form-control shadow rounded mb-3" type="text" name="nome" id="Nome" placeholder="EX:Nome SobreNome..." required="campo obrigatorio">
-            <div class="invalid-feedback">
-                Por favor coloque um nome de usuário valido!
-            </div>
-            <div class="valid-feedback">
-            </div> -->
+            
 
             <!--Inserir o telefone do usuário-->
             <label><b>Telefone</b></label>
@@ -178,14 +170,6 @@
     </div>
     <script src="../../js/DadosMotorista.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            //convertendo a string em código e mandando para o php
-            BuscarEscolas();
-        })
-    </script> -->
-
-
 </body>
 
 </html>
