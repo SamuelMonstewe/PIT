@@ -24,7 +24,7 @@ function EnviarDadosVan()
         }
         else if (http.status != 200) {
             alert("ERRO!")
-        }
+        }   
     }
 
     var data = new FormData
@@ -34,6 +34,7 @@ function EnviarDadosVan()
     data.append('marca', document.getElementById("Marca").value)
     data.append('modelo', document.getElementById("Modelo").value)
     data.append('capacidadeAlunos', document.getElementById("CapacidadeAlunos").value)
+    data.append('cpf', document.getElementById("Cpf").value)
     data.append('laudo', document.getElementById("LaudoInspecao").files[0])
     data.append('fotoInterna', document.getElementById("FotoInterna").files[0])
     data.append('fotoExterna', document.getElementById("FotoExterna").files[0])
@@ -82,4 +83,22 @@ function CarregarFoto(input, idelemento) {
         var imgBase64 = evt.target.result
         document.getElementById(idelemento).innerHTML = '<img src="' + imgBase64 + '" width=100px>'
     }
+}
+function MascaraCPF() {
+    var cpfL = document.getElementById("Cpf").value
+    cpfL = cpfL.slice(0, 13)
+    document.getElementById("Cpf").value = cpfL
+    cpfL = document.getElementById("Cpf").value.slice(0, 13)
+
+    var cpf = document.getElementById("Cpf")
+    if (cpf.value.length == 3) {
+        cpf.value += "."
+    }
+    if (cpf.value.length == 7) {
+        cpf.value += "."
+    }
+    if (cpf.value.length == 11) {
+        cpf.value += "-"
+    }
+
 }
