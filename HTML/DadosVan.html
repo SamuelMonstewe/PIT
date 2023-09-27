@@ -21,10 +21,20 @@
   
     <div class="Count-DadosM container">
         <form style="width:700px" id="formDadosVan" class="Firt-Form form-control shadow-lg rounded d-flex flex-column text-left p-4">
-            <!--Inserir o chassi do veículo do usuário-->
+            
+            
+            <label><b>Cpf</b></label>
+            <input class="form-control shadow rounded mb-3" id="Cpf" onkeypress ="MascaraCPF()" required type="text"
+                name="Cpf" maxlength="14" placeholder="EX: 000.000.000-07">
+            <div class="invalid-feedback">
+                Por favor coloque um Cpf valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
+
             <label><b>Chassi</b></label>
             <input class="form-control shadow rounded mb-3" id="Chassi" oninput="MascaraChassi()" required type="text"
-                name="Chassi" maxlength="50" placeholder="EX: 1ABCD12AB12345678">
+                name="Chassi" maxlength="17" placeholder="EX: 1ABCD12AB12345678">
             <div class="invalid-feedback">
                 Por favor coloque um Chassi valido!
             </div>
