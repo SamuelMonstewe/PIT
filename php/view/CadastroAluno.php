@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
-    <link rel='stylesheet' type='text/css' media='screen' href='../../HTML/CSS1/style.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../HTML/CSS-Login/style.css'>
     <title>Cadastro Aluno</title>
 </head>
 
