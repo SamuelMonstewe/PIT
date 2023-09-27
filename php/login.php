@@ -8,16 +8,16 @@ function Logar()
 {
     $usuario = new Usuario();
     global $ConexaoBanco;
-    $usuario->setNomeUsuario($_POST['usuario']);
+    $usuario->setEmail($_POST['email']);
     $usuario->setSenha($_POST['senha']);
 
     try {
        
-        $select = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE Usuario = :Usuario AND senha = :Senha AND sits_usuarios_id = 1");
+        $select = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE email = :email AND senha = :Senha AND sits_usuarios_id = 1");
 
-        $nomeUsuario = $usuario->getNomeUsuario();
+        $emailUsuario = $usuario->getEmail();
         $senha = $usuario->getSenha();
-        $select->bindParam(':Usuario',$nomeUsuario);
+        $select->bindParam(':email',$emailUsuario);
         $select->bindParam(':Senha',$senha);
         $select->execute();
         $checar = $select->fetch(PDO::FETCH_ASSOC);
