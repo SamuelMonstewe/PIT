@@ -2,6 +2,7 @@
 
 
 class Van {
+	private $cpfMotoristaDaVan;
     private $Chassi;
     private $Placa;
     private $Marca;
@@ -12,7 +13,13 @@ class Van {
     private $FotoExterna;
   
 
-	
+	public function getCpfMotoristaDaVan(){
+		return $this->cpfMotoristaDaVan;
+	}
+	public function setCpfMotoristaDaVan($cpfMotoristaDaVan){
+		return $this->cpfMotoristaDaVan = $cpfMotoristaDaVan;
+	}
+
 	public function getChassi() {
 		return $this->Chassi;
 	}
