@@ -177,6 +177,24 @@ else{
         .teste {
             overflow: hidden;
         }
+
+        #ButtonLogOut {
+            position: absolute;
+            left: 5%;
+            transition: 0.5s;
+        }
+
+        .btn {
+            transition: 0.5s;
+        }
+
+        @media (max-width:500px)
+        {
+            #ButtonLogOut {
+                position: relative;
+                left: -30%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -190,6 +208,9 @@ else{
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="profile-container">
+                    <button id="ButtonLogOut" class="btn btn-outline-dark shadow-lg" type="submit">
+                        <i class='fas fa-sign-out-alt' style='font-size:32px;'>logOut</i>
+                    </button>
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
                     </div>
