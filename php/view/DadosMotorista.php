@@ -163,13 +163,17 @@
             </div>
             <div class="valid-feedback">
             </div>
-
-            <!--Botão cadastrar as informações adicionadas e continuar o cadastro-->
-            <input type="button" class="Button-SingIn form-control shadow bg-warning" name="enviar" id="confirmar" onclick="enviarDados()" value="Cadastrar Dados do Motorista">
+               
+          <button type="button" class="Button-SingIn form-control shadow btn bg-warning" data-bs-toggle="modal" onclick="enviarDados()" data-bs-target="#modalSucesso">
+             Cadastrar dados do motorista
+          </button>
         </form>
     </div>
+  
     <script src="../../js/DadosMotorista.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
+
 </html>
+
