@@ -5,8 +5,12 @@ require_once "../classes/Motorista.php";
 require_once "../classes/Usuario.php";
 $motorista = new Motorista();
 $usuario = new Usuario();
-
-if($_SESSION['situacao_login']){
+if(isset($_POST['sair'])){
+    session_destroy();
+    header("Location: ../../HTML/login.html");
+   
+}
+else if($_SESSION['situacao_login']){
     if(isset($_SESSION['id'])){
         global $ConexaoBanco;
         $id_motorista = $_SESSION['id'];
@@ -208,9 +212,12 @@ else{
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="profile-container">
-                    <button id="ButtonLogOut" class="btn btn-outline-dark shadow-lg" type="submit">
+                    <form method="post" action="">
+                    <button id="ButtonLogOut"  type="submit" name="sair" class="btn btn-outline-dark shadow-lg">
                         <i class='fas fa-sign-out-alt' style='font-size:32px;'>logOut</i>
                     </button>
+                    </form>
+                    
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
                     </div>
