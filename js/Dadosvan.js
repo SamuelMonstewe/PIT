@@ -20,7 +20,14 @@ function EnviarDadosVan()
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
             console.log("deu")
-            mudarpagina()
+            
+            var checar = confirm("Van cadastrada com sucesso! Vamos redirecionar você para login")
+            if(checar){
+                mudarpagina()
+            }
+            else{
+                mudarpagina()
+            }
         }
         else if (http.status != 200) {
             alert("ERRO!")

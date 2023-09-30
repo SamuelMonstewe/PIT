@@ -2,7 +2,7 @@ var base_url = "http://localhost/"
 
 function mudarpagina() {
     window.location.href = "../../HTML/DadosVan.html"
-}
+}   
 
 function enviarDados() {
     if (!document.getElementById("formDados").checkValidity()) {
@@ -18,11 +18,19 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            mudarpagina()
+            var checar = confirm("Sucesso. Vamos agora cadastrar sua van")
+
+            if(checar){
+                mudarpagina()
+            }
+            else{
+                mudarpagina()
+            }
+ 
         }
         else if (http.status != 200) {
             alert("ERRO!")
-        }
+        }   
     }
 
     var data = new FormData()
@@ -108,7 +116,7 @@ function MasacaraTelefone() {
         if (tel_formatado[9] != undefined) {
             document.getElementById("Telefone").value = tel_formatado.slice(0, 9) + "-" + tel_formatado[9]
         }
-    }
+    }   
 }
 
 function MascaraCPF() {

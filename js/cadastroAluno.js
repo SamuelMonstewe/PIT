@@ -19,7 +19,13 @@ function EnviarDadosAluno(){
             //verifica retorno do back-end 
             if (http.readyState == 4 && http.status == 200) {
                 try {
-                    mudarpagina()
+                    var checar = confirm("Aluno cadastrado com sucesso!")
+                    if(checar){
+                        mudarpagina()
+                    }
+                    else{
+                        mudarpagina()
+                    }
                 }
                 catch(error) {
                     console.log('Tá dando erro na conversão do json', error, http.responseText);
