@@ -53,29 +53,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-header form {
-    width: 35%;
-}
-
-#Input-H {
-    width: 100%;
+    cursor: default;
 }
 
 .Linha {
     border: 2px solid black;
 }
 
-#Lupa-Input {
-    width: 40px;
-    position: absolute;
-}
-
 header a {
     display: flex;
     text-decoration: none;
-    color: #000000;
+    color: black;
     align-items: center;
 }
 
@@ -83,26 +71,71 @@ header a {
     width: 30%;
 }
 
-.Image-H2 {
-    width: 80%;
-}
-
-.Image-H3 {
-    width: 100%;
-}
-.Image-H4 {
-    width: 70%;
-}
-
-.Junction-H {
+.LoginBtn {
     display: flex;
     align-items: center;
+    cursor: default;
+    margin-left: -100px;
+}
+
+.Junction-H-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    cursor: default;
+}
+.DivVazia {
+    width: 60%;
+}
+
+.ItensOp:hover {
+    color: white;
+    border-bottom: 2px solid white;
+    border-width: 100%;
+    transition: 0.5s;
+    cursor: default;
 }
 
 .Perfil {
     display: flex;
     align-items: center;
+    color: black;
+    cursor: default;
 }
+
+.Perfil:hover {
+    color: white;
+    transition: 0.5s;
+}
+
+.Link-Login:hover {
+    color: white;
+    transition: 0.5s;
+}
+
+#OptionsPerfil {
+    position: absolute;
+    font-size: 1.4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    padding: 1%;
+    border: 1px solid black;
+    transition: 0.5s;
+    visibility: hidden;
+    color: transparent;
+    background-color: transparent;
+}
+
+#OptionsPerfil p {
+    margin: 0;
+}
+
 
 main h2 {
     text-align: center;
@@ -153,31 +186,6 @@ main h2 {
     justify-content: center;
 }
 
-.Grid-Motoristas {
-    display: grid;
-    width: 80%;
-    grid-template-columns: 50% 50%;
-}
-
-.Box-Motorista {
-    display: grid;
-    grid-template-columns: 30% 70%;
-    align-items: center;
-    background-color: lightgray;
-    padding: 30px;
-    border-radius: 17px;
-}
-
-.Descricao-Motorista {
-    background-color: #ffff;
-    border: 1px solid black;
-    text-align: center;
-    padding: 30px;
-}
-
-.Bus-Stop {
-    position: absolute;
-}
 
 .Sobre-Nos {
     width: 100%;
@@ -275,15 +283,11 @@ footer {
         display: flex;
         flex-direction: column;
     }
-    .Image-H2 {
-        visibility: hidden;
-    }
+    
     .Link-Login {
         visibility: hidden;
     }
-    .Image-H4 {
-        visibility: hidden;
-    }
+    
     .Hamb-Bar {
         visibility: visible;
     }

@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel='stylesheet' type='text/css' media='screen' href='CSS-Principal/style.css'>
   <title>InfoVan</title>
 </head>
@@ -17,44 +18,50 @@
 <body>
 
   <header class="container-fluid">
-    <div onclick="ExtiBar()" class="Junction-H">
+    <div onclick="ExtiBar()" class="d-flex align-items-center">
       <img class="Image-H1" src="imagens/Logo.png" alt="Logo do site">
       <h1>
         InfoVan
       </h1>
     </div>
-    <form onclick="ExtiBar()">
-      <img id="Lupa-Input" src="imagens/lupa.png" alt="Lupa de barra de pesquisa">
-      <input id="Input-H" onfocus="InputFocus()" type="text" class="form-control">
-    </form>
-    <a href="Filtro.html">
-      <img class="Image-H2" src="imagens/filtro.png" alt="Fazer login">
-    </a>
-    <div onclick="ExtiBar()" class="Junction-H">
+
+    <div class="DivVazia"></div>
+
+    <div onclick="ExtiBar()" class="LoginBtn">
       <a class="Link-Login" href="login.html">
+        <i class="fa fa-share-square" style="font-size:36px"></i>
         <h3>
           Login
         </h3>
       </a>
     </div>
-    <a onclick="ExtiBar()" href="../php/view/Perfil.php">
-      <div class="Perfil">
-        <img href="" class="Image-H4" src="imagens/user.png" alt="Perfil do Usuário">
-      </div>
-    </a>
+
+    <div class="Perfil" onclick="OpenOpitions()">
+      <i class='fas fa-user-alt' style='font-size:36px'></i>
+      <h3>
+        Perfil
+      </h3>
+    </div>
+
+    <div id="OptionsPerfil" class="position-absolute">
+      <a href="../php/view/Perfil.php">
+        <div class="ItensOp">
+          <p class="mb-2">Perfil Motorista</p>
+        </div>
+      </a>
+      <a href="../php/view/PerfilResponsavel.php">
+        <div class="ItensOp">
+          <p class="mt-2">Perfil Responsavél</p>
+        </div>
+      </a>
+    </div>
+
     <img id="Hamb-Button" class="Hamb-Bar" onclick="HambButton()" src="imagens/hamb.png" alt="">
     <div id="HambV" class="Hmab-Visible">
       <div>
         <a class="Hamb-Link" href="login.html">
           <p>
             Logar
-          </p>
-        </a>
-      </div>
-      <div>
-        <a class="Hamb-Link" href="Filtro.html">
-          <p>
-            Filtro
           </p>
         </a>
       </div>
