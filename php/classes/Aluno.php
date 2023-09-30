@@ -2,10 +2,16 @@
 
 class aluno
 {
+  private $CpfResponsavel;
   private $NomeAluno;
   private $Idade;
+  private $RegiaoOndeMora;
   private $NomeEscola;
   private $Sexo;
+
+  public function getCpfResponsavel() {
+	return $this->CpfResponsavel;
+}
 
   public function getNomeAluno() {
 		return $this->NomeAluno;
@@ -13,6 +19,10 @@ class aluno
 
   public function getIdade() {
 		return $this->Idade;
+	}
+
+	public function getRegiaoOndeMora() {
+		return $this->RegiaoOndeMora;
 	}
 
   public function getNomeEscola() {
@@ -23,12 +33,20 @@ class aluno
 		return $this->Sexo;
 	}
 
+	public function setCpfResponsavel($CpfResponsavel) {
+		$this->CpfResponsavel = $CpfResponsavel;
+	}
+
 	public function setNomeAluno($NomeAluno) {
 		$this->NomeAluno = $NomeAluno;
 	}
 
   public function setIdade($Idade) {
 		$this->Idade = $Idade;
+	}
+
+	public function setRegiaoOndeMora($RegiaoOndeMora) {
+		$this->RegiaoOndeMora = $RegiaoOndeMora;
 	}
 
   public function setNomeEscola($NomeEscola) {

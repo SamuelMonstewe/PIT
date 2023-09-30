@@ -21,6 +21,15 @@
             <!--Título da página-->
             <h1>Cadastro Aluno</h1>
 
+            <label><b>Cpf do responsável</b></label>
+            <input class="form-control shadow rounded mb-3" id="Cpf" onkeypress ="MascaraCPF()" required type="text"
+                name="Cpf" maxlength="14" placeholder="EX: 000.000.000-07">
+            <div class="invalid-feedback">
+                Por favor coloque um Cpf valido!
+            </div>
+            <div class="valid-feedback">
+            </div>
+
             <!--Inserir nome do usuário-->
             <label><b>Nome</b></label>
             <input class="form-control shadow rounded mb-3" type="text" id="Nome" name="Nome" required
@@ -37,10 +46,31 @@
                 Por favor coloque um email valido!
             </div>
 
+            <label><b>Região onde mora:</b></label>
+            <select class="form-select form-select-lg mt-5 mb-5" name="regiao" id="Regiao" aria-label="Large select example">
+                <option selected>Regiao onde mora</option>
+                <?php
+                require_once "../pdo.php";
+                header("Access-Control-Allow-Origin: *");
+                header('Content-Type: application/json; charset=utf-8');
+                header('Content-Type: text/html; charset=utf-8');
+                $ConexaoBanco->exec("SET NAMES utf8");
+                global $ConexaoBanco;
+
+                $SELECT = $ConexaoBanco->prepare("SELECT * FROM regioes ORDER BY nome_regiao");
+                $SELECT->execute();
+
+                while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
+                    $nomeRegiao = $row['nome_regiao'];
+                    echo "<option>$nomeRegiao</option>";
+                }
+                ?>
+            </select>
+
             <!--Inserir senha do usuário-->
             <label><b>Escola</b></label>
             <select class="form-select form-select-lg mt-5 mb-5" id="Escola" aria-label="Large select example">
-                <option selected>Escolha a Escola a Qual Fornece Serviço</option>
+                <option selected>Escolha a Escola onde estuda</option>
                 <?php
                 require_once "../pdo.php";
                 header("Access-Control-Allow-Origin: *");
@@ -90,6 +120,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="../../js/cadastroAluno.js"></script>
+ 
 </body>
 
 </html>
