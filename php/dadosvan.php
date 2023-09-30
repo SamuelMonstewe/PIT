@@ -12,10 +12,10 @@ function PegarDadosVan()
     global $van;
  
     $van->setCpfMotoristaDaVan($_POST['cpf']);
-    $van->setChassi($_POST['chassi']);
-    $van->setPlaca($_POST['placaVeiculo']);
-    $van->setMarca($_POST['marca']);
-    $van->setModelo($_POST['modelo']);
+    $van->setChassi(strtoupper($_POST['chassi']));
+    $van->setPlaca(strtoupper($_POST['placaVeiculo']));
+    $van->setMarca(strtoupper($_POST['marca']));
+    $van->setModelo(strtoupper($_POST['modelo']));
     $van->setQuantLugar($_POST['capacidadeAlunos']);
     $van->setLaudoInspecaoVeicular(base64_encode(file_get_contents($_FILES['laudo']['tmp_name'])));
     $van->setFotoInterna(base64_encode(file_get_contents($_FILES['fotoInterna']['tmp_name'])));
