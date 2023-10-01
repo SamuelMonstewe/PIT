@@ -17,9 +17,7 @@ class aluno
 		return $this->NomeAluno;
 	}
 
-  public function getIdade() {
-		return $this->Idade;
-	}
+
 
 	public function getRegiaoOndeMora() {
 		return $this->RegiaoOndeMora;
@@ -41,9 +39,7 @@ class aluno
 		$this->NomeAluno = $NomeAluno;
 	}
 
-  public function setIdade($Idade) {
-		$this->Idade = $Idade;
-	}
+
 
 	public function setRegiaoOndeMora($RegiaoOndeMora) {
 		$this->RegiaoOndeMora = $RegiaoOndeMora;
@@ -57,5 +53,21 @@ class aluno
 		$this->Sexo = $Sexo;
 	}
 
+
+	/**
+	 * @return mixed
+	 */
+	public function getIdade() {
+		return $this->Idade;
+	}
+	
+	/**
+	 * @param mixed $Idade 
+	 * @return self
+	 */
+	public function setIdade($Idade): self {
+		$this->Idade = $Idade;
+		return $this;
+	}
 }
 ?>
