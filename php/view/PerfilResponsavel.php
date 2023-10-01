@@ -46,7 +46,7 @@ if ($_SESSION['situacao_login']) {
         echo  "<h1> ID do responsável não definido na sessão </h1>";
     }
 } else {
-    header("Location: ../../HTML/cadastro.html");
+    header("Location: ../../HTML/login.html");
 }
 ?>
 
