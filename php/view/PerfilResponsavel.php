@@ -1,3 +1,56 @@
+<?php
+session_start();
+require_once "../pdo.php";
+require_once "../classes/Responsavel.php";
+require_once "../classes/Usuario.php";
+require_once "../classes/Aluno.php";
+
+$responsavel = new Responsavel();
+$aluno = new aluno();
+
+if ($_SESSION['situacao_login']) {
+    if (isset($_SESSION['id'])) {
+        global $ConexaoBanco;
+        $id_responsavel = $_SESSION['id'];
+        $cpf_responsavel = $_SESSION['cpf'];
+        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT Usuario, email, cpf FROM usuarios WHERE id = :id AND cpf = :cpf");
+        $SELECT_USUARIO->bindParam(':id', $id_responsavel);
+        $SELECT_USUARIO->bindParam(':cpf', $cpf_responsavel);
+
+        $SELECT_ALUNO = $ConexaoBanco->prepare("SELECT nome, idade, escola, sexo FROM aluno WHERE id_responsavel_fk = :id");
+        $SELECT_ALUNO->bindParam(':id', $id_responsavel);
+
+        if ($SELECT_USUARIO->execute() && $SELECT_ALUNO->execute()) {
+            
+            $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
+            $dadosRetornadosAluno = $SELECT_ALUNO->fetch(PDO::FETCH_ASSOC);
+
+            if ($dadosRetornadosUsuario && $dadosRetornadosAluno) {
+                
+                $responsavel->setNome($dadosRetornadosUsuario['Usuario']);
+                $responsavel->setCpf($dadosRetornadosUsuario['cpf']);
+                $responsavel->setEmail($dadosRetornadosUsuario['email']);
+
+                $aluno->setNomeAluno($dadosRetornadosAluno['nome']);
+                $aluno->setIdade($dadosRetornadosAluno['idade']);
+                $aluno->setNomeEscola($dadosRetornadosAluno['escola']);
+                $aluno->setSexo($dadosRetornadosAluno['sexo']);
+                
+            } else {
+                $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de responsável no nosso site!.</div>";
+            }
+        } else {
+            echo "<h1> Erro na execução da consulta </h1>";
+        }
+    } else {
+        echo  "<h1> ID do responsável não definido na sessão </h1>";
+    }
+} else {
+    header("Location: ../../HTML/cadastro.html");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -133,7 +186,7 @@
     <a href="../../HTML/index.html" class="btn btn-outline-light shadow-lg top-left">
         <i class="fas fa-arrow-left"></i> Voltar
     </a>
-    <a href="Perfil-Edit.php" class="btn btn-outline-light shadow-lg top-right">
+    <a href="../../HTML/Perfil-Edit.html" class="btn btn-outline-light shadow-lg top-right">
         <i class="fas fa-edit"></i> Editar Perfil
     </a>
     <div class="container">
@@ -147,11 +200,11 @@
                         <img src="" width="100%" alt="">
                     </div>
                     <h3 class="profile-name">
-                        Nome do Responsavel
+                        <?php echo $responsavel->getNome() ?>
                     </h3>
                     <div class="profile-info">
-                        <p><strong>Email:</strong> </p>
-                        <p><strong>CPF:</strong> </p>
+                        <p><strong>Email:  <?php echo  $responsavel->getEmail() ?></strong> </p>
+                        <p><strong>CPF:  <?php echo $responsavel->getCpf() ?></strong> </p>
                     </div>
                 </div>
             </div>
@@ -169,13 +222,12 @@
                         <img src="" width="100%" alt="">
                     </div>
                     <h3 class="profile-name">
-                        Nome do Aluno
+                      <?php echo $aluno->getNomeAluno() ?>
                     </h3>
                     <div class="profile-info">
-                        <p><strong>Email:</strong> </p>
-                        <p><strong>Idade:</strong> </p>
-                        <p><strong>Escola:</strong> </p>
-                        <p><strong>Sexo:</strong> </p>                        
+                        <p><strong>Idade: <?php echo $aluno->getIdade() ?></strong> </p>
+                        <p><strong>Escola: <?php echo $aluno->getNomeEscola() ?></strong> </p>
+                        <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>                        
                     </div>
                 </div>
             </div>
