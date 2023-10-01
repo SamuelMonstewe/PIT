@@ -53,7 +53,7 @@ else if($_SESSION['situacao_login']){
     }
 }
 else{
-    header("Location: ../../HTML/cadastro.html");
+    header("Location: ../../HTML/login.html");
 }
     
 ?>
