@@ -1,0 +1,44 @@
+* {
+    font-family: 'Merriweather', serif;
+    margin: 0;
+}
+
+header {
+    background-color: #F6A62E;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.DivVazia {
+    width: 65%;
+}
+
+.profile-picture {
+    width: 100%;
+    height: 150px;
+    border-radius: 15px;
+    background-color: #333;
+    background-image: url('sua-foto.jpg'); /* Substitua pelo URL da sua foto */
+    background-size: cover;
+    background-position: center;
+    border: 5px solid #fff;
+    margin: 0 auto 20px;
+}
+
+.CardMotoristas {
+    display: flex;
+    margin: 3%;
+    justify-content: space-around;
+}
+
+@media (max-width:600px)
+{
+    .CardMotoristas {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+}
