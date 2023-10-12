@@ -27,6 +27,15 @@
 
     <div class="DivVazia"></div>
 
+    <div class="MostrarM">
+      <a class="MostrarMh" href="../php/view/MostrarMotoristas.php">
+        <i class="fas fa-shuttle-van" style="font-size:36px"></i>
+        <h3>
+          Motoristas
+        </h3>
+      </a>
+    </div>
+
     <div onclick="ExtiBar()" class="LoginBtn">
       <a class="Link-Login" href="login.html">
         <i class="fa fa-share-square" style="font-size:36px"></i>
@@ -36,7 +45,7 @@
       </a>
     </div>
 
-    <div class="Perfil" onclick="OpenOpitions()">
+    <div class="Perfil PrV" onclick="OpenOpitions()">
       <i class='fas fa-user-alt' style='font-size:36px'></i>
       <h3>
         Perfil
@@ -59,14 +68,14 @@
     <img id="Hamb-Button" class="Hamb-Bar" onclick="HambButton()" src="imagens/hamb.png" alt="">
     <div id="HambV" class="Hmab-Visible">
       <div>
-        <a class="Hamb-Link" href="login.html">
+        <a class="Hamb-Link Perfil" href="login.html">
           <p>
             Logar
           </p>
         </a>
       </div>
       <div>
-        <a class="Hamb-Link" href="../php/view/Perfil.php">
+        <a class="Hamb-Link Perfil" onclick="OpenOpitions()">
           <p>
             Perfil
           </p>
