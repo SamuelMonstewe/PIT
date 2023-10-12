@@ -1,3 +1,25 @@
+<?php
+require_once "../pdo.php";
+
+$SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao FROM motorista");
+if ($SELECT_MOTORISTA->execute()) {
+    $dadosRetornadosUsuarios = array();
+
+    $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($dadosRetornadosMotorista as $motorista) {
+        $cpf = $motorista['cpf'];
+        $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE cpf = :cpf");
+        $SELECT_USUARIOS->bindParam(':cpf', $cpf);
+
+        if ($SELECT_USUARIOS->execute()) {
+            $dadosRetornadosUsuarios[] = $SELECT_USUARIOS->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,47 +50,33 @@
         <div></div>
     </header>
     <main>
-        <div class="CardMotoristas">
-            <div class="card" style="width: 18rem;">
-                <div class="profile-picture">
-                    <img class="" src="..." alt="">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Vanderlei</h5>
-                    <p class="card-text">Céu Azul / Pampulha - Floresta / Centro</p>
-                    <p class="card-text">R$ 150,00</p>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <div class="profile-picture">
-                    <img class="" src="..." alt="">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Vanderlei</h5>
-                    <p class="card-text">Céu Azul / Pampulha - Floresta / Centro</p>
-                    <p class="card-text">R$ 150,00</p>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <div class="profile-picture">
-                    <img class="" src="..." alt="">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Vanderlei</h5>
-                    <p class="card-text">Céu Azul / Pampulha - Floresta / Centro</p>
-                    <p class="card-text">R$ 150,00</p>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <div class="profile-picture">
-                    <img class="" src="..." alt="">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Vanderlei</h5>
-                    <p class="card-text">Céu Azul / Pampulha - Floresta / Centro</p>
-                    <p class="card-text">R$ 150,00</p>
-                </div>
-            </div>
+        <?php
+        $kitsDaSerie = array();
+        foreach ($dadosRetornadosUsuarios as $key => $usuario) {
+            $kitsDaSerie[$key] = $usuario;
+        }
+        $quantidadeDeElementos = count($kitsDaSerie);
+        $quantidadeDeDivs = ceil($quantidadeDeElementos / 4);
+
+        ?>
+        <?php for($i = 0; $i < $quantidadeDeDivs; $i++): ?>
+            <div class="CardMotoristas">
+                <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
+                    foreach ($usuarios as  $usuario) : ?>
+                        <div class="card" style="width: 18rem;">
+                            <div class="profile-picture">
+                                <img class="" src="..." alt="">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $usuario['Usuario'] ?></h5>
+                                <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?> </p>
+                                <p class="card-text">R$ 150,00</p>
+                            </div>
+                        </div>
+         <?php endforeach;
+         endforeach; 
+        endfor;?>
+
         </div>
     </main>
 </body>
