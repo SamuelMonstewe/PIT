@@ -50,16 +50,8 @@ if ($SELECT_MOTORISTA->execute()) {
         <div></div>
     </header>
     <main>
-        <?php
-        $kitsDaSerie = array();
-        foreach ($dadosRetornadosUsuarios as $key => $usuario) {
-            $kitsDaSerie[$key] = $usuario;
-        }
-        $quantidadeDeElementos = count($kitsDaSerie);
-        $quantidadeDeDivs = ceil($quantidadeDeElementos / 4);
-
-        ?>
-        <?php for($i = 0; $i < $quantidadeDeDivs; $i++): ?>
+    
+       
             <div class="CardMotoristas">
                 <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
                     foreach ($usuarios as  $usuario) : ?>
@@ -75,7 +67,7 @@ if ($SELECT_MOTORISTA->execute()) {
                         </div>
          <?php endforeach;
          endforeach; 
-        endfor;?>
+        ?>
 
         </div>
     </main>
