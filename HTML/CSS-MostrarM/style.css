@@ -34,6 +34,19 @@ header {
     justify-content: space-around;
 }
 
+.Filter {
+    background-color: #F6A62E;
+    position: absolute;
+    top: -20vh;
+    right: 0;
+    z-index: 999;
+    padding: 2%;
+    border: 1px solid black;
+    width: 20%;
+    border-radius: 0 0 0 12px;
+    visibility: hidden;
+}
+
 @media (max-width:600px)
 {
     .CardMotoristas {

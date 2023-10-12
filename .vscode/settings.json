@@ -1,6 +1,6 @@
 {
     "liveServer.settings.port": 5501,
-    "files.autoSave": "onFocusChange",
+    "files.autoSave": "afterDelay",
     "diffEditor.wordWrap": "on",
     "workbench.iconTheme": "material-icon-theme",
     "window.zoomLevel": 1,

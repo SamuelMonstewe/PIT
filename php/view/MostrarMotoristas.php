@@ -17,15 +17,34 @@
 
 <body>
     <header>
-        <div class="d-flex align-items-center">
-            <img src="../../HTML/imagens/logo.png" width="35%" alt="">
-            <h1>InfoVan</h1>
-        </div>
+        <a href="../../HTML/index.html" class="text-decoration-none text-dark">
+            <div class="d-flex align-items-center">
+                <img src="../../HTML/imagens/logo.png" width="35%" alt="">
+                <h1>InfoVan</h1>
+            </div>
+        </a>
         <div class="DivVazia"></div>
         <div>
-            <img src="../../HTML/imagens/filtro.png" width="85%" alt="">
+            <img src="../../HTML/imagens/filtro.png" onclick="Filter()" width="85%" alt="">
         </div>
         <div></div>
+        <div id="FilterBtn" class="Filter">
+            <h2>
+                Turnos:
+            </h2>
+            <div class="d-flex align-items-center">
+                <input type="checkbox" class="mr-4" value="MANHÃ">
+                <h4>Manhã</h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="checkbox" class="mr-4" value="TARDE">
+                <h4>Tarde</h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="checkbox" class="mr-4" value="NOITE">
+                <h4>Noite</h4>
+            </div>
+        </div>
     </header>
     <main>
         <div class="CardMotoristas">
@@ -72,5 +91,6 @@
         </div>
     </main>
 </body>
+<script src="../../js/MostrarMotoristas.js"></script>
 
 </html>
