@@ -1,7 +1,7 @@
 <?php
 require_once "../pdo.php";
 
-$SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone FROM motorista");
+$SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone, idade, sexo FROM motorista");
 if ($SELECT_MOTORISTA->execute()) {
     $dadosRetornadosUsuarios = array();
 
@@ -85,8 +85,9 @@ if ($SELECT_MOTORISTA->execute()) {
                             <img class="" src="..." alt="">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title" style="font-size: 0.9em;"><?php echo $usuario['Usuario'] ?></h5>
-                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
+                            <h5 class="card-title" style="font-size: 0.9em;"><?php echo $usuario['Usuario'] ?></h5>  
+                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p> <!-- todos esses dados podem sair já que vão passar para o pop-up
+                                                                                                                            use como referencia o código para colocar na caixa pop-up -->
                             <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
                             <!-- Modal trigger button -->
                             <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
@@ -103,7 +104,7 @@ if ($SELECT_MOTORISTA->execute()) {
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
+                                            <!-- aqui é onde os dados vão ficar(idade, telefone, regiao_atuacao e o sexo), use tags <p> para exibir  -->
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
