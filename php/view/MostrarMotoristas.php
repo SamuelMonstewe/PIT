@@ -1,7 +1,7 @@
 <?php
 require_once "../pdo.php";
 
-$SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao FROM motorista");
+$SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone FROM motorista");
 if ($SELECT_MOTORISTA->execute()) {
     $dadosRetornadosUsuarios = array();
 
@@ -17,7 +17,6 @@ if ($SELECT_MOTORISTA->execute()) {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +28,11 @@ if ($SELECT_MOTORISTA->execute()) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../../HTML/CSS-MostrarM/style.css">
     <title>Visualizar Motoristas</title>
 </head>
@@ -43,34 +43,91 @@ if ($SELECT_MOTORISTA->execute()) {
             <img src="../../HTML/imagens/logo.png" width="35%" alt="">
             <h1>InfoVan</h1>
         </div>
-        <div class="DivVazia"></div>
-        <div>
-            <img src="../../HTML/imagens/filtro.png" width="85%" alt="">
+        <button class="btn btn-secondary" style="font-family:sans-serif" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id2" aria-controls="Id2">
+            Filtrar escolares?
+        </button>
+
+        <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="Id2" aria-labelledby="staticBackdropLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" style="font-family:sans-serif" id="staticBackdropLabel">Filtro de escolares</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="form-check">
+                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="manha" id="flexCheckManha">
+                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckManha">
+                        Manhã
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="tarde" id="flexCheckTarde">
+                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckTarde">
+                        Tarde
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="noite" id="flexCheckNoite">
+                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckNoite">
+                        Noite
+                    </label>
+                </div>
+            </div>
         </div>
-        <div></div>
     </header>
     <main>
-    
-       
-            <div class="CardMotoristas">
-                <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
-                    foreach ($usuarios as  $usuario) : ?>
-                        <div class="card" style="width: 18rem;">
-                            <div class="profile-picture">
-                                <img class="" src="..." alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $usuario['Usuario'] ?></h5>
-                                <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?> </p>
-                                <p class="card-text">R$ 150,00</p>
-                            </div>
-                        </div>
-         <?php endforeach;
-         endforeach; 
-        ?>
 
+        <div class="CardMotoristas d-flex justify-content-around mt-4">
+            <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
+                foreach ($usuarios as $usuario) : 
+                    $modalId = 'modalId' . $index; ?>
+                    <div class="card" style="width: 18rem; ">
+                        <div class="profile-picture">
+                            <img class="" src="..." alt="">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 0.9em;"><?php echo $usuario['Usuario'] ?></h5>
+                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
+                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
+                            <!-- Modal trigger button -->
+                            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
+                              Ver dados 
+                            </button>
+                            
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="<?php echo $modalId ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitleId"><?php echo $usuario['Usuario'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <!-- Optional: Place to the bottom of scripts -->
+                            <script>
+                                const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                            
+                            </script>
+                        </div>
+                    </div>
+            <?php endforeach;
+            endforeach;
+            ?>
         </div>
     </main>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="../../js/MostrarMotoristas.js"></script>
 
 </html>
