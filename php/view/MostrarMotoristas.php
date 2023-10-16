@@ -2,27 +2,69 @@
 require_once "../pdo.php";
 session_start();
 
+
 if ($_SESSION['situacao_login']) {
-    $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone, idade, sexo FROM motorista");
-    if ($SELECT_MOTORISTA->execute()) {
-        $dadosRetornadosUsuarios = array();
 
-        $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetchAll(PDO::FETCH_ASSOC);
+    if (isset($_POST['btn-filtrar'])) {
+        $SELECT_USUARIO_ALUNO = $ConexaoBanco->prepare("SELECT usuarios.id, aluno.escola, aluno.regiao_onde_mora FROM usuarios 
+        INNER JOIN aluno 
+        ON usuarios.id = aluno.id_responsavel_fk 
+        WHERE usuarios.cpf = :cpf");
 
-        foreach ($dadosRetornadosMotorista as $motorista) {
-            $cpf = $motorista['cpf'];
-            $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE cpf = :cpf");
-            $SELECT_USUARIOS->bindParam(':cpf', $cpf);
+        $cpf = $_SESSION['cpf'];
+        $SELECT_USUARIO_ALUNO->bindParam(':cpf', $cpf);
 
-            if ($SELECT_USUARIOS->execute()) {
-                $dadosRetornadosUsuarios[] = $SELECT_USUARIOS->fetchAll(PDO::FETCH_ASSOC);
+        if ($SELECT_USUARIO_ALUNO->execute()) {
+            
+            $dadosRetornadosAluno = $SELECT_USUARIO_ALUNO->fetch(PDO::FETCH_ASSOC);
+            $escolaAluno = $dadosRetornadosAluno['escola'];
+            $regiaoDoAluno = $dadosRetornadosAluno['regiao_onde_mora'];
+            $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone, idade, sexo FROM motorista WHERE regiao_atuacao = :regiao_aluno");
+            $SELECT_MOTORISTA->bindParam(':regiao_aluno', $regiaoDoAluno);
+
+            if ($SELECT_MOTORISTA->execute()) {
+
+                $dadosRetornadosUsuarios = array();
+
+                $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($dadosRetornadosMotorista as $motorista) {
+                    $cpf = $motorista['cpf'];
+                    $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE cpf = :cpf");
+                    $SELECT_USUARIOS->bindParam(':cpf', $cpf);
+
+                    if ($SELECT_USUARIOS->execute()) {
+                        $dadosRetornadosUsuarios[] = $SELECT_USUARIOS->fetchAll(PDO::FETCH_ASSOC);
+                    }
+                }
             }
+        }
+    } else {
+        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone, idade, sexo FROM motorista");
+        if ($SELECT_MOTORISTA->execute()) {
+            $dadosRetornadosUsuarios = array();
+
+            $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($dadosRetornadosMotorista as $motorista) {
+                $cpf = $motorista['cpf'];
+                $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE cpf = :cpf");
+                $SELECT_USUARIOS->bindParam(':cpf', $cpf);
+
+                if ($SELECT_USUARIOS->execute()) {
+                    $dadosRetornadosUsuarios[] = $SELECT_USUARIOS->fetchAll(PDO::FETCH_ASSOC);
+                }
+            }
+        } else {
+            header("Location: ../../HTML/login.html");
         }
     }
 }
-else{
-    header("Location: ../../HTML/login.html");
-}
+
+
+
+
+
 
 
 ?>
@@ -63,27 +105,10 @@ else{
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="manha" value="manha" id="flexCheckManha">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckManha">
-                        Manhã
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="tarde" value="tarde" id="flexCheckTarde">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckTarde">
-                        Tarde
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="noite" value="noite" id="flexCheckNoite">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckNoite">
-                        Noite
-                    </label>
-                </div>
-
-
+                <form action="" method="post">
+                    <h4>Clique aqui para filtrarmos de acordo com seu perfil</h4>
+                    <button type="submit" class="btn btn-warning" name="btn-filtrar">Filtrar</button>
+                </form>
 
             </div>
         </div>
@@ -130,7 +155,7 @@ else{
 
                             <!-- Optional: Place to the bottom of scripts -->
                             <script>
-                                const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                const myModal = new bootstrap.Modal(document.getElementById('modalId'))
                             </script>
                         </div>
                     </div>
