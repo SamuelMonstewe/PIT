@@ -7,26 +7,30 @@ require_once "../classes/Aluno.php";
 
 $responsavel = new Responsavel();
 $aluno = new aluno();
-
-if ($_SESSION['situacao_login']) {
+if(isset($_POST['sair'])){
+    session_destroy();
+    header("Location: ../../HTML/login.html");
+   
+}
+else if ($_SESSION['situacao_login']) {
     if (isset($_SESSION['id'])) {
         global $ConexaoBanco;
         $id_responsavel = $_SESSION['id'];
         $cpf_responsavel = $_SESSION['cpf'];
         $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT Usuario, email, cpf FROM usuarios WHERE cpf = :cpf");
-        
+
         $SELECT_USUARIO->bindParam(':cpf', $cpf_responsavel);
 
         $SELECT_ALUNO = $ConexaoBanco->prepare("SELECT nome, idade, escola, sexo FROM aluno WHERE id_responsavel_fk = :id");
         $SELECT_ALUNO->bindParam(':id', $id_responsavel);
 
         if ($SELECT_USUARIO->execute() && $SELECT_ALUNO->execute()) {
-            
+
             $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
             $dadosRetornadosAluno = $SELECT_ALUNO->fetch(PDO::FETCH_ASSOC);
 
             if ($dadosRetornadosUsuario && $dadosRetornadosAluno) {
-                
+
                 $responsavel->setNome($dadosRetornadosUsuario['Usuario']);
                 $responsavel->setCpf($dadosRetornadosUsuario['cpf']);
                 $responsavel->setEmail($dadosRetornadosUsuario['email']);
@@ -35,7 +39,6 @@ if ($_SESSION['situacao_login']) {
                 $aluno->setIdade($dadosRetornadosAluno['idade']);
                 $aluno->setNomeEscola($dadosRetornadosAluno['escola']);
                 $aluno->setSexo($dadosRetornadosAluno['sexo']);
-                
             } else {
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de responsável no nosso site!.</div>";
             }
@@ -53,6 +56,7 @@ if ($_SESSION['situacao_login']) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,10 +72,11 @@ if ($_SESSION['situacao_login']) {
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
             background-color: #F6A62E;
         }
-        
+
         ::-webkit-scrollbar-track {
             background-color: #ffffff;
         }
@@ -100,7 +105,8 @@ if ($_SESSION['situacao_login']) {
             height: 150px;
             border-radius: 50%;
             background-color: #333;
-            background-image: url('sua-foto.jpg'); /* Substitua pelo URL da sua foto */
+            background-image: url('sua-foto.jpg');
+            /* Substitua pelo URL da sua foto */
             background-size: cover;
             background-position: center;
             border: 5px solid #fff;
@@ -112,7 +118,7 @@ if ($_SESSION['situacao_login']) {
             font-weight: bold;
             color: #333;
         }
-        
+
         .profile-name {
             font-size: 36px;
             font-weight: bold;
@@ -162,15 +168,15 @@ if ($_SESSION['situacao_login']) {
         }
 
         .profile-links a:hover {
-            color: #e74c3c; 
+            color: #e74c3c;
         }
-        
+
         .top-left {
             position: absolute;
             top: 10px;
             left: 10px;
         }
-        
+
         .top-right {
             position: absolute;
             top: 10px;
@@ -180,8 +186,26 @@ if ($_SESSION['situacao_login']) {
         .teste {
             overflow: hidden;
         }
+        #ButtonLogOut {
+            position: absolute;
+            left: 5%;
+            transition: 0.5s;
+        }
+
+        .btn {
+            transition: 0.5s;
+        }
+
+        @media (max-width:500px)
+        {
+            #ButtonLogOut {
+                position: relative;
+                left: -30%;
+            }
+        }
     </style>
 </head>
+
 <body>
     <a href="../../HTML/index.html" class="btn btn-outline-light shadow-lg top-left">
         <i class="fas fa-arrow-left"></i> Voltar
@@ -193,6 +217,11 @@ if ($_SESSION['situacao_login']) {
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="profile-container">
+                    <form method="post" action="">
+                        <button id="ButtonLogOut" type="submit" name="sair" class="btn btn-outline-dark shadow-lg">
+                            <i class='fas fa-sign-out-alt' style='font-size:32px;'>logOut</i>
+                        </button>
+                    </form>
                     <h1 class="profile-Title">
                         <strong>Responsavel:</strong>
                     </h1>
@@ -203,8 +232,8 @@ if ($_SESSION['situacao_login']) {
                         <?php echo $responsavel->getNome() ?>
                     </h3>
                     <div class="profile-info">
-                        <p><strong>Email:  <?php echo  $responsavel->getEmail() ?></strong> </p>
-                        <p><strong>CPF:  <?php echo $responsavel->getCpf() ?></strong> </p>
+                        <p><strong>Email: <?php echo  $responsavel->getEmail() ?></strong> </p>
+                        <p><strong>CPF: <?php echo $responsavel->getCpf() ?></strong> </p>
                     </div>
                 </div>
             </div>
@@ -217,30 +246,29 @@ if ($_SESSION['situacao_login']) {
                     <h1 class="profile-Title">
                         <strong>Aluno:</strong>
                     </h1>
-                    
+
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
                     </div>
                     <h3 class="profile-name">
-                      <?php echo $aluno->getNomeAluno() ?>
+                        <?php echo $aluno->getNomeAluno() ?>
                     </h3>
                     <div class="profile-info">
                         <p><strong>Idade: <?php echo $aluno->getIdade() ?></strong> </p>
                         <p><strong>Escola: <?php echo $aluno->getNomeEscola() ?></strong> </p>
-                        <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>                        
+                        <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php 
-        if(!empty($mensagem)){
-            echo $mensagem;
-        }
+    <?php
+    if (!empty($mensagem)) {
+        echo $mensagem;
+    }
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
+
 </html>
