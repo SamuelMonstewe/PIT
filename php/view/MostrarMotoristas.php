@@ -95,11 +95,11 @@ else{
         </div>
         </a>
         
-        <?php if(!($_SESSION['tipo_usuario'] == 1)): ?>
+      
             <button class="btn btn-secondary" style="font-family:sans-serif" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id2" aria-controls="Id2">
                 Filtrar escolares?
             </button>
-       <?php endif; ?>
+
 
         <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="Id2" aria-labelledby="staticBackdropLabel">
             <div class="offcanvas-header">
