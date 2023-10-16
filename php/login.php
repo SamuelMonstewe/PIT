@@ -24,12 +24,15 @@ function Logar()
         $sits_usuarios_id = $checar['sits_usuarios_id'];
         $id = $checar['id'];
         $cpf = $checar['cpf'];
+        $tipoUsuario = $checar['tipo_usuario_fk'];
         
         if($sits_usuarios_id == 1){
             session_start();
             $_SESSION['situacao_login'] = true;
             $_SESSION['id'] = $id;
             $_SESSION['cpf'] = $cpf;
+            $_SESSION['tipo_usuario'] = $tipoUsuario;
+
         }
         else{
             session_start();
