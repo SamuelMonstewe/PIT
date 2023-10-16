@@ -39,7 +39,7 @@ if ($_SESSION['situacao_login']) {
                 }
             }
         }
-    } else if(isset($_POST['btn-todos'])) {
+    } else  {
         $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT cpf, regiao_atuacao, telefone, idade, sexo FROM motorista");
         if ($SELECT_MOTORISTA->execute()) {
             $dadosRetornadosUsuarios = array();
@@ -106,7 +106,7 @@ if ($_SESSION['situacao_login']) {
             </div>
             <div class="offcanvas-body">
                 <form action="" method="post">
-                    <h4>Clique aqui para filtrarmos de acordo com seu perfil</h4>
+                    <h4>Clique aqui para filtrarmos de acordo com perfil do seu filho</h4>
                     <button type="submit" class="btn btn-warning" name="btn-filtrar">Filtrar</button>
                     <h4>Clique aqui para ver todos</h4>
                     <button type="submit" class="btn btn-warning" name="btn-todos">Ver todos</button>
