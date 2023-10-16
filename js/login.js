@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    alert("Olá! Faça login para ter acesso aos recursos do nosso site!");
+    alert("Olá! Faça o login para ter acesso aos recursos do nosso site");
 });
 var base_url = "http://localhost/"
 
 function mudarPagina() {
     window.location.href = "index.html"
 }
-
+ 
 function enviarDados() {
     if (!document.getElementById("formLogin").checkValidity()) {
         document.getElementById("formLogin").classList.add('was-validated')
@@ -20,19 +20,18 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-
+         
             var verificacao = confirm("login realizado com sucesso!")
-            if (verificacao == true) {
-
+            if(verificacao == true)
+            {
                 mudarPagina()
-
             }
-            else {
+            else{
                 return
             }
         }
-        else if (http.readyState == 4 && http.status == 401) {
-            alert("Senha inválida ou não confirmou o email no cadastro")
+        else if (http.readyState == 4 && http.status == 401)
+        {   alert("Senha inválida ou não confirmou o email no cadastro")
             return
         }
         else if (http.readyState == 4 && http.status != 200) {
