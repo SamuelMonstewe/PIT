@@ -15,8 +15,7 @@ else if($_SESSION['situacao_login']){
         global $ConexaoBanco;
         $id_motorista = $_SESSION['id'];
         $cpf_motorista = $_SESSION['cpf'];
-        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE id = :id AND cpf = :cpf");
-        $SELECT_MOTORISTA->bindParam(':id', $id_motorista);
+        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE cpf = :cpf");
         $SELECT_MOTORISTA->bindParam(':cpf', $cpf_motorista);
 
         $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");

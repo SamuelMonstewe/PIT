@@ -13,8 +13,8 @@ if ($_SESSION['situacao_login']) {
         global $ConexaoBanco;
         $id_responsavel = $_SESSION['id'];
         $cpf_responsavel = $_SESSION['cpf'];
-        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT Usuario, email, cpf FROM usuarios WHERE id = :id AND cpf = :cpf");
-        $SELECT_USUARIO->bindParam(':id', $id_responsavel);
+        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT Usuario, email, cpf FROM usuarios WHERE cpf = :cpf");
+        
         $SELECT_USUARIO->bindParam(':cpf', $cpf_responsavel);
 
         $SELECT_ALUNO = $ConexaoBanco->prepare("SELECT nome, idade, escola, sexo FROM aluno WHERE id_responsavel_fk = :id");
