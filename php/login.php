@@ -19,25 +19,26 @@ function Logar()
         $senha = $usuario->getSenha();
         $select->bindParam(':email',$emailUsuario);
         $select->bindParam(':Senha',$senha);
-        $select->execute();
-        $checar = $select->fetch(PDO::FETCH_ASSOC);
-        $sits_usuarios_id = $checar['sits_usuarios_id'];
-        $id = $checar['id'];
-        $cpf = $checar['cpf'];
-        $tipoUsuario = $checar['tipo_usuario_fk'];
+        if($select->execute()){
+            $checar = $select->fetch(PDO::FETCH_ASSOC);
+            $sits_usuarios_id = $checar['sits_usuarios_id'];
+            $id = $checar['id'];
+            $cpf = $checar['cpf'];
+            
+            
+            if($sits_usuarios_id == 1){
+                session_start();
+                $_SESSION['situacao_login'] = true;
+                $_SESSION['id'] = $id;
+                $_SESSION['cpf'] = $cpf;
+            }
+            else{
+                session_start();
+                $_SESSION['situacao_login'] = false;
+            }
+        }
         
-        if($sits_usuarios_id == 1){
-            session_start();
-            $_SESSION['situacao_login'] = true;
-            $_SESSION['id'] = $id;
-            $_SESSION['cpf'] = $cpf;
-            $_SESSION['tipo_usuario'] = $tipoUsuario;
-
-        }
-        else{
-            session_start();
-            $_SESSION['situacao_login'] = false;
-        }
+       
         if ($checar) {
             echo json_encode($checar);
         } 
