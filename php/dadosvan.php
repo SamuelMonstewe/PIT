@@ -55,7 +55,17 @@ function InserirDados()
         $insert->bindParam(':laudo_inspecao_veicular', $laudoInspecaoVeicular);
         $insert->bindParam(':foto_interna', $fotoInterna);
         $insert->bindParam(':foto_externa', $fotoExterna);
-        $insert->execute();
+        
+        if($insert->execute()){
+            $mensagem = "Sucesso! Agora vamos para o login";
+            echo json_encode($mensagem);
+            exit;
+        }
+        else{
+            $mensagem = "Algo deu de errado";
+            echo json_encode($mensagem);
+        }
+        
 
     } catch (PDOException $e) {
         echo ($e->getMessage());

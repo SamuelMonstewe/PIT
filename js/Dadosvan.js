@@ -21,7 +21,9 @@ function EnviarDadosVan()
         if (http.readyState == 4 && http.status == 200) {
             console.log("deu")
             
-            var checar = confirm("Van cadastrada com sucesso! Vamos redirecionar você para login")
+            var response = JSON.parse(http.responseText)
+            var mensagem = response
+            var checar = confirm(mensagem)
             if(checar){
                 mudarpagina()
             }

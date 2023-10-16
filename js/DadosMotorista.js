@@ -18,7 +18,9 @@ function enviarDados() {
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            var checar = confirm("Sucesso. Vamos agora cadastrar sua van")
+            var response = JSON.parse(http.responseText)
+            var mensagem = response
+            var checar = confirm(mensagem)
 
             if(checar){
                 mudarpagina()
