@@ -6,6 +6,8 @@ require_once "../classes/Usuario.php";
 $motorista = new Motorista();
 $usuario = new Usuario();
 if(isset($_POST['sair'])){
+    unset($_SESSION['id']);
+    unset($_SESSION['cpf']);
     session_destroy();
     header("Location: ../../HTML/login.html");
    
