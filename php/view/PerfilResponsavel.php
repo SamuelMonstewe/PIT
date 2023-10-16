@@ -8,6 +8,8 @@ require_once "../classes/Aluno.php";
 $responsavel = new Responsavel();
 $aluno = new aluno();
 if(isset($_POST['sair'])){
+    unset($_SESSION['id']);
+    unset($_SESSION['cpf']);
     session_destroy();
     header("Location: ../../HTML/login.html");
    
