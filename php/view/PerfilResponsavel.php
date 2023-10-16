@@ -210,7 +210,7 @@ else if ($_SESSION['situacao_login']) {
     <a href="../../HTML/index.html" class="btn btn-outline-light shadow-lg top-left">
         <i class="fas fa-arrow-left"></i> Voltar
     </a>
-    <a href="../../HTML/Perfil-Edit.html" class="btn btn-outline-light shadow-lg top-right">
+    <a href="Perfil-Edit-Responsavel.php" class="btn btn-outline-light shadow-lg top-right">
         <i class="fas fa-edit"></i> Editar Perfil
     </a>
     <div class="container">
