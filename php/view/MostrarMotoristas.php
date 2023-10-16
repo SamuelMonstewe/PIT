@@ -61,12 +61,6 @@ if ($_SESSION['situacao_login']) {
     }
 }
 
-
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -91,13 +85,18 @@ if ($_SESSION['situacao_login']) {
 
 <body>
     <header>
+        <a href="../../HTML/index.html"  style="text-decoration:none; color:black;">
         <div class="d-flex align-items-center">
             <img src="../../HTML/imagens/logo.png" width="35%" alt="">
             <h1>InfoVan</h1>
         </div>
-        <button class="btn btn-secondary" style="font-family:sans-serif" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id2" aria-controls="Id2">
-            Filtrar escolares?
-        </button>
+        </a>
+        
+        <?php if(!($_SESSION['tipo_usuario'] == 1)): ?>
+            <button class="btn btn-secondary" style="font-family:sans-serif" type="button" data-bs-toggle="offcanvas" data-bs-target="#Id2" aria-controls="Id2">
+                Filtrar escolares?
+            </button>
+       <?php endif; ?>
 
         <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="Id2" aria-labelledby="staticBackdropLabel">
             <div class="offcanvas-header">
@@ -148,7 +147,6 @@ if ($_SESSION['situacao_login']) {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
                                         </div>
                                     </div>
                                 </div>
