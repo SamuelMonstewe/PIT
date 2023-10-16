@@ -60,6 +60,9 @@ if ($_SESSION['situacao_login']) {
         }
     }
 }
+else{
+    header("Location: ../../HTML/login.html");
+}
 
 ?>
 
