@@ -17,6 +17,7 @@ if ($SELECT_MOTORISTA->execute()) {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -29,11 +30,13 @@ if ($SELECT_MOTORISTA->execute()) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../../HTML/CSS-MostrarM/style.css">
+    
     <title>Visualizar Motoristas</title>
 </head>
 
@@ -53,81 +56,88 @@ if ($SELECT_MOTORISTA->execute()) {
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="manha" id="flexCheckManha">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckManha">
-                        Manhã
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="tarde" id="flexCheckTarde">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckTarde">
-                        Tarde
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" style="font-family:sans-serif" type="checkbox" value="noite" id="flexCheckNoite">
-                    <label class="form-check-label" style="font-family:sans-serif" for="flexCheckNoite">
-                        Noite
-                    </label>
-                </div>
+              
+                    <div class="form-check">
+                        <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="manha" value="manha" id="flexCheckManha">
+                        <label class="form-check-label" style="font-family:sans-serif" for="flexCheckManha">
+                            Manhã
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="tarde" value="tarde" id="flexCheckTarde">
+                        <label class="form-check-label" style="font-family:sans-serif" for="flexCheckTarde">
+                            Tarde
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" style="font-family:sans-serif" type="checkbox" name="noite" value="noite" id="flexCheckNoite">
+                        <label class="form-check-label" style="font-family:sans-serif" for="flexCheckNoite">
+                            Noite
+                        </label>
+                    </div>
+                   
+               
+
             </div>
         </div>
     </header>
     <main>
 
-        <div class="CardMotoristas d-flex justify-content-around mt-4">
-            <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
-                foreach ($usuarios as $usuario) : 
-                    $modalId = 'modalId' . $index; ?>
-                    <div class="card" style="width: 18rem; ">
-                        <div class="profile-picture">
-                            <img class="" src="..." alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title" style="font-size: 0.9em;"><?php echo $usuario['Usuario'] ?></h5>  
-                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p> <!-- todos esses dados podem sair já que vão passar para o pop-up
-                                                                                                                            use como referencia o código para colocar na caixa pop-up -->
-                            <p class="card-text"><?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
-                            <!-- Modal trigger button -->
-                            <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
-                              Ver dados 
-                            </button>
-                            
-                            <!-- Modal Body -->
-                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                            <div class="modal fade" id="<?php echo $modalId ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalTitleId"><?php echo $usuario['Usuario'] ?></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- aqui é onde os dados vão ficar(idade, telefone, regiao_atuacao e o sexo), use tags <p> para exibir  -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save</button>
+    <div class="CardMotoristas d-flex justify-content-around mt-4">
+                <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
+                    foreach ($usuarios as $usuario) : 
+                        $modalId = 'modalId' . $index; ?>
+                        <div class="card" style="width: 18rem; ">
+                            <div class="profile-picture">
+                                <img class="" src="..." alt="">
+                            </div>
+                            <div class="card-body">
+                                <h2 class="card-title" style="font-size: 0.9em;"><?php echo $usuario['Usuario'] ?></h2>
+                                <!-- Modal trigger button -->
+                                <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
+                                Ver dados 
+                                </button>
+                                <!-- Modal Body -->
+                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                <div class="modal fade" id="<?php echo $modalId ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitleId"><?php echo $usuario['Usuario'] ?></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Idade: <?php echo $dadosRetornadosMotorista[$index]['idade'] ?></p>
+                                                <p>Telefone: <?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
+                                                <p>Região de Atuação: <?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
+                                                <p>Sexo: <?php echo $dadosRetornadosMotorista[$index]['sexo'] ?></p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                
+                                <!-- Optional: Place to the bottom of scripts -->
+                                <script>
+                                    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                                
+                                </script>
                             </div>
-                            
-                            
-                            <!-- Optional: Place to the bottom of scripts -->
-                            <script>
-                                const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-                            
-                            </script>
                         </div>
-                    </div>
-            <?php endforeach;
-            endforeach;
-            ?>
-        </div>
+                <?php endforeach;
+                endforeach;
+                ?>
+            </div>
+        <div id="mensagem"></div>
     </main>
 </body>
+<style>
+    
+</style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="../../js/MostrarMotoristas.js"></script>
 
