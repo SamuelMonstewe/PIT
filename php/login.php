@@ -31,6 +31,7 @@ function Logar()
                 $_SESSION['situacao_login'] = true;
                 $_SESSION['id'] = $id;
                 $_SESSION['cpf'] = $cpf;
+                $_SESSION['tipo_usuario'] = $checar['tipo_usuario_fk'];
             }
             else{
                 session_start();
