@@ -52,11 +52,4 @@ form h1 {
     position: absolute;
     top: 5%;
     left: 5%;
-    color: black;
-    text-decoration: none;
-    background-color: #F0AE37;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border: none;
 }
