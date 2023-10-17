@@ -2,7 +2,7 @@ var base_url = "http://localhost/"
 
 function mudarpagina() {
     window.location.href = "../../HTML/DadosVan.html"
-}   
+}
 
 function enviarDados() {
     if (!document.getElementById("formDados").checkValidity()) {
@@ -12,27 +12,33 @@ function enviarDados() {
 
     var http = new XMLHttpRequest()
     var url = base_url + "PIT/php/dadosmotorista.php"
- 
+
     http.open("POST", url, true)
 
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            var response = JSON.parse(http.responseText)
-            var mensagem = response
-            var checar = confirm(mensagem)
+            console.log(http.responseText); // Exibe a resposta completa no console
+            try {
+                var response = JSON.parse(http.responseText);
+                var mensagem = response;
+                var checar = confirm(mensagem);
 
-            if(checar){
-                mudarpagina()
+                if (checar) {
+                    mudarpagina();
+                }
+            } catch (e) {
+                console.error("Erro ao analisar a resposta como JSON:", e);
             }
-            else{
-                mudarpagina()
-            }
- 
+
+
+
+
+
         }
         else if (http.status != 200) {
             alert("ERRO!")
-        }   
+        }
     }
 
     var data = new FormData()
@@ -43,28 +49,28 @@ function enviarDados() {
     const checkboxNoite = document.getElementById("Noite");
     const turnoNoite = checkboxNoite.checked;
 
-    if(turnoManha){
-        data.append('manha','sim');
+    if (turnoManha) {
+        data.append('manha', 'sim');
         console.log(document.getElementById("Manha").value);
     }
-    else{
+    else {
         data.append('manha', 'nao')
     }
-    if(turnoTarde){
+    if (turnoTarde) {
         data.append('tarde', 'sim')
         console.log(document.getElementById("Tarde").value);
     }
-    else{
+    else {
         data.append('tarde', 'nao')
     }
-    if(turnoNoite){
+    if (turnoNoite) {
         data.append('noite', 'sim')
         console.log(document.getElementById("Noite").value);
     }
-    else{
+    else {
         data.append('noite', 'nao')
     }
-    
+
     data.append('cpf', document.getElementById("Cpf").value)
     // data.append('nome', document.getElementById("Nome").value)
     data.append('idade', document.getElementById("Idade").value)
@@ -118,7 +124,7 @@ function MasacaraTelefone() {
         if (tel_formatado[9] != undefined) {
             document.getElementById("Telefone").value = tel_formatado.slice(0, 9) + "-" + tel_formatado[9]
         }
-    }   
+    }
 }
 
 function MascaraCPF() {
