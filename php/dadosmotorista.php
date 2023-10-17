@@ -24,6 +24,21 @@ function pegarDadosDoFormulario()
     $motorista->setFotoCarteira(base64_encode(file_get_contents($_FILES['fotocarteira']['tmp_name'])));
     $motorista->setFotoCRLV(base64_encode(file_get_contents($_FILES['fotocrlv']['tmp_name'])));
 }
+function verificarSeCpfExisteNoBanco($cpf){
+    global $ConexaoBanco;
+    $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT cpf FROM usuarios WHERE cpf = :cpf");
+    $SELECT_USUARIO->bindParam(':cpf', $cpf);
+
+    if($SELECT_USUARIO->execute()){
+      
+        if($SELECT_USUARIO->rowCount() == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
 function inserirDadosNoBanco()
 {
     global $motorista;
@@ -58,29 +73,37 @@ function inserirDadosNoBanco()
     $Insert->bindParam(':turnoManha', $turnoManha);
     $Insert->bindParam(':turnoNoite', $turnoNoite);
     $Insert->bindParam(':turnoTarde', $turnoTarde);
-   
-     if($Insert->execute()){
+    
+    if(verificarSeCpfExisteNoBanco($cpf)){
+        if($Insert->execute()){
 
-        $idDoUltimoMotoristaInserido = $ConexaoBanco->lastInsertId();
-        
-        if(!empty($idDoUltimoMotoristaInserido)){
-            $INSERT_ESCOLA_MOTORISTA = $ConexaoBanco->prepare("INSERT INTO escola_motorista VALUES(null, :escola, :id_motorista_fk)");
-            $nomeEscola = $escola->getNome();
-            $INSERT_ESCOLA_MOTORISTA->bindParam(':escola', $nomeEscola);
-            $INSERT_ESCOLA_MOTORISTA->bindParam(':id_motorista_fk', $idDoUltimoMotoristaInserido);
-            $INSERT_ESCOLA_MOTORISTA->execute();
-
-            $mensagem = "Sucesso! Agora vamos cadastrar a sua van";
-            echo json_encode($mensagem);
-            exit;
+            $idDoUltimoMotoristaInserido = $ConexaoBanco->lastInsertId();
+            
+            if(!empty($idDoUltimoMotoristaInserido)){
+                $INSERT_ESCOLA_MOTORISTA = $ConexaoBanco->prepare("INSERT INTO escola_motorista VALUES(null, :escola, :id_motorista_fk)");
+                $nomeEscola = $escola->getNome();
+                $INSERT_ESCOLA_MOTORISTA->bindParam(':escola', $nomeEscola);
+                $INSERT_ESCOLA_MOTORISTA->bindParam(':id_motorista_fk', $idDoUltimoMotoristaInserido);
+                $INSERT_ESCOLA_MOTORISTA->execute();
+    
+                $mensagem = "Sucesso! Agora vamos cadastrar a sua van";
+                echo json_encode($mensagem);
+                exit;
+            }
+            else{
+                $mensagem = "Algo deu de errado!";
+                echo json_encode($mensagem);
+                exit;
+            }
+    
         }
-        else{
-            $mensagem = "Algo deu de errado!";
-            echo json_encode($mensagem);
-            exit;
-        }
-
     }
+    else{
+        $mensagem = "O cpf não existe em nossa base de dados! Digitou corretamente?";
+        echo json_encode($mensagem);
+        exit;
+    }
+    
     
    
 
