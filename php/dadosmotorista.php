@@ -71,7 +71,7 @@ function inserirDadosNoBanco()
             $INSERT_ESCOLA_MOTORISTA->execute();
 
             $mensagem = "Sucesso! Agora vamos cadastrar a sua van";
-            echo json_encode($mensagem);
+            
             exit;
         }
         else{
