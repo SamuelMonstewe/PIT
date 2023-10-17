@@ -8,6 +8,8 @@ $usuario = new Usuario();
 if(isset($_POST['sair'])){
     unset($_SESSION['id']);
     unset($_SESSION['cpf']);
+    unset($_SESSION['situacao_login']);
+    unset($_SESSION['tipo_usuario']);
     session_destroy();
     header("Location: ../../HTML/login.html");
    
