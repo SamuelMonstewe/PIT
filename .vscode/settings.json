@@ -18,6 +18,6 @@
     "workbench.colorTheme": "One Dark Pro",
     "editor.cursorBlinking": "smooth",
     "[php]": {
-        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
     }
 }
