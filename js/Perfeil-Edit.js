@@ -1,3 +1,6 @@
+
+
+
 function MascaraTelefone() {
     //limitador de Caracteres
     var tel = document.getElementById("tel").value

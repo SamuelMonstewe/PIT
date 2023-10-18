@@ -1,51 +1,75 @@
-<?php
+ <?php
 
 session_start();
-require_once "../pdo.php"; 
+require_once "../pdo.php";
 require_once "../classes/Motorista.php";
 require_once "../classes/Van.php";
 $motorista = new Motorista();
 
-function AlterarDados(){
+function AlterarDados()
+{
 
-try {
-    $id_motorista = $_SESSION['id'];
-    // $telefone = $_POST['telefone'];
-    if(!empty($_POST['telefone'])){$telefone = $_POST['telefone'];}else{$telefone = '';}
-    //$regiao_atuacao = $_POST['regiaoAtuacao'];
-    if(!empty($_POST['regiaoAtuacao'])){$regiao_atuacao = $_POST['regiaoAtuacao'];}else{$regiao_atuacao = '';}
-    
-    if(!empty($_POST['manha'])){$turno_manha = $_POST['manha'];}else{$turno_manha = 'nao';};
-    //$turno_tarde = $_POST['tarde'];
-    if(!empty($_POST['tarde'])){$turno_tarde = $_POST['tarde'];}else{$turno_tarde = 'nao';};
-    //$turno_noite = $_POST['noite'];
-    if(!empty($_POST['noite'])){$turno_noite = $_POST['noite'];}else{$turno_noite = 'nao';};
-    global $ConexaoBanco;
-    $ConexaoBanco->beginTransaction();
+    try {
+        $id_motorista = $_SESSION['id'];
+        // $telefone = $_POST['telefone'];
+        if (!empty($_POST['telefone'])) {
+            $telefone = $_POST['telefone'];
+        } else {
+            $telefone = '';
+        }
+        //$regiao_atuacao = $_POST['regiaoAtuacao'];
+        if (!empty($_POST['regiaoAtuacao'])) {
+            $regiao_atuacao = $_POST['regiaoAtuacao'];
+        } else {
+            $regiao_atuacao = '';
+        }
 
-    $sql1 = "UPDATE motorista SET  telefone =:telefone, regiao_atuacao = :Regiaoatuacao, turnoManha = :Manha, turnoNoite = :Noite, Turnotarde = :Tarde WHERE id=:id";
-    $update1 = $ConexaoBanco->prepare($sql1);
-    $update1->bindParam(':id', $id_motorista);
-    $update1->bindParam(':telefone', $telefone);
-    $update1->bindParam(':Regiaoatuacao', $regiao_atuacao);
-    $update1->bindParam(':Manha', $turno_manha);
-    $update1->bindParam(':Noite', $turno_noite);
-    $update1->bindParam(':Tarde', $turno_tarde);
-//     $update1->bindParam(':rota', $rota);
-    $update1->execute();
-    $ConexaoBanco->commit();
-    
-} catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
-}
+        if (!empty($_POST['manha'])) {
+            $turno_manha = $_POST['manha'];
+        } else {
+            $turno_manha = 'nao';
+        }
+        ;
+        //$turno_tarde = $_POST['tarde'];
+        if (!empty($_POST['tarde'])) {
+            $turno_tarde = $_POST['tarde'];
+        } else {
+            $turno_tarde = 'nao';
+        }
+        ;
+        //$turno_noite = $_POST['noite'];
+        if (!empty($_POST['noite'])) {
+            $turno_noite = $_POST['noite'];
+        } else {
+            $turno_noite = 'nao';
+        }
+        ;
+        global $ConexaoBanco;
+        $ConexaoBanco->beginTransaction();
 
-$ConexaoBanco = null;
+        $sql1 = "UPDATE motorista SET  telefone =:telefone, regiao_atuacao = :Regiaoatuacao, turnoManha = :Manha, turnoNoite = :Noite, Turnotarde = :Tarde WHERE id=:id";
+        $update1 = $ConexaoBanco->prepare($sql1);
+        $update1->bindParam(':id', $id_motorista);
+        $update1->bindParam(':telefone', $telefone);
+        $update1->bindParam(':Regiaoatuacao', $regiao_atuacao);
+        $update1->bindParam(':Manha', $turno_manha);
+        $update1->bindParam(':Noite', $turno_noite);
+        $update1->bindParam(':Tarde', $turno_tarde);
+   
+        $update1->execute();
+        $ConexaoBanco->commit();
+
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+    }
+
+    $ConexaoBanco = null;
 }
 
 if (isset($_POST['enviar'])) {
     AlterarDados();
 }
-?>
+?> 
 
 
 
@@ -208,42 +232,43 @@ if (isset($_POST['enviar'])) {
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="profile-container">
-                    
+
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
-                    </div> 
+                    </div>
                     <h3 class="profile-name"></h3>
-                    <form class="profile-info" method="post" >
+                    <form class="profile-info" method="post" id="form">
                         <p><strong>Telefone:</strong><input type="text" class="form-control" id="tel" name="telefone"
                                 oninput="MascaraTelefone()"></input> </p>
-                        <select class="form-select form-select-lg mt-5 mb-5" name="regiaoAtuacao" id="RegiaoAtuacao"
+                        <!-- <select class="form-select form-select-lg mt-5 mb-5" name="regiaoAtuacao" id="RegiaoAtuacao"
                             aria-label="Large select example">
-                            <option selected>Regiao de atuacao</option>
+                            <option selected>Regiao de atuacao</option> -->
                             <?php
-                            require_once "../pdo.php";
-                            header("Access-Control-Allow-Origin: *");
-                            header('Content-Type: application/json; charset=utf-8');
-                            header('Content-Type: text/html; charset=utf-8');
-                            $ConexaoBanco->exec("SET NAMES utf8");
-                            global $ConexaoBanco;
+                            // require_once "../pdo.php";
+                            
+                            // $ConexaoBanco->exec("SET NAMES utf8");
+                            // global $ConexaoBanco;
 
-                            $SELECT = $ConexaoBanco->prepare("SELECT * FROM regioes ORDER BY nome_regiao");
-                            $SELECT->execute();
+                            // $SELECT = $ConexaoBanco->prepare("SELECT * FROM regioes ORDER BY nome_regiao");
+                            // $SELECT->execute();
 
-                            while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
-                                $nomeRegiao = $row['nome_regiao'];
-                                echo "<option>$nomeRegiao</option>";
-                            }
+                            // while ($row = $SELECT->fetch(PDO::FETCH_ASSOC)) {
+                            //     $nomeRegiao = $row['nome_regiao'];
+                            //     echo "<option>$nomeRegiao</option>";
+                            // }
                             ?>
-                        </select>
+                        <!-- </select> -->
                         <h4><strong>Turnos ao qual trabalha:</strong></h4>
-                        <ul>
-                            <li><strong>Manhã:</strong><input type="checkbox" class="form-control" value="sim" name="manha"></input> </li>
-                            <li><strong>Tarde:</strong><input type="checkbox" class="form-control" value="sim" name="tarde"></input> </li>
-                            <li><strong>Noite:</strong><input type="checkbox" class="form-control" value="sim" name="noite"></input> </li>
-                        </ul>
+
+                        <strong>Manhã:</strong><input type="checkbox" class="form-control" value="sim"
+                            name="manha" id="Manha"></input>
+                        <strong>Tarde:</strong><input type="checkbox" class="form-control" value="sim"
+                            name="tarde" id="tarde"></input>
+                        <strong>Noite:</strong><input type="checkbox" class="form-control" value="sim"
+                            name="noite"id=""></input>
+
                         <div class="text-center">
-                            <button type="submit" class="btn btn-warning" name="enviar">Warning</button>
+                            <button type="submit" class="btn btn-warning" name="enviar" id="butao">Warning</button>
                         </div>
                     </form>
                 </div>
