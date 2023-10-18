@@ -19,20 +19,24 @@ function EnviarDadosVan()
     http.onreadystatechange = function () {
         //verifica retorno do back-end 
         if (http.readyState == 4 && http.status == 200) {
-            console.log("deu")
-            
-            var response = JSON.parse(http.responseText)
-            var mensagem = response
-            var checar = confirm(mensagem)
-            if(checar){
-                mudarpagina()
-            }
-            else{
-                mudarpagina()
+              console.log(http.responseText); // Exibe a resposta completa no console
+            try {
+                var response = JSON.parse(http.responseText);
+                var mensagem = response;
+                var checar = confirm(mensagem);
+
+                if (checar) {
+                    mudarpagina();
+                }
+            } catch (e) {
+                console.error("Erro ao analisar a resposta como JSON:", e);
             }
         }
         else if (http.status != 200) {
-            alert("ERRO!")
+            console.log(http.responseText);
+            var response = JSON.parse(http.responseText);
+            var mensagem = response;
+            alert(mensagem);
         }   
     }
 

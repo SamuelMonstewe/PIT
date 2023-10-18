@@ -30,14 +30,14 @@ function enviarDados() {
             } catch (e) {
                 console.error("Erro ao analisar a resposta como JSON:", e);
             }
-
-
-
-
-
         }
         else if (http.status != 200) {
-            alert("ERRO!")
+            var response = JSON.parse(http.responseText);
+            var mensagem = response;
+            alert(mensagem);
+        }
+        else{
+            alert("ERRO");
         }
     }
 

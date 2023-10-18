@@ -4,6 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 require_once "pdo.php";
 require_once "classes/Motorista.php";
 require_once "classes/Escola.php";
+require_once "verificarSeCpfExiste.php";
 $motorista = new Motorista();
 $escola = new Escola();
 function pegarDadosDoFormulario()
@@ -24,21 +25,7 @@ function pegarDadosDoFormulario()
     $motorista->setFotoCarteira(base64_encode(file_get_contents($_FILES['fotocarteira']['tmp_name'])));
     $motorista->setFotoCRLV(base64_encode(file_get_contents($_FILES['fotocrlv']['tmp_name'])));
 }
-function verificarSeCpfExisteNoBanco($cpf){
-    global $ConexaoBanco;
-    $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT cpf FROM usuarios WHERE cpf = :cpf");
-    $SELECT_USUARIO->bindParam(':cpf', $cpf);
 
-    if($SELECT_USUARIO->execute()){
-      
-        if($SELECT_USUARIO->rowCount() == 1){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-}
 function inserirDadosNoBanco()
 {
     global $motorista;
@@ -100,6 +87,7 @@ function inserirDadosNoBanco()
     }
     else{
         $mensagem = "O cpf não existe em nossa base de dados! Digitou corretamente?";
+        http_response_code(401);
         echo json_encode($mensagem);
         exit;
     }

@@ -33,40 +33,45 @@ function InserirDados()
         $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT id FROM motorista WHERE cpf = :cpf");
         $cpf = $van->getCpfMotoristaDaVan();
         $SELECT_MOTORISTA->bindParam(':cpf', $cpf);
-        $SELECT_MOTORISTA->execute();
-        $dados_retornados = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
-        $idMotorista_fk = $dados_retornados['id'];
 
-        $chassi = $van->getChassi();
-        $placa  =  $van->getPlaca();
-        $marca = $van->getMarca();
-        $modelo = $van->getModelo();
-        $quantidadeDeLugar =  $van->getQuantlugar();
-        $laudoInspecaoVeicular = $van->getLaudoInspecaoVeicular();
-        $fotoInterna = $van->getFotoInterna();
-        $fotoExterna = $van->getFotoExterna();
-        
-        $insert->bindParam(':chassi',  $chassi);
-        $insert->bindParam(':placa', $placa);
-        $insert->bindParam(':marca',  $marca);
-        $insert->bindParam(':modelo',  $modelo);
-        $insert->bindParam(':qtd_lugares', $quantidadeDeLugar);
-        $insert->bindParam(':motorista_id_fk', $idMotorista_fk);
-        $insert->bindParam(':laudo_inspecao_veicular', $laudoInspecaoVeicular);
-        $insert->bindParam(':foto_interna', $fotoInterna);
-        $insert->bindParam(':foto_externa', $fotoExterna);
-        
-        if($insert->execute()){
-            $mensagem = "Sucesso! Agora vamos para o login";
-            echo json_encode($mensagem);
-            exit;
+        if($SELECT_MOTORISTA->execute() && $SELECT_MOTORISTA->rowCount() == 1){
+            $dados_retornados = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
+            $idMotorista_fk = $dados_retornados['id'];
+            $chassi = $van->getChassi();
+            $placa  =  $van->getPlaca();
+            $marca = $van->getMarca();
+            $modelo = $van->getModelo();
+            $quantidadeDeLugar =  $van->getQuantlugar();
+            $laudoInspecaoVeicular = $van->getLaudoInspecaoVeicular();
+            $fotoInterna = $van->getFotoInterna();
+            $fotoExterna = $van->getFotoExterna();
+            
+            $insert->bindParam(':chassi',  $chassi);
+            $insert->bindParam(':placa', $placa);
+            $insert->bindParam(':marca',  $marca);
+            $insert->bindParam(':modelo',  $modelo);
+            $insert->bindParam(':qtd_lugares', $quantidadeDeLugar);
+            $insert->bindParam(':motorista_id_fk', $idMotorista_fk);
+            $insert->bindParam(':laudo_inspecao_veicular', $laudoInspecaoVeicular);
+            $insert->bindParam(':foto_interna', $fotoInterna);
+            $insert->bindParam(':foto_externa', $fotoExterna);
+            
+            if($insert->execute()){
+                $mensagem = "Sucesso! Agora vamos para o login";
+                echo json_encode($mensagem);
+                exit;
+            }
+            else{
+                $mensagem = "Algo deu de errado";
+                echo json_encode($mensagem);
+                exit;
+            }
         }
         else{
-            $mensagem = "Algo deu de errado";
+            $mensagem = "O cpf não existe em nossa base de dados! Digitou corretamente?";
+            http_response_code(401);
             echo json_encode($mensagem);
         }
-        
-
     } catch (PDOException $e) {
         echo ($e->getMessage());
     }
