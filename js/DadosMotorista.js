@@ -36,9 +36,7 @@ function enviarDados() {
             var mensagem = response;
             alert(mensagem);
         }
-        else{
-            alert("ERRO");
-        }
+       
     }
 
     var data = new FormData()

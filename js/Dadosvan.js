@@ -17,9 +17,9 @@ function EnviarDadosVan()
     http.open("POST", url, true)
 
     http.onreadystatechange = function () {
-        //verifica retorno do back-end 
+       
         if (http.readyState == 4 && http.status == 200) {
-              console.log(http.responseText); // Exibe a resposta completa no console
+              console.log(http.responseText); 
             try {
                 var response = JSON.parse(http.responseText);
                 var mensagem = response;
