@@ -49,7 +49,7 @@ if ($_SESSION['situacao_login']) {
 
             foreach ($dadosRetornadosMotorista as $motorista) {
                 $cpf = $motorista['cpf'];
-                $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE cpf = :cpf");
+                $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT  Usuario FROM usuarios WHERE cpf = :cpf");
                 $SELECT_USUARIOS->bindParam(':cpf', $cpf);
 
                 if ($SELECT_USUARIOS->execute()) {
@@ -65,6 +65,37 @@ else{
     header("Location: ../../HTML/login.html");
 }
 
+
+if(isset($_POST['enviar-mensagem'])){
+    
+    if(!empty($_POST['descricao'])){
+ 
+        $descricaoDaMensagem = $_POST['descricao'];
+        $cpfMotorista = $_POST['cpf']; 
+  
+        $PEGAR_ID_MOTORISTA = $ConexaoBanco->prepare("SELECT id FROM motorista WHERE cpf = :cpf");
+        $PEGAR_ID_MOTORISTA->bindParam(':cpf', $cpfMotorista);
+
+        if($PEGAR_ID_MOTORISTA->execute()){
+            
+            $idMotorista = $PEGAR_ID_MOTORISTA->fetch(PDO::FETCH_ASSOC);
+            $idUsuario = $_SESSION['id'];
+        
+           
+            $INSERT_NOTIFICACOES = $ConexaoBanco->prepare("INSERT INTO notificacoes VALUES (null, :descricao, :id_motorista_fk, :id_usuario_fk)");
+            $INSERT_NOTIFICACOES->bindParam(':descricao', $descricaoDaMensagem);
+            $INSERT_NOTIFICACOES->bindParam(':id_motorista_fk', $idMotorista['id']);
+            $INSERT_NOTIFICACOES->bindParam(':id_usuario_fk', $idUsuario);
+            $INSERT_NOTIFICACOES->execute();
+            
+            $_POST = array();
+            // Redirecionar de volta para a página atual
+            header("Location: {$_SERVER['REQUEST_URI']}");
+            exit;
+        }
+
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +156,8 @@ else{
         <div class="CardMotoristas d-flex justify-content-around mt-4">
             <?php foreach ($dadosRetornadosUsuarios as $index => $usuarios) :
                 foreach ($usuarios as $usuario) :
-                    $modalId = 'modalId' . $index; ?>
+                    $modalId = 'modalId' . $index;
+                    $modalId2 = 'modalId_' . $index;  ?>
                     <div class="card" style="width: 18rem; ">
                         <div class="profile-picture">
                             <img class="" src="..." alt="">
@@ -136,8 +168,44 @@ else{
                             <button type="button" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
                                 Ver dados
                             </button>
-                            <!-- Modal Body -->
-                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <!-- Modal trigger button -->
+                            <?php if(!($_SESSION['tipo_usuario'] == 1)): ?>
+                            <button type="button" class="btn btn-warning btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId2 ?>">
+                              Se interessou?
+                            </button>
+                            <?php endif; ?>
+                            
+                           
+                            <div class="modal fade" id="<?php echo $modalId2 ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitleId">Mensagem</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                           <div class="mb-3">
+                                            <p>Clique no botão para notificar o motorista que você se interessou!</p>
+                                           
+                                             <form action="" method="post">
+                                                <input type="hidden" class="form-control" name="cpf" value="<?php echo $dadosRetornadosMotorista[$index]['cpf'] ?>">
+                                                <input type="hidden" class="form-control" name="descricao" value="Olá, gostaria de colocar meu filho no seu transporte" id="" aria-describedby="helpId" placeholder="">
+                                            
+                                                <button type="submit" class="btn btn-warning mt-3" name="enviar-mensagem" id="enviar-mensagem">Notificar</button>
+                                            </form>
+                                           </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+                                            
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        
                             <div class="modal fade" id="<?php echo $modalId ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                     <div class="modal-content">
@@ -147,11 +215,12 @@ else{
                                         </div>
                                         <div class="modal-body">
                                             <p>Idade: <?php echo $dadosRetornadosMotorista[$index]['idade'] ?></p>
-                                            <p>Telefone: <?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
                                             <p>Região de Atuação: <?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
                                             <p>Sexo: <?php echo $dadosRetornadosMotorista[$index]['sexo'] ?></p>
+                                            
                                         </div>
                                         <div class="modal-footer">
+                                            
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
@@ -173,9 +242,17 @@ else{
     </main>
 </body>
 <style>
-
+*{
+    font-family: sans-serif;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="../../js/MostrarMotoristas.js"></script>
-
+<script>
+    $(document).ready(function () {
+        $("#enviar-mensagem").on("click", function () {
+            alert("mensagem enviada com sucesso!");
+        });
+    });
+</script>
 </html>

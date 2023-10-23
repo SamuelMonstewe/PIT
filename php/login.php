@@ -25,6 +25,7 @@ function Logar()
             $id = $checar['id'];
             $cpf = $checar['cpf'];
             
+
             
             if($sits_usuarios_id == 1){
                 session_start();
@@ -32,6 +33,17 @@ function Logar()
                 $_SESSION['id'] = $id;
                 $_SESSION['cpf'] = $cpf;
                 $_SESSION['tipo_usuario'] = $checar['tipo_usuario_fk'];
+
+                if($_SESSION['tipo_usuario'] == 1){
+                    $cpfMotorista = $_SESSION['cpf'];
+                    $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT id FROM motorista WHERE cpf = :cpf");
+                    $SELECT_MOTORISTA->bindParam(':cpf', $cpfMotorista);
+                  
+                    if($SELECT_MOTORISTA->execute()){
+                        $dadosRetornados = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
+                        $_SESSION['id_motorista_fk'] = $dadosRetornados['id'];
+                    }
+                }
             }
             else{
                 session_start();
