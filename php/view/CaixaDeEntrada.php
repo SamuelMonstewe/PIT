@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once "../pdo.php";
+
 $id_motorista_fk = $_SESSION['id_motorista_fk'];
 $SELECT_NOTIFICACOES = $ConexaoBanco->prepare("SELECT * FROM notificacoes WHERE id_motorista_fk = :id_motorista_fk");
 $SELECT_NOTIFICACOES->bindParam(':id_motorista_fk', $id_motorista_fk);
@@ -10,7 +11,7 @@ if($SELECT_NOTIFICACOES->execute()){
     $dadosRetornadosUsuarios = [];
     foreach($dadosRetornados as $dado){
         $id = $dado["id_usuario_fk"];
-        $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT Usuario FROM usuarios WHERE id = :id");
+        $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT usuarios.Usuario FROM notificacoes INNER JOIN usuarios ON usuarios.id = notificacoes.id_usuario_fk WHERE usuarios.id = :id;");
         $SELECT_USUARIOS->bindParam(':id', $id);
 
         if($SELECT_USUARIOS->execute()){
