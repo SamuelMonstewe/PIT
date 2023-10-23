@@ -54,29 +54,31 @@ if($SELECT_NOTIFICACOES->execute()){
     </header>
   <main>
   <div class="table-responsive mt-5">
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Descrição</th>
-                <th scope="col">Nome do cliente</th>
-            </tr>
-        </thead>
-        <tbody>
-           <?php
-           if($checar){
-               echo "Não há notificações";
-           }
-           else{
-
-               foreach($dadosRetornados as $index => $dados): ?>
+      <div class="container">
+        <table class="table table-primary">
+            <thead>
                 <tr>
-                    <td scope="row"><?php echo $dados['descricao']; ?></td>
-                    <td scope="row"><?php echo $dadosRetornadosUsuarios[$index]['Usuario']; ?></td>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Nome do cliente</th>
                 </tr>
-                
-            <?php endforeach;} ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php
+            if($checar){
+                echo "Não há notificações";
+            }
+            else{
+                foreach($dadosRetornados as $index => $dados): ?>
+                    <tr>
+                        <td scope="row"><?php echo $dados['descricao']; ?></td>
+                        <td scope="row"><?php echo $dadosRetornadosUsuarios[$index]['Usuario']; ?></td>
+                    </tr>
+                    
+                <?php endforeach;} ?>
+            </tbody>
+        </table>
+      </div>
+    
 </div>
     
   </main>
