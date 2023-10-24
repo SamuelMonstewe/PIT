@@ -3,7 +3,7 @@ session_start();
 require_once "../pdo.php";
 
 $id_motorista_fk = $_SESSION['id_motorista_fk'];
-$SELECT_NOTIFICACOES = $ConexaoBanco->prepare("SELECT * FROM notificacoes WHERE id_motorista_fk = :id_motorista_fk");
+$SELECT_NOTIFICACOES = $ConexaoBanco->prepare("SELECT * FROM notificacoes WHERE id_motorista_fk = :id_motorista_fk AND tipo_notificacao = -1");
 $SELECT_NOTIFICACOES->bindParam(':id_motorista_fk', $id_motorista_fk);
 
 if ($SELECT_NOTIFICACOES->execute()) {
@@ -16,6 +16,19 @@ if (isset($_POST['btn-aceitar-cliente'])) {
     $INSERT_CLIENTE_MOTORISTA->bindParam(':id_motorista_fk', $id_motorista_fk);
 
     if ($INSERT_CLIENTE_MOTORISTA->execute()) {
+        $mensagem = "Agora você é cliente de um motorista!";
+        $tipoNotificacao = 1;
+        $NOTIFICAR_CLIENTE = $ConexaoBanco->prepare("INSERT INTO notificacoes VALUES (null, :descricao, :id_motorista_fk, :id_usuario_fk, :tipo_notificacao)");
+        $NOTIFICAR_CLIENTE->bindParam(':descricao', $mensagem);
+        $NOTIFICAR_CLIENTE->bindParam(':id_motorista_fk', $id_motorista_fk);
+        $NOTIFICAR_CLIENTE->bindParam(':id_usuario_fk', $id_usuario_fk);
+        $NOTIFICAR_CLIENTE->bindParam(':tipo_notificacao', $tipoNotificacao);
+
+       
+        
+        if($NOTIFICAR_CLIENTE->execute()){
+            echo "teste";
+        }
         $_POST = array();
         header("Location: {$_SERVER['REQUEST_URI']}");
         exit;

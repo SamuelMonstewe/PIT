@@ -80,12 +80,13 @@ if(isset($_POST['enviar-mensagem'])){
             
             $idMotorista = $PEGAR_ID_MOTORISTA->fetch(PDO::FETCH_ASSOC);
             $idUsuario = $_SESSION['id'];
-        
+            $tipoNotificacao = -1;
            
-            $INSERT_NOTIFICACOES = $ConexaoBanco->prepare("INSERT INTO notificacoes VALUES (null, :descricao, :id_motorista_fk, :id_usuario_fk)");
+            $INSERT_NOTIFICACOES = $ConexaoBanco->prepare("INSERT INTO notificacoes VALUES (null, :descricao, :id_motorista_fk, :id_usuario_fk, :tipo_notificacao)");
             $INSERT_NOTIFICACOES->bindParam(':descricao', $descricaoDaMensagem);
             $INSERT_NOTIFICACOES->bindParam(':id_motorista_fk', $idMotorista['id']);
             $INSERT_NOTIFICACOES->bindParam(':id_usuario_fk', $idUsuario);
+            $INSERT_NOTIFICACOES->bindParam(':tipo_notificacao', $tipoNotificacao);
             $INSERT_NOTIFICACOES->execute();
             
             $_POST = array();
