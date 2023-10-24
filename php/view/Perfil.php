@@ -243,6 +243,9 @@ else{
                             <li><strong>Tarde:</strong> <?php echo $motorista->getTurnoTarde()?></li>
                             <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
                         </ul>
+                        <div>
+                            <a name="" id="" class="btn btn-warning" href="ClientesMotorista.php" role="button">Meus Clientes</a>
+                        </div>
                     </div>
                 </div>
             </div>
