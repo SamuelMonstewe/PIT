@@ -8,24 +8,16 @@ $SELECT_NOTIFICACOES->bindParam(':id_motorista_fk', $id_motorista_fk);
 
 if($SELECT_NOTIFICACOES->execute()){
     $dadosRetornados = $SELECT_NOTIFICACOES->fetchAll(PDO::FETCH_ASSOC);
-    $dadosRetornadosUsuarios = [];
-    foreach($dadosRetornados as $dado){
-        $id = $dado["id_usuario_fk"];
-        $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT usuarios.Usuario FROM notificacoes INNER JOIN usuarios ON usuarios.id = notificacoes.id_usuario_fk WHERE usuarios.id = :id;");
-        $SELECT_USUARIOS->bindParam(':id', $id);
-
-        if($SELECT_USUARIOS->execute()){
-            $dadosRetornadosUsuarios = $SELECT_USUARIOS->fetchAll(PDO::FETCH_ASSOC);
-        }
-
+ 
     }
+
     if($dadosRetornados == false){
         $checar = true;
     }
     else{
         $checar = false;
     }
-}
+
 ?>
 
 <!doctype html>
@@ -60,7 +52,8 @@ if($SELECT_NOTIFICACOES->execute()){
             <thead>
                 <tr>
                     <th scope="col">Descrição</th>
-                    <th scope="col">Nome do cliente</th>
+                    <th scope="col">Dados do cliente</th>
+                    <th scope="col">Aceitar Cliente</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,10 +62,70 @@ if($SELECT_NOTIFICACOES->execute()){
                 echo "Não há notificações";
             }
             else{
-                foreach($dadosRetornados as $index => $dados): ?>
+                
+                foreach($dadosRetornados as $index => $dados):
+                    $modalId = 'modalId' . $index; ?>
+                  
                     <tr>
                         <td scope="row"><?php echo $dados['descricao']; ?></td>
-                        <td scope="row"><?php echo $dadosRetornadosUsuarios[$index]['Usuario']; ?></td>
+                        <td scope="row"><!-- Modal trigger button -->
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<?php echo $modalId ?>">
+                          Dados Cliente
+                        </button>
+                       
+                        <div class="modal fade" id="<?php echo $modalId ?>" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <?php  
+                                            $SELECT_USUARIOS = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE id = :id");
+                                            $SELECT_USUARIOS->bindParam(':id', $dados['id_usuario_fk']);
+                                        
+                                            
+                                            if($SELECT_USUARIOS->execute()){
+                                                $dadosRetornadosUsuario = $SELECT_USUARIOS->fetch(PDO::FETCH_ASSOC);
+
+                                                $SELECT_ALUNO = $ConexaoBanco->prepare("SELECT * FROM aluno WHERE id_responsavel_fk = :id");
+                                                $SELECT_ALUNO->bindParam(':id', $dados['id_usuario_fk']);
+                                                
+                                                
+                                                if($SELECT_ALUNO->execute()){
+                                                    $dadosRetornadosAluno = $SELECT_ALUNO->fetch(PDO::FETCH_ASSOC);
+                                                }
+                                            }
+                                        ?>
+
+
+                                        <h5 class="modal-title" id="modalTitleId"><?php echo $dadosRetornadosUsuario['Usuario'] ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Email: <?php echo $dadosRetornadosUsuario['email'] ?></p>
+                                        <p>Dados do filho(a): <?php echo $dadosRetornadosAluno['nome'] ?></p>
+                                        <p>Escola:<?php echo $dadosRetornadosAluno['escola'] ?></p>
+                                        <p>Regiao onde mora: <?php echo $dadosRetornadosAluno['regiao_onde_mora'] ?></p>
+                                        <p>Sexo: <?php echo $dadosRetornadosAluno['sexo'] ?></p>
+
+                                      
+                                      
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- Optional: Place to the bottom of scripts -->
+                        <script>
+                            const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                        
+                        </script>
+                        </td>
+
+                        <td><button type="button" class="btn btn-warning">Aceitar</button></td>
                     </tr>
                     
                 <?php endforeach;} ?>
