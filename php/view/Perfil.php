@@ -211,11 +211,13 @@ else{
     <a href="Perfil-Edit.php" class="btn btn-outline-light shadow-lg top-right">
         <i class="fas fa-edit"></i> Editar Perfil
     </a>
-    <div  style="margin-left:100px; margin-top: 5px;">
-        <a href="../view/CaixaDeEntradaMotorista.php" >
-          <img src="../../HTML/imagens/envelope.png" style="width:48px" alt=""> 
-        </a>
-    </div>
+    <?php if($_SESSION['tipo_usuario'] == 1):?>
+        <div  style="margin-left:100px; margin-top: 5px;">
+            <a href="../view/CaixaDeEntradaMotorista.php" >
+            <img src="../../HTML/imagens/envelope.png" style="width:48px" alt=""> 
+            </a>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
