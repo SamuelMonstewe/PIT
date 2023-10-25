@@ -4,7 +4,7 @@ require_once "../pdo.php";
 
 $id_usuario_fk = $_SESSION['id'];
 $PEGAR_NOTIFICACOES = $ConexaoBanco->prepare("SELECT * FROM notificacoes WHERE id_usuario_fk = :id_usuario_fk AND tipo_notificacao = 1");
-$PEGAR_NOTIFICACOES->bindParam(':id_usuario_fk', $id_usuario_fk );
+$PEGAR_NOTIFICACOES->bindParam(':id_usuario_fk', $id_usuario_fk);
 if($PEGAR_NOTIFICACOES->execute()){    
     $dadosRetornados = $PEGAR_NOTIFICACOES->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -46,8 +46,6 @@ if($PEGAR_NOTIFICACOES->execute()){
                     <thead>
                         <tr>
                             <th scope="col">Descrição</th>
-                            <th scope="col">Ação</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +53,7 @@ if($PEGAR_NOTIFICACOES->execute()){
                     <?php foreach($dadosRetornados as $dado): ?>
                         <tr class="">
                             <td scope="row"><?php echo $dado['descricao'] ?></td>
-                            <td>Item</td>
+
                     
                         </tr>
                     <?php endforeach; ?>
