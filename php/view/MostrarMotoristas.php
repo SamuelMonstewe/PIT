@@ -192,7 +192,7 @@ if(isset($_POST['enviar-mensagem'])){
                                                 <input type="hidden" class="form-control" name="cpf" value="<?php echo $dadosRetornadosMotorista[$index]['cpf'] ?>">
                                                 <input type="hidden" class="form-control" name="descricao" value="Olá, gostaria de colocar meu filho no seu transporte" id="" aria-describedby="helpId" placeholder="">
                                             
-                                                <button type="submit" class="btn btn-warning mt-3" name="enviar-mensagem" id="enviar-mensagem">Notificar</button>
+                                                <button type="submit" class="btn btn-warning mt-3 notificar-motorista" name="enviar-mensagem" id="enviar-mensagem">Notificar</button>
                                             </form>
                                            </div>
                                         </div>
@@ -251,7 +251,7 @@ if(isset($_POST['enviar-mensagem'])){
 <script src="../../js/MostrarMotoristas.js"></script>
 <script>
     $(document).ready(function () {
-        $("#enviar-mensagem").on("click", function () {
+        $(".notificar-motorista").on("click", function () {
             alert("mensagem enviada com sucesso!");
         });
     });

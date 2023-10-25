@@ -78,6 +78,7 @@ if ($dadosRetornados == false) {
                             <th scope="col">Descrição</th>
                             <th scope="col">Dados do cliente</th>
                             <th scope="col">Aceitar Cliente</th>
+                            <th scope="col">Email cliente</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -197,7 +198,7 @@ if ($dadosRetornados == false) {
                                                             <input type="hidden" name="id_motorista"
                                                                 value="<?php echo $id_motorista_fk ?>">
                                                             <button type="submit" id="btn-aceitar-cliente"
-                                                                class="btn btn-warning" name="btn-aceitar-cliente">Sim</button>
+                                                                class="btn btn-warning aceitar-cliente" name="btn-aceitar-cliente">Sim</button>
                                                         </form>
 
                                                     </div>
@@ -212,7 +213,13 @@ if ($dadosRetornados == false) {
 
                                         </script>
                                     </td>
+
+                                    <td>
+                                        <?php echo $dadosRetornadosUsuario['email'] ?>
+                                    </td>
                                 </tr>
+
+
 
                             <?php endforeach;
                         } ?>
@@ -236,7 +243,13 @@ if ($dadosRetornados == false) {
         </script>
   
 </body>
-
+<script>
+    $(document).ready(function () {
+        $(".aceitar-cliente").on("click", function () {
+            alert("Cliente aceito com sucesso! Agora ele foi adicionado em sua lista de clientes e uma notificação foi enviada para ele");
+        });
+    });
+</script>
 <style>
     header {
         background-color: #F6A62E;
