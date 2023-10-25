@@ -214,7 +214,7 @@ else{
     <?php if($_SESSION['tipo_usuario'] == 1):?>
         <div  style="margin-left:100px; margin-top: 5px;">
             <a href="../view/CaixaDeEntradaMotorista.php" >
-            <img src="../../HTML/imagens/envelope.png" style="width:48px" alt=""> 
+                <i class='far fa-envelope' style='font-size:50px; color: white;'></i>
             </a>
         </div>
     <?php endif; ?>
