@@ -24,7 +24,7 @@ if(!empty($chave)){
 
         if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado 
-                                     <a href='DadosMotorista.php'>Clique aqui para preencher seus dados de motorista!</a></div>";
+                                     <a href='../../HTML/login.html'>Clique aqui para ir para o Login!</a></div>";
             header("Location: view/resposta.php");
         }
         else{
