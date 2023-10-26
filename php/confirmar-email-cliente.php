@@ -24,7 +24,7 @@ if(!empty($chave)){
 
         if($UPDATE->execute()){
             $_SESSION['mensagem'] = "<div class='alert alert-success' role='alert'> Email confirmado 
-                                     <a href='http://localhost/PIT/php/view/CadastroAluno.php'>Clique aqui para fazer cadastro do seu filho!</a></div>";
+                                     <a href='../../HTML/login.html'>Clique aqui para fazer seu Login!</a></div>";
             header("Location: view/resposta.php");
         }
         else{

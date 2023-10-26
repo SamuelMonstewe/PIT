@@ -30,9 +30,9 @@ else if ($_SESSION['situacao_login']) {
 
             $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
             $dadosRetornadosAluno = $SELECT_ALUNO->fetch(PDO::FETCH_ASSOC);
-
+           
             if ($dadosRetornadosUsuario && $dadosRetornadosAluno) {
-
+                $verificarDadosPreenchido = false;
                 $responsavel->setNome($dadosRetornadosUsuario['Usuario']);
                 $responsavel->setCpf($dadosRetornadosUsuario['cpf']);
                 $responsavel->setEmail($dadosRetornadosUsuario['email']);
@@ -41,8 +41,16 @@ else if ($_SESSION['situacao_login']) {
                 $aluno->setIdade($dadosRetornadosAluno['idade']);
                 $aluno->setNomeEscola($dadosRetornadosAluno['escola']);
                 $aluno->setSexo($dadosRetornadosAluno['sexo']);
-            } else {
+            }
+            else if($SELECT_USUARIO->execute()){
+                $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
+                if($_SESSION['tipo_usuario'] == 2){
+                    $verificarDadosPreenchido = true;
+                }
+            } 
+            else {
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de responsável no nosso site!.</div>";
+                $verificarDadosPreenchido = false;
             }
         } else {
             echo "<h1> Erro na execução da consulta </h1>";
@@ -267,6 +275,11 @@ else if ($_SESSION['situacao_login']) {
                         <p><strong>Escola: <?php echo $aluno->getNomeEscola() ?></strong> </p>
                         <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>
                     </div>
+                    <?php   if($_SESSION['tipo_usuario'] == 2): ?>
+                                <?php if($verificarDadosPreenchido = true):?>
+                        <a name="" id="" class="btn btn-warning" href="CadastroAluno.php" role="button">Cadastrar dados</a>
+                        <?php endif;?>
+                        <?php endif;?>
                 </div>
             </div>
         </div>

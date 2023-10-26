@@ -29,7 +29,7 @@ else if($_SESSION['situacao_login']){
             $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
             $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
             if($dadosRetornadosMotorista && $dadosRetornadosUsuario){
-               
+                $verificarDadosPreenchidos = false;
                 $motorista->setNome($dadosRetornadosUsuario['Usuario']);
                 $usuario->setEmail($dadosRetornadosUsuario['email']);
                 $motorista->setCpf($dadosRetornadosMotorista['cpf']);
@@ -42,8 +42,15 @@ else if($_SESSION['situacao_login']){
                 $motorista->setTurnoTarde($dadosRetornadosMotorista['turnoTarde']);
                
             }
+            else if($SELECT_USUARIO->execute()){
+                $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
+                if($dadosRetornadosUsuario['tipo_usuario_fk'] == 1){
+                    $verificarDadosPreenchidos = true;
+                }
+            }
             else{
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
+                $verificarDadosPreenchidos = false; 
             }
         }
         else{
@@ -245,9 +252,12 @@ else{
                             <li><strong>Tarde:</strong> <?php echo $motorista->getTurnoTarde()?></li>
                             <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
                         </ul>
-                        <div>
-                            <a name="" id="" class="btn btn-warning" href="ClientesMotorista.php" role="button">Meus Clientes</a>
-                        </div>
+                        <?php if($_SESSION['tipo_usuario'] == 1):?> 
+                                <?php   if($verificarDadosPreenchidos = true):?>
+                        <a name="" id="" class="btn btn-warning" href="DadosMotorista.php" role="button">Cadastrar dados</a>
+                        <?php endif;?>
+                        <?php endif;?>
+                        
                     </div>
                 </div>
             </div>
