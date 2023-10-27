@@ -253,12 +253,12 @@ else{
                             <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
                         </ul>
                         <?php if($_SESSION['tipo_usuario'] == 1):?> 
-                                <?php   if($verificarDadosPreenchidos = true):?>
+                                <?php   if($verificarDadosPreenchidos == true):?>
                         <a name="" id="" class="btn btn-warning" href="DadosMotorista.php" role="button">Cadastrar dados</a>
                         <?php endif;?>
                         <?php endif;?>
-                        
                     </div>
+                     <a name="" id="" class="btn btn-warning" href="ClientesMotorista.php" role="button">Meus clientes</a>
                 </div>
             </div>
         </div>

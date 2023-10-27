@@ -1,75 +1,70 @@
 <?php
 session_start();
 require_once "../pdo.php";
-require_once "../classes/Motorista.php";
+require_once "../classes/Responsavel.php";
 require_once "../classes/Usuario.php";
-$motorista = new Motorista();
-$usuario = new Usuario();
+require_once "../classes/Aluno.php";
+
+$responsavel = new Responsavel();
+$aluno = new aluno();
 if(isset($_POST['sair'])){
     unset($_SESSION['id']);
     unset($_SESSION['cpf']);
-    unset($_SESSION['situacao_login']);
-    unset($_SESSION['tipo_usuario']);
     session_destroy();
     header("Location: ../../HTML/login.html");
    
 }
-else if($_SESSION['situacao_login']){
-    if(isset($_SESSION['id'])){
+else if ($_SESSION['situacao_login']) {
+    if (isset($_SESSION['id'])) {
         global $ConexaoBanco;
-        $id_motorista = $_SESSION['id'];
-        $cpf_motorista = $_SESSION['cpf'];
-        $SELECT_MOTORISTA = $ConexaoBanco->prepare("SELECT * FROM Motorista WHERE cpf = :cpf");
-        $SELECT_MOTORISTA->bindParam(':cpf', $cpf_motorista);
+        $id_responsavel = $_SESSION['id'];
+        $cpf_responsavel = $_SESSION['cpf'];
+        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT Usuario, email, cpf FROM usuarios WHERE cpf = :cpf");
 
-        $SELECT_USUARIO = $ConexaoBanco->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
-        $SELECT_USUARIO->bindParam(':cpf', $cpf_motorista);
-        
-        if($SELECT_MOTORISTA->execute() && $SELECT_USUARIO->execute()){
-            $dadosRetornadosMotorista = $SELECT_MOTORISTA->fetch(PDO::FETCH_ASSOC);
+        $SELECT_USUARIO->bindParam(':cpf', $cpf_responsavel);
+
+        $SELECT_ALUNO = $ConexaoBanco->prepare("SELECT nome, idade, escola, sexo FROM aluno WHERE id_responsavel_fk = :id");
+        $SELECT_ALUNO->bindParam(':id', $id_responsavel);
+
+        if ($SELECT_USUARIO->execute() && $SELECT_ALUNO->execute()) {
+
             $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
-            if($dadosRetornadosMotorista && $dadosRetornadosUsuario){
-                $verificarDadosPreenchidos = false;
-                $motorista->setNome($dadosRetornadosUsuario['Usuario']);
-                $usuario->setEmail($dadosRetornadosUsuario['email']);
-                $motorista->setCpf($dadosRetornadosMotorista['cpf']);
-                $motorista->setIdade($dadosRetornadosMotorista['idade']);
-                $motorista->setTelefone($dadosRetornadosMotorista['telefone']);
-                $motorista->setRegiaoDeAtuacao($dadosRetornadosMotorista['regiao_atuacao']);
-                $motorista->setSexo($dadosRetornadosMotorista['sexo']);
-                $motorista->setTurnoManha($dadosRetornadosMotorista['turnoManha']);
-                $motorista->setTurnoNoite($dadosRetornadosMotorista['turnoNoite']);
-                $motorista->setTurnoTarde($dadosRetornadosMotorista['turnoTarde']);
-               
+            $dadosRetornadosAluno = $SELECT_ALUNO->fetch(PDO::FETCH_ASSOC);
+           
+            if ($dadosRetornadosUsuario && $dadosRetornadosAluno) {
+                $verificarDadosPreenchido = false;
+                $responsavel->setNome($dadosRetornadosUsuario['Usuario']);
+                $responsavel->setCpf($dadosRetornadosUsuario['cpf']);
+                $responsavel->setEmail($dadosRetornadosUsuario['email']);
+
+                $aluno->setNomeAluno($dadosRetornadosAluno['nome']);
+                $aluno->setIdade($dadosRetornadosAluno['idade']);
+                $aluno->setNomeEscola($dadosRetornadosAluno['escola']);
+                $aluno->setSexo($dadosRetornadosAluno['sexo']);
             }
-            else if($SELECT_USUARIO->execute()){
-                $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
-                if($dadosRetornadosUsuario['tipo_usuario_fk'] == 1){
-                    $verificarDadosPreenchidos = true;
+            else if($_SESSION['tipo_usuario'] == 2){
+                    $verificarDadosPreenchido = true;
                 }
+            
+            else {
+                $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de responsável no nosso site!.</div>";
+                $verificarDadosPreenchido = false;
             }
-            else{
-                $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
-                $verificarDadosPreenchidos = false; 
-            }
-        }
-        else{
+        } else {
             echo "<h1> Erro na execução da consulta </h1>";
         }
-
+    } else {
+        echo  "<h1> ID do responsável não definido na sessão </h1>";
     }
-    else{
-        echo  "<h1> ID do motorista não definido na sessão </h1>";
-    }
-}
-else{
+} else {
     header("Location: ../../HTML/login.html");
 }
-    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,6 +80,7 @@ else{
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
             background-color: #F6A62E;
         }
@@ -117,11 +113,18 @@ else{
             height: 150px;
             border-radius: 50%;
             background-color: #333;
-            background-image: url('sua-foto.jpg'); /* Substitua pelo URL da sua foto */
+            background-image: url('sua-foto.jpg');
+            /* Substitua pelo URL da sua foto */
             background-size: cover;
             background-position: center;
             border: 5px solid #fff;
             margin: 0 auto 20px;
+        }
+
+        .profile-Title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
         }
 
         .profile-name {
@@ -173,15 +176,15 @@ else{
         }
 
         .profile-links a:hover {
-            color: #e74c3c; 
+            color: #e74c3c;
         }
-        
+
         .top-left {
             position: absolute;
             top: 10px;
             left: 10px;
         }
-        
+
         .top-right {
             position: absolute;
             top: 10px;
@@ -191,7 +194,6 @@ else{
         .teste {
             overflow: hidden;
         }
-
         #ButtonLogOut {
             position: absolute;
             left: 5%;
@@ -211,11 +213,12 @@ else{
         }
     </style>
 </head>
+
 <body>
     <a href="../../HTML/index.html" class="btn btn-outline-light shadow-lg top-left">
         <i class="fas fa-arrow-left"></i> Voltar
     </a>
-    <a href="Perfil-Edit.php" class="btn btn-outline-light shadow-lg top-right">
+    <a href="../../HTML/Perfil-Edit.html" class="btn btn-outline-light shadow-lg top-right">
         <i class="fas fa-edit"></i> Editar Perfil
     </a>
     <div class="container">
@@ -223,47 +226,62 @@ else{
             <div class="col-md-8">
                 <div class="profile-container">
                     <form method="post" action="">
-                    <button id="ButtonLogOut"  type="submit" name="sair" class="btn btn-outline-dark shadow-lg">
-                        <i class='fas fa-sign-out-alt' style='font-size:32px;'>logOut</i>
-                    </button>
+                        <button id="ButtonLogOut" type="submit" name="sair" class="btn btn-outline-dark shadow-lg">
+                            <i class='fas fa-sign-out-alt' style='font-size:32px;'>logOut</i>
+                        </button>
                     </form>
-                    
+                    <h1 class="profile-Title">
+                        <strong>Responsavel:</strong>
+                    </h1>
                     <div class="profile-picture teste">
                         <img src="" width="100%" alt="">
                     </div>
-                    <h3 class="profile-name"><?php echo $motorista->getNome() ?></h3>
+                    <h3 class="profile-name">
+                        <?php echo $responsavel->getNome() ?>
+                    </h3>
                     <div class="profile-info">
-                        <p><strong>Email:</strong> <?php echo $usuario->getEmail() ?></p>
-                        <p><strong>CPF:</strong> <?php echo $motorista->getCpf()?></p>
-                        <p><strong>Idade:</strong> <?php  echo $motorista->getIdade();?></p>
-                        <p><strong>Telefone:</strong> <?php echo $motorista->getTelefone() ?></p>
-                        <p><strong>Sexo:</strong> <?php echo $motorista->getSexo()?></p>
-                        <p><strong>Regiao de atuação:</strong> <?php echo $motorista->getRegiaoDeAtuacao()?></p>
-                        <h4><strong>Turnos ao qual trabalha:</strong></h4>
-                        <ul>
-                            <li><strong>Manhã:</strong> <?php echo $motorista->getTurnoManha()?></li>
-                            <li><strong>Tarde:</strong> <?php echo $motorista->getTurnoTarde()?></li>
-                            <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
-                        </ul>
-                        <?php if($_SESSION['tipo_usuario'] == 1):?> 
-                                <?php   if($verificarDadosPreenchidos == true):?>
-                        <a name="" id="" class="btn btn-warning" href="DadosMotorista.php" role="button">Cadastrar dados</a>
-                            <?php endif;?>
-                        <?php endif;?>
-                        
+                        <p><strong>Email: <?php echo  $responsavel->getEmail() ?></strong> </p>
+                        <p><strong>CPF: <?php echo $responsavel->getCpf() ?></strong> </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="profile-container">
+                    <h1 class="profile-Title">
+                        <strong>Aluno:</strong>
+                    </h1>
 
-    <?php 
-        if(!empty($mensagem)){
-            echo $mensagem;
-        }
+                    <div class="profile-picture teste">
+                        <img src="" width="100%" alt="">
+                    </div>
+                    <h3 class="profile-name">
+                        <?php echo $aluno->getNomeAluno() ?>
+                    </h3>
+                    <div class="profile-info">
+                        <p><strong>Idade: <?php echo $aluno->getIdade() ?></strong> </p>
+                        <p><strong>Escola: <?php echo $aluno->getNomeEscola() ?></strong> </p>
+                        <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>
+                    </div>
+                    <?php   if($_SESSION['tipo_usuario'] == 2): ?>
+                                <?php if($verificarDadosPreenchido == true):?>
+                        <a name="" id="" class="btn btn-warning" href="CadastroAluno.php" role="button">Cadastrar dados</a>
+                        <?php endif;?>
+                        <?php endif;?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+    if (!empty($mensagem)) {
+        echo $mensagem;
+    }
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
+
 </html>
