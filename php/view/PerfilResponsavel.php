@@ -42,12 +42,10 @@ else if ($_SESSION['situacao_login']) {
                 $aluno->setNomeEscola($dadosRetornadosAluno['escola']);
                 $aluno->setSexo($dadosRetornadosAluno['sexo']);
             }
-            else if($SELECT_USUARIO->execute()){
-                $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
-                if($_SESSION['tipo_usuario'] == 2){
+            else if($_SESSION['tipo_usuario'] == 2){
                     $verificarDadosPreenchido = true;
                 }
-            } 
+            
             else {
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de responsável no nosso site!.</div>";
                 $verificarDadosPreenchido = false;
@@ -269,7 +267,7 @@ else if ($_SESSION['situacao_login']) {
                         <p><strong>Sexo: <?php echo $aluno->getSexo() ?></strong> </p>
                     </div>
                     <?php   if($_SESSION['tipo_usuario'] == 2): ?>
-                                <?php if($verificarDadosPreenchido = true):?>
+                                <?php if($verificarDadosPreenchido == true):?>
                         <a name="" id="" class="btn btn-warning" href="CadastroAluno.php" role="button">Cadastrar dados</a>
                         <?php endif;?>
                         <?php endif;?>

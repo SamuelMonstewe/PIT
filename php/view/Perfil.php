@@ -42,11 +42,8 @@ else if($_SESSION['situacao_login']){
                 $motorista->setTurnoTarde($dadosRetornadosMotorista['turnoTarde']);
                
             }
-            else if($SELECT_USUARIO->execute()){
-                $dadosRetornadosUsuario = $SELECT_USUARIO->fetch(PDO::FETCH_ASSOC);
-                if($dadosRetornadosUsuario['tipo_usuario_fk'] == 1){
+            else if($_SESSION['tipo_usuario'] == 1){
                     $verificarDadosPreenchidos = true;
-                }
             }
             else{
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
@@ -246,7 +243,7 @@ else{
                             <li><strong>Noite:</strong> <?php echo $motorista->getTurnoNoite()?></li>
                         </ul>
                         <?php if($_SESSION['tipo_usuario'] == 1):?> 
-                                <?php   if($verificarDadosPreenchidos = true):?>
+                                <?php   if($verificarDadosPreenchidos == true):?>
                         <a name="" id="" class="btn btn-warning" href="DadosMotorista.php" role="button">Cadastrar dados</a>
                         <?php endif;?>
                         <?php endif;?>
