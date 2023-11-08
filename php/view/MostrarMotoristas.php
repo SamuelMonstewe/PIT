@@ -218,6 +218,7 @@ if(isset($_POST['enviar-mensagem'])){
                                             <p>Idade: <?php echo $dadosRetornadosMotorista[$index]['idade'] ?></p>
                                             <p>Região de Atuação: <?php echo $dadosRetornadosMotorista[$index]['regiao_atuacao'] ?></p>
                                             <p>Sexo: <?php echo $dadosRetornadosMotorista[$index]['sexo'] ?></p>
+                                            <p>Telefone: <?php echo $dadosRetornadosMotorista[$index]['telefone'] ?></p>
                                             
                                         </div>
                                         <div class="modal-footer">

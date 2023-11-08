@@ -221,6 +221,13 @@ else if ($_SESSION['situacao_login']) {
     <a href="../../HTML/Perfil-Edit.html" class="btn btn-outline-light shadow-lg top-right">
         <i class="fas fa-edit"></i> Editar Perfil
     </a>
+    <?php if($_SESSION['tipo_usuario'] == 2):?>
+        <div  style="margin-left:100px; margin-top: 5px;">
+            <a href="../view/CaixaDeEntradaCliente.php" >
+                <i class='far fa-envelope' style='font-size:50px; color: white;'></i>
+            </a>
+        </div>
+    <?php endif; ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

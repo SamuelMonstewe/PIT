@@ -48,6 +48,7 @@ else if($_SESSION['situacao_login']){
                 
             }
             else{
+               
                 $mensagem = "<div class='alert alert-danger' role='alert'> Você não possui cadastro de motorista no nosso site!.</div>";
                 $verificarDadosPreenchidos = false; 
             }
